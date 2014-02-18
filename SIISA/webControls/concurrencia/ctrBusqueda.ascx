@@ -92,6 +92,10 @@
 </style>
 
 <script type="text/javascript">
+    $(document).ready(function () {
+        agregaBotonConfirm();
+    });
+    
     function showModal() {
         $("#divModal").animate({            
             height: "350px"
@@ -165,15 +169,15 @@
     function agregaBotonConfirm() {
         $.notify.addStyle('foo', {
             html:
-              "<div>" +
-                "<div class='clearfix'>" +
-                  "<div class='title' data-notify-html='title'/>" +
-                  "<div class='buttons'>" +
-                    "<button class='no'>Cancel</button>" +
+                "<div>" +
+                    "<div class='clearfix'>" +
+                    "<div class='title' data-notify-html='title'/>" +
+                    "<div class='buttons'>" +
+                    "<button class='no'>No</button>" +
                     "<button class='yes' data-notify-text='button'></button>" +
-                  "</div>" +
-                "</div>" +
-              "</div>"
+                    "</div>" +
+                    "</div>" +
+                    "</div>"
         });
 
         //listen for click events from this style

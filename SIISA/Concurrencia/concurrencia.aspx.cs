@@ -11,9 +11,9 @@ namespace SIISAConc.Concurrencia
         {
             if (!IsPostBack)
             {
-                pnlConcurrencia.Visible = false;
-                //txtBusqIPS.Text = "860066191";
-                //buscarEntidad();
+                //pnlConcurrencia.Visible = false;
+                txtBusqIPS.Text = "860066191";
+                buscarEntidad();
             }
         }
 
