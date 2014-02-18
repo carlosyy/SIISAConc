@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using SIISAConc.webControls.concurrencia;
 
 namespace SIISAConc.Concurrencia
 {
@@ -49,7 +48,7 @@ namespace SIISAConc.Concurrencia
             {
                 pnlConcurrencia.Visible = true;
                 pnlEstablecerIPS.Visible = false;
-                ctrBusqueda.llenarGrilla(orden: 0);
+                ctrBusqueda.llenarGrilla(orden: 7);
             }
         }
     }

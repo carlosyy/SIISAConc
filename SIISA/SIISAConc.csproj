@@ -11,8 +11,8 @@
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SIISA</RootNamespace>
-    <AssemblyName>SIISA</AssemblyName>
+    <RootNamespace>SIISAConc</RootNamespace>
+    <AssemblyName>SIISAConc</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
@@ -152,6 +152,7 @@
     </Content>
     <Content Include="webControls\areasAtencion\ctrAreasAtencion.ascx" />
     <Content Include="webControls\concurrencia\ctrAddPacteConcurr.ascx" />
+    <Content Include="webControls\concurrencia\ctrAtencEstablecidas.ascx" />
     <Content Include="webControls\concurrencia\ctrBusqueda.ascx" />
     <Content Include="webControls\concurrencia\ctrCargueListPacie.ascx" />
     <Content Include="webControls\concurrencia\ctrHallazgos.ascx" />
@@ -256,6 +257,13 @@
     </Compile>
     <Compile Include="webControls\concurrencia\ctrAddPacteConcurr.ascx.designer.cs">
       <DependentUpon>ctrAddPacteConcurr.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="webControls\concurrencia\ctrAtencEstablecidas.ascx.cs">
+      <DependentUpon>ctrAtencEstablecidas.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="webControls\concurrencia\ctrAtencEstablecidas.ascx.designer.cs">
+      <DependentUpon>ctrAtencEstablecidas.ascx</DependentUpon>
     </Compile>
     <Compile Include="webControls\concurrencia\ctrBusqueda.ascx.cs">
       <DependentUpon>ctrBusqueda.ascx</DependentUpon>

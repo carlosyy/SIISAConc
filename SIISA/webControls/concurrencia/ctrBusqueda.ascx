@@ -61,34 +61,37 @@
         }
 
     .notifyjs-foo-base {
-  opacity: 0.85;
-  width: 200px;
-  background: #F5F5F5;
-  padding: 5px;
-  border-radius: 10px;
-}
+        width: 300px;
+        opacity: 0.85;
+        background: #F5F5F5;
+        padding: 5px;
+        border-radius: 10px;
+        background: lightblue;
+        float: left;
+        font-weight: bold;
+    }
 
-.notifyjs-foo-base .title {
-  width: 100px;
-  float: left;
-  margin: 10px 0 0 10px;
-  text-align: right;
-}
+        .notifyjs-foo-base .title {
+            width: 200px;
+            float: left;
+            margin: 10px 0 0 10px;
+            text-align: right;
+        }
 
-.notifyjs-foo-base .buttons {
-  width: 70px;
-  float: right;
-  font-size: 9px;
-  padding: 5px;
-  margin: 2px;
-}
+        .notifyjs-foo-base .buttons {
+            width: 70px;
+            float: right;
+            font-size: 9px;
+            padding: 5px;
+            margin: 2px;
+        }
 
-.notifyjs-foo-base button {
-  font-size: 9px;
-  padding: 5px;
-  margin: 2px;
-  width: 60px;
-}
+        .notifyjs-foo-base button {
+            font-size: 9px;
+            padding: 5px;
+            margin: 2px;
+            width: 60px;
+        }
 </style>
 
 <script type="text/javascript">
@@ -98,7 +101,27 @@
     $(document).ready(function () {
         agregaBotonConfirm();
     });
-    
+
+    function loadScript() {
+        $(document).ready(function() {
+            var hfOrden = document.getElementById('hfOrden');
+            var imgOrdenar = document.getElementById('imgOrdenar' + hfOrden.value);
+            imgOrdenar.style.display = 'block';
+
+        });
+    }
+
+    function showImg(tipoOrden, mostrar) {
+        var imgOrdenar = document.getElementById('imgOrdenar' + tipoOrden);
+        var hfOrden = document.getElementById('hfOrden');
+        if (mostrar) {
+            imgOrdenar.style.display = 'block';
+        }
+        else if (mostrar == false && hfOrden.value != tipoOrden) {
+            imgOrdenar.style.display = 'none';
+        }
+    }
+
     function showModal() {
         $("#divModal").animate({            
             height: "350px"
@@ -121,6 +144,7 @@
             cerrar();
         }
     }
+
     function aplicarFiltro() {
         var txtBusqDoc = document.getElementById('txtBusqDoc');
         var txtBusqNombre = document.getElementById('txtBusqNombre');
@@ -173,8 +197,8 @@
         $.notify.addStyle('foo', {
             html:
                 "<div>" +
-                    "<div class='warn' style='background:lightblue; float:left; font-weight:bold; width:250px'>" +
-                    "<div class='title' data-notify-html='title' style='float:left; width:200px'/>" +
+                    "<div>" +
+                    "<div class='title' data-notify-html='title'/>" +
                     "<div class='buttons'>" +
                     "<button class='no'>No</button>" +
                     "<button class='yes' data-notify-text='button'></button>" +
@@ -187,13 +211,11 @@
         $(document).on('click', '.notifyjs-foo-base .no', function () {
             //programmatically trigger propogating hide event
             $(this).trigger('notify-hide');
-            var btnOrdenar = document.getElementById('btnOrdenar');
-            btnOrdenar.click();
+            return false;
         });
         $(document).on('click', '.notifyjs-foo-base .yes', function () {
             _tr = $(_lblBtnEstablecer).closest('tr');
             $(_tr).fadeOut('slow', function () { $(this).remove(); });
-            //show button text
             SIISAConc.WbsSIISAConc.establecerAuditarWs(_idRadicado, getResultado);
             //hide notification
             $(this).trigger('notify-hide');
@@ -211,8 +233,7 @@
             style: 'foo',
             autoHide: false,
             clickToHide: false,
-            elementPosition: 'left',
-            gap: 16
+            elementPosition: 'left'
         });
     }
 
@@ -222,17 +243,6 @@
         }
     }
 
-    function showImg(tipoOrden, mostrar) {
-        var imgOrdenar = document.getElementById('imgOrdenar' + tipoOrden);
-        if (mostrar == true) {
-            imgOrdenar.style.display = 'block';
-        }
-            
-        else {
-            imgOrdenar.style.display = 'none';
-        }
-    }
-    
     function nuevoPaciente() {
         $("#divNuevoPaciente").fadeIn('slow');
         window.divNuevoPaciente.style.display = 'block';
@@ -260,10 +270,13 @@
             </div>
             <asp:UpdatePanel runat="server" ID="uppGrilla">
                 <ContentTemplate>
+                    <script type="text/javascript">
+                        Sys.Application.add_load(loadScript);
+                    </script>
                     <asp:Button runat="server" ID="btnOrdenar" ClientIDMode="Static" OnClick="btnOrdenar_OnClick" Style="display: none" />                    
-                    <asp:HiddenField ID="hfOrden" ClientIDMode="Static" runat="server" Value="0" />
+                    <asp:HiddenField ID="hfOrden" ClientIDMode="Static" runat="server" Value="7" />
                     <asp:HiddenField ID="hfIdRadicado" ClientIDMode="Static" runat="server" Value="0" />
-                    <asp:GridView ID="gvResultados" runat="server" AllowSorting="true" OnRowDataBound="gvResultados_RowDataBound" AutoGenerateColumns="False" OnRowCommand="gvResultados_RowCommand" EmptyDataText="Sin registros" Width="100%" DataKeyNames="idRadicado">
+                    <asp:GridView ID="gvResultados" runat="server" OnRowDataBound="gvResultados_RowDataBound" AutoGenerateColumns="False" EmptyDataText="Sin registros" Width="100%" DataKeyNames="idRadicado">
                         <Columns>                            
                             <asp:TemplateField>
                                 <HeaderTemplate>
@@ -295,7 +308,7 @@
                                 </ItemTemplate>
                             </asp:TemplateField>
 
-                            <asp:TemplateField>
+                            <%--<asp:TemplateField>
                                 <HeaderTemplate>
                                     <asp:Label runat="server" ID="lblHDFechaEgreso" Text="Fecha de Egreso"></asp:Label>
                                     <img id="imgOrdenar1" style="display: none; cursor: pointer" title="Ordenar por fecha de egreso" src="../../Images/icons/bi/flechaAbajo.png" onclick="ordenar(1);" width="15" height="15" />
@@ -303,7 +316,7 @@
                                 <ItemTemplate>
                                     <asp:Label runat="server" ID="lblFechaEgreso" Text='<%# DataBinder.Eval(Container.DataItem, "fecEgreso") %>'></asp:Label>
                                 </ItemTemplate>
-                            </asp:TemplateField>
+                            </asp:TemplateField>--%>
 
                             <asp:TemplateField>
                                 <HeaderTemplate>

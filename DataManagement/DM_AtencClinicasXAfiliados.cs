@@ -13,11 +13,11 @@ namespace DataManagement
     {
         readonly SQLConn oDataAccess = new SQLConn();
 
-        public atencClinicasXAfiliado Buscar(String docIden = "", Int32 programa = 0, String nit = "", String codDx = "", String fecDesde = "", String fecHasta = "", String filtroNombre = "", Int32 limitInf = 0, Int32 limitSup = 0, Int32 orden = 0)
+        public atencClinicasXAfiliado buscar(String docIden = "", Int32 programa = 0, String nit = "", String codDx = "", String fecDesde = "", String fecHasta = "", String filtroNombre = "", Int32 limitInf = 0, Int32 limitSup = 0, Int32 orden = 0, Int32 idEstadoRev = 0)
         {
             IDataReader reader;
             atencClinicasXAfiliado lista = new atencClinicasXAfiliado();
-            String sQuery = String.Format("EXEC SP_BuscarAtencClinicas @docIden='{0}', @programa={1}, @nit='{2}', @codDx='{3}', @fecDesde='{4}', @fecHasta='{5}', @filtroNombre='{6}', @limitInf={7}, @limitSup={8}, @orden={9}", docIden, programa, nit, codDx, fecDesde, fecHasta, filtroNombre, limitInf, limitSup, orden);
+            String sQuery = String.Format("EXEC SP_BuscarAtencClinicas @docIden='{0}', @programa={1}, @nit='{2}', @codDx='{3}', @fecDesde='{4}', @fecHasta='{5}', @filtroNombre='{6}', @limitInf={7}, @limitSup={8}, @orden={9}, @idEstadoRev={10}", docIden, programa, nit, codDx, fecDesde, fecHasta, filtroNombre, limitInf, limitSup, orden, idEstadoRev);
 
             try
             {

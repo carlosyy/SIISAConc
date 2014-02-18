@@ -8,12 +8,12 @@ namespace Business
     {
         private readonly DM_AtencClinicasXAfiliados _oDmAtencClinicas = new DM_AtencClinicasXAfiliados();
 
-        public atencClinicasXAfiliado Buscar(String docIden, Int32 programa, String nit, String codDx, String fecDesde,
-            String fecHasta, String filtroNombre, Int32 limitInf, Int32 limitSup, Int32 orden)
+        public atencClinicasXAfiliado buscar(String docIden, Int32 programa, String nit, String codDx, String fecDesde,
+            String fecHasta, String filtroNombre, Int32 limitInf, Int32 limitSup, Int32 orden, Int32 idEstadoRev)
         {
-            return _oDmAtencClinicas.Buscar(docIden: docIden, programa: programa, nit: nit, codDx: codDx,
+            return _oDmAtencClinicas.buscar(docIden: docIden, programa: programa, nit: nit, codDx: codDx,
                 fecDesde: fecDesde, fecHasta: fecHasta, filtroNombre: filtroNombre, limitInf: limitInf,
-                limitSup: limitSup, orden: orden);
+                limitSup: limitSup, orden: orden, idEstadoRev: idEstadoRev);
         }
 
         public Int32 contarAtenciones(String docIden, Int32 programa, String nit, String codDx, String fecDesc,

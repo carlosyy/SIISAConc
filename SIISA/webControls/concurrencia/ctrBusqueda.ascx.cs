@@ -156,7 +156,7 @@ namespace SIISAConc.webControls.concurrencia
                     }
 
                     lblFiltrado.Text = " de " + _numPages.ToString();
-                    eCenso = oB_AtencClinicasXAfiliados.Buscar(docIden: txtBusqDoc.Text, programa: Int32.Parse(hfPrograma.Value == "" ? "0" : hfPrograma.Value), nit: hfNit.Value, codDx: hfCodDx.Value, fecDesde: txtFecDesde.Text, fecHasta: txtFecHasta.Text, filtroNombre: txtBusqNombre.Text, limitInf: _limitInf, limitSup: _limitSup, orden: orden);
+                    eCenso = oB_AtencClinicasXAfiliados.buscar(docIden: txtBusqDoc.Text, programa: Int32.Parse(hfPrograma.Value == "" ? "0" : hfPrograma.Value), nit: hfNit.Value, codDx: hfCodDx.Value, fecDesde: txtFecDesde.Text, fecHasta: txtFecHasta.Text, filtroNombre: txtBusqNombre.Text, limitInf: _limitInf, limitSup: _limitSup, orden: orden, idEstadoRev: 1);
                 }
                 else if (cantRegs == 0)
                 {
@@ -179,7 +179,10 @@ namespace SIISAConc.webControls.concurrencia
                     btnPrev.Visible = false;
                     ddlPagina.Visible = false;
                     lblPagina.Text = "Pagina Actual: 1 ";
-                    eCenso = oB_AtencClinicasXAfiliados.Buscar(docIden: txtBusqDoc.Text, programa: Int32.Parse(hfPrograma.Value == "" ? "0" : hfPrograma.Value), nit: hfNit.Value, codDx: hfCodDx.Value, fecDesde: txtFecDesde.Text, fecHasta: txtFecHasta.Text, filtroNombre: txtBusqNombre.Text, limitInf: 0, limitSup: 0, orden: orden);
+                    eCenso = oB_AtencClinicasXAfiliados.buscar(docIden: txtBusqDoc.Text,
+                        programa: Int32.Parse(hfPrograma.Value == "" ? "0" : hfPrograma.Value), nit: hfNit.Value,
+                        codDx: hfCodDx.Value, fecDesde: txtFecDesde.Text, fecHasta: txtFecHasta.Text,
+                        filtroNombre: txtBusqNombre.Text, limitInf: 0, limitSup: 0, orden: orden, idEstadoRev: 1);
                 }
             }
             catch (Exception ex)
@@ -203,10 +206,6 @@ namespace SIISAConc.webControls.concurrencia
             }
         }
 
-        protected void gvResultados_RowCommand(object sender, GridViewCommandEventArgs e)
-        {
-            
-        }
         protected void btnFirst_Click(object sender, EventArgs e)
         {
             hfPagina.Value = ("1");
@@ -325,16 +324,16 @@ namespace SIISAConc.webControls.concurrencia
                     e.Row.Cells[2].Attributes.Add("onmouseout", "showImg(0, false);");
                     e.Row.Cells[3].Attributes.Add("onmouseover", "showImg(1, true);");
                     e.Row.Cells[3].Attributes.Add("onmouseout", "showImg(1, false);");
-                    e.Row.Cells[4].Attributes.Add("onmouseover", "showImg(3, true);");
-                    e.Row.Cells[4].Attributes.Add("onmouseout", "showImg(3, false);");
-                    e.Row.Cells[5].Attributes.Add("onmouseover", "showImg(4, true);");
-                    e.Row.Cells[5].Attributes.Add("onmouseout", "showImg(4, false);");
-                    e.Row.Cells[6].Attributes.Add("onmouseover", "showImg(5, true);");
-                    e.Row.Cells[6].Attributes.Add("onmouseout", "showImg(5, false);");
-                    e.Row.Cells[7].Attributes.Add("onmouseover", "showImg(8, true);");
-                    e.Row.Cells[7].Attributes.Add("onmouseout", "showImg(8, false);");
-                    e.Row.Cells[8].Attributes.Add("onmouseover", "showImg(7, true);");
-                    e.Row.Cells[8].Attributes.Add("onmouseout", "showImg(7, false);");
+                    e.Row.Cells[3].Attributes.Add("onmouseover", "showImg(3, true);");
+                    e.Row.Cells[3].Attributes.Add("onmouseout", "showImg(3, false);");
+                    e.Row.Cells[4].Attributes.Add("onmouseover", "showImg(4, true);");
+                    e.Row.Cells[4].Attributes.Add("onmouseout", "showImg(4, false);");
+                    e.Row.Cells[5].Attributes.Add("onmouseover", "showImg(5, true);");
+                    e.Row.Cells[5].Attributes.Add("onmouseout", "showImg(5, false);");
+                    e.Row.Cells[6].Attributes.Add("onmouseover", "showImg(8, true);");
+                    e.Row.Cells[6].Attributes.Add("onmouseout", "showImg(8, false);");
+                    e.Row.Cells[7].Attributes.Add("onmouseover", "showImg(7, true);");
+                    e.Row.Cells[7].Attributes.Add("onmouseout", "showImg(7, false);");
                     break;
                 case DataControlRowType.DataRow:
                     Label lblBtnEstablecer = (Label) e.Row.FindControl("lblBtnEstablecer");
