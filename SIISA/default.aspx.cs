@@ -29,18 +29,13 @@ namespace SIISAConc
             Master.FindControl("pnlUsuarioLogueado").Visible = true;
             //Master.FindControl("pnlRedesSoc").Visible = false;
             Label lblUsuario = (Label)Master.FindControl("lblUsuario");
-            lblUsuario.Text = e.nombreUsuario.ToString();
-            Session["nombreUsuario"] = e.nombreUsuario.ToString();
+            lblUsuario.Text = e.nombreUsuario;
+            Session["nombreUsuario"] = e.nombreUsuario;
             Label lblPerfil = (Label)Master.FindControl("lblPerfil");
-            lblPerfil.Text = e.perfil.ToString();
-            Session["nombrePerfil"] = e.perfil.ToString();
-            pnlLogin.Visible = false;            
-        }
-
-        protected void btnReporte_Click(object sender, EventArgs e)
-        {
-					SendEmail sem = new SendEmail();
-					MessageBox.show(sem.SendingEmail("carlos.yy@gmail.com", "Hola Mundo", "Test de prueba"));
+            lblPerfil.Text = e.perfil;
+            Session["nombrePerfil"] = e.perfil;
+            pnlLogin.Visible = false;
+            MessageBox.show("Bienvenido " + lblPerfil.Text + " " + lblUsuario.Text, tipoAlerta: 4, posicion: "bottom right");
         }
     }
 }

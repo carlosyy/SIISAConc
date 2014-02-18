@@ -92,6 +92,9 @@
 </style>
 
 <script type="text/javascript">
+    var _idRadicado;
+    var _lblBtnEstablecer;
+    var _tr;
     $(document).ready(function () {
         agregaBotonConfirm();
     });
@@ -170,8 +173,8 @@
         $.notify.addStyle('foo', {
             html:
                 "<div>" +
-                    "<div class='clearfix'>" +
-                    "<div class='title' data-notify-html='title'/>" +
+                    "<div class='warn' style='background:lightblue; float:left; font-weight:bold; width:250px'>" +
+                    "<div class='title' data-notify-html='title' style='float:left; width:200px'/>" +
                     "<div class='buttons'>" +
                     "<button class='no'>No</button>" +
                     "<button class='yes' data-notify-text='button'></button>" +
@@ -184,31 +187,38 @@
         $(document).on('click', '.notifyjs-foo-base .no', function () {
             //programmatically trigger propogating hide event
             $(this).trigger('notify-hide');
-        });
-        $(document).on('click', '.notifyjs-foo-base .yes', function () {
-            //show button text
-            SIISAConc.WbsSIISAConc.establecerAuditarWs(idRadicado, getResultado);
             var btnOrdenar = document.getElementById('btnOrdenar');
             btnOrdenar.click();
+        });
+        $(document).on('click', '.notifyjs-foo-base .yes', function () {
+            _tr = $(_lblBtnEstablecer).closest('tr');
+            $(_tr).fadeOut('slow', function () { $(this).remove(); });
+            //show button text
+            SIISAConc.WbsSIISAConc.establecerAuditarWs(_idRadicado, getResultado);
             //hide notification
             $(this).trigger('notify-hide');
+            return false;
         });
     }
 
-    function establecerAuditar(idRadicado, nombrePaciente) {
-        $.notify({
-            title: 'Esta seguro de establecer al paciente ' + nombrePaciente + ' para auditoria?.?',
+    function establecerAuditar(idRadicado, nombrePaciente, control) {
+        _idRadicado = idRadicado;
+        _lblBtnEstablecer = document.getElementById(control);
+        $(_lblBtnEstablecer).notify({
+            title: '¿Esta seguro de establecer al paciente ' + nombrePaciente + ' para auditoria?.',
             button: 'Establecer'
         }, {
             style: 'foo',
             autoHide: false,
-            clickToHide: false
+            clickToHide: false,
+            elementPosition: 'left',
+            gap: 16
         });
     }
 
     function getResultado(result) {
         if (result == 1) {
-            mensajeBox("Auditoria establecida.", "info");
+            $.notify("Auditoria establecida.", "info");
         }
     }
 

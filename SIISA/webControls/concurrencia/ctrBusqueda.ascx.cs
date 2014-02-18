@@ -341,7 +341,7 @@ namespace SIISAConc.webControls.concurrencia
                     lblBtnEstablecer.Text = " " + "<a ID=\"btnPage\" OnClick=\"javascript:establecerAuditar('" +
                                             gvResultados.DataKeys[e.Row.RowIndex].Values[0].ToString() + "', '" +
                                             ((Label)e.Row.FindControl("lblNombreUsuario")).Text +
-                                            "');\"><img alt=\"sendMail\" src=\"../../Images/icons/bi/agregarenc.png\" style=\"width: 25px; height: 25px; cursor: pointer;\" /></a>";
+                                            "','" + lblBtnEstablecer.ClientID + "');\"><img alt=\"sendMail\" src=\"../../Images/icons/bi/agregarenc.png\" style=\"width: 25px; height: 25px; cursor: pointer;\" /></a>";
                     break;
 
             }

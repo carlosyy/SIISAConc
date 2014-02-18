@@ -5,14 +5,9 @@
 </asp:Content>
 <asp:Content ID="Content2" runat="server" ContentPlaceHolderID="cphContenido">
     <div style="margin: 0 auto 0 auto; width: 590px; text-align: center;">
-        
-        <asp:Button  runat="server" style="display:none" ID="btnReporte" Text="Reporte" OnClick="btnReporte_Click" />
         <asp:Panel ID="pnlLogin" runat="server">
             <uc1:ctrLogin ID="ctrLogin1" runat="server" />            
         </asp:Panel>
-
-        
-
     </div>
 
     <%--<table style="margin-right:0">

@@ -107,11 +107,15 @@ namespace Business
                     sMsg = (String)queue.Dequeue();
                     sMsg = sMsg.Replace("\n", "\\n");
                     sMsg = sMsg.Replace("\"", "'");
-
-                    sb.Append("$");
+                    
                     if (_elemento != "")
                     {
-                        sb.Append("(\"#" + _elemento + "\")");
+                        sb.Append("var _control = document.getElementById(" + _elemento + ");");
+                        sb.Append("$(_control)");
+                    }
+                    else
+                    {
+                        sb.Append("$");
                     }
 
                     sb.Append(".notify('" + sMsg + "', ");
@@ -133,7 +137,7 @@ namespace Business
                     }
                     sb.Append(" } );");
                 }
-
+                
                 // Close our JS
 
                 sb.Append(@"</script>");
