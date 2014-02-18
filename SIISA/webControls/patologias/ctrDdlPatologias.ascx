@@ -1,0 +1,2 @@
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="ctrDdlPatologias.ascx.cs" Inherits="SIISAConc.webControls.patologias.ctrPatologias1" %>
+<asp:DropDownList ID="ddlPatologia" runat="server"></asp:DropDownList>

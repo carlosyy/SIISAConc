@@ -1,0 +1,2 @@
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="ctrDdlProgramas.ascx.cs" Inherits="SIISAConc.Controls.programas.ctrDdlProgramas" %>
+<asp:DropDownList ID="ddlProgramas" Width="280px" runat="server" OnDataBound="ddlProgramas_DataBound"></asp:DropDownList>

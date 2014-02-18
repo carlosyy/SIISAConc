@@ -1,0 +1,2 @@
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="ctrDdlNitNombre.ascx.cs" Inherits="SIISAConc.webControls.entidades.ctrDdlNitNombre" %>
+<asp:DropDownList ID="ddlNitNombre" runat="server" OnSelectedIndexChanged="ddlNitNombre_SelectedIndexChanged" AutoPostBack="true" Width="250px" OnDataBound="ddlNitNombre_DataBound"></asp:DropDownList>

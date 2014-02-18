@@ -1,0 +1,432 @@
+body {
+    height: 800px;
+    margin: 0;    
+    text-align: center;
+    font-size: small;
+    background-color: #eeeeee;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-position: 0% 0%;
+    background-clip: border-box;
+    background-origin: padding-box;
+    background-size: auto auto;
+}
+
+body, td, input, textarea, select {
+    font-family: arial,sans-serif;
+}
+
+table {
+    margin: 0;
+    padding: 0;
+    font: tahoma, arial, sans-serif;
+    line-height: 1.4em;
+    border-collapse: collapse;
+    border: 2px solid #ADBBCA;
+    color: #4F6480;
+    background: #F0F0F0;
+    font-size: small;
+}
+
+div.divTabla {
+    margin: 0;
+    padding: 0;
+    font: tahoma, arial, sans-serif;
+    line-height: 1.4em;
+    border-collapse: collapse;
+    border: 2px solid #ADBBCA;
+    color: #4F6480;
+    background: #F0F0F0;
+    font-size: small;
+}
+
+div.divSub {
+    line-height: 0.8em;
+    border: 1px solid #ADBBCA;
+    height: 35px;
+}
+
+div.divSub2 {
+    line-height: 0.8em;
+    border: 1px solid #ADBBCA;
+    height: 40px;
+}
+
+caption {
+    height: 45px;
+    line-height: 44px;
+    color: #60634E;
+    font-weight: bold;
+    text-align: center;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    margin-left: -1px;
+    background: #ffffff;
+    background-position: 50% top;
+    border-left: 2px solid #616161;
+    border-right: 2px solid #616161;
+}
+
+thead {
+    color: #fff;
+    background: #5E7796;
+}
+
+tr {
+    vertical-align: top;
+}    
+
+tfoot tr td, tfoot tr th, tbody tr td {
+    padding: 4px;
+}
+
+td {
+    border-left: 1px solid #dadada;
+}
+
+tbody tr {
+    border: 4px solid #ADBBCA;
+}
+
+tbody th {
+    padding: 8px;
+    border: 4px solid #ADBBCA;
+}
+
+table tr:nth-child(odd) td {
+    background-color: #ddd;
+}
+
+    /*table tr:nth-child(odd) td:hover {
+        color: blue;
+    }*/
+
+table tr:nth-child(even) td {
+    background-color: #f6f6f6;
+}
+
+input:focus {
+    border-color: #66afe9;
+    outline: 0;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
+}
+select:focus{
+    border-color: #66afe9;
+    outline: 0;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
+}
+#UsuarioLogueado tr, #UsuarioLogueado td {
+    border: medium double #C0C0C0;
+    background-color: #C0C0C0;
+    color: #666666;
+    line-height: 0.5em;
+}
+
+/*------------------------
+    PageMaster
+-----------------------*/
+
+#divIniciaSesion div,
+#divIniciaSesion tr,
+#divIniciaSesion td,
+#divIniciaSesion table {
+    float: right;
+    border: hidden;
+    text-align: left;
+    background-color: white;
+}
+
+tr.estilo1, td.estilo1 {
+    background-color: #C0C0C0;
+    font-weight: bold;
+}
+
+#itsthetable {
+    background: #F0F0F0;
+}
+
+#content {
+    text-align: left;
+}
+
+
+.button {
+    background-color: #D3D5DF;
+    font-weight:bold;
+    background-image: -moz-linear-gradient(center top, #4D90FE, #4787ED);
+    border: 1px solid #648CC9;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    color: #3F8ECC;
+    -webkit-text-shadow: 0 1px rgba(0, 0, 0, 0.1);
+    text-shadow: 0 1px rgba(0, 0, 0, 0.1);
+    width: 200px;
+    cursor:pointer;
+}
+
+
+#footer {
+    height: 30px;
+    background-color: #a4b0f8;
+}
+
+#principal {
+    width: 1200px;
+    margin: 0 auto;
+}
+
+
+#tdLoginDer {
+    width: 200px;
+    vertical-align: text-top;
+}
+
+#tdLoginIz {
+    width: 720px;
+    vertical-align: top;
+    text-indent: 25px;
+}
+
+
+body.Alineacion {
+    text-align: center;
+}
+
+div.Centrada {
+    text-align: center;
+}
+
+td.CeldaCentro {
+    background: #C0C0C0;
+    alignment-adjust: central;
+    color: blue;
+    font-weight: bold;
+    text-align: center;
+}
+
+td.Solocentro {
+    alignment-adjust: central;
+    color: blue;
+    text-align: center;
+}
+
+
+/*Estilos generales para el footer de la aplicación*/
+.CentrarDivs {
+    padding: 70px 0 0 0px;
+    height: 100%;
+    width: 350px;
+    margin: auto;
+    position: relative;
+    top: 100px;
+    left: 50%;
+    top: 50%;
+    margin-top: -250px;
+    margin-left: -300px;
+}
+
+.filaDiv {
+    clear: both;
+}
+
+.ColDiv {
+    float: right;
+    padding: 5px;
+    border-color: #F0E0A0;
+    border-style: solid;
+    border-right-width: 0px;
+    border-left-width: 0px;
+    border-top-width: 0px;
+    border-bottom-width: 1px;
+    width: auto;
+    border-top-color: rgba(0, 0, 0, 0.1);
+}
+
+.footerD {
+    width: 100%;
+    height: auto;
+    position: fixed; /* Fija el contenedor a una posición */
+    bottom: 0px; /* El div se sitúa abajo */
+    z-index: -88; /* Lo muestra por encima de otros div */
+    clear: none;
+    overflow: auto;
+    background-color: #608199;
+}
+
+.footerOpciones
+{
+    width: 100%;
+    height: auto;
+    bottom: 0px; /* El div se sitúa abajo */
+    z-index: -88; /* Lo muestra por encima de otros div */
+    clear: none;
+    overflow: auto;
+    border-color: #0072c6;
+    border-style: solid;
+    border-right-width: 1px;
+    border-left-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    margin-top: 42%;
+    background-color:#0072c6;
+}
+
+.aFooter {
+    color: #ffffff;
+}
+
+.BusquedaX {
+    width: 100%;
+    height: auto;
+    bottom: 0px; /* El div se sitúa abajo */
+    z-index: -88; /* Lo muestra por encima de otros div */
+    clear: none;
+    overflow: auto;
+    border-color: gray;
+    border-style: solid;
+    border-right-width: 1px;
+    border-left-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    margin-top: 1%;
+    background-color:#A4C4DB;
+    color:white;
+}
+
+.DivGrid {
+    width: 100%;
+    height: auto;
+    font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+    font-size: 12pt;
+    color: black;
+    border-bottom-width: 1px;
+    border-bottom-color: #0072c6;
+    margin: 10px auto 0 auto;
+    position: relative;
+    margin-top: 3%;
+    float: left;
+    overflow:scroll;
+}
+
+.filaDivDr {
+    clear: both;
+}
+
+.ColDivDR {
+    float: left;
+    padding: 5px;
+    width: auto;
+}
+
+.Label {
+    font-family: Helvetica, Arial, 'DejaVu Sans', 'Liberation Sans', Freesans, sans-serif;
+    font-size: 14px;
+    color:white;
+}    
+
+.BotonesFalse {
+    display: none;
+}
+.box {
+    width: 100%;
+    height: 100%;
+    background: #ffffff;
+}
+
+.efecto2
+{
+  position: relative;
+}
+.efecto2:before, .efecto2:after
+{
+/* Posiciona la sobora por detras del color de la caja*/
+	  z-index: -1; 
+	  position: absolute;
+	  /* no aplico ningun contenidos HTML */
+	  content: "";
+	  /* posiciona la sombra con respecto al borde inferior, izquierdo y superior */
+	  bottom: 15px;
+	  left: 10px;
+	  top: 80%;
+	  /* configura el ancho */
+	  width: 50%;
+/* color de fondo */
+	  background: #777;
+	  /* definicion de la sombra estandar para box-shadow */
+	  -webkit-box-shadow: 0 15px 10px #777;
+	  -moz-box-shadow: 0 15px 10px #777;
+	  box-shadow: 0 15px 10px #777;
+	  /* rotacion de la sombra */
+	  -webkit-transform: rotate(-3deg);
+	  -moz-transform: rotate(-3deg);
+	  -o-transform: rotate(-3deg);
+	  -ms-transform: rotate(-3deg);
+	  transform: rotate(-3deg);
+}
+.efecto2:after
+{
+	  /* rotacion de la sombra */
+	  -webkit-transform: rotate(3deg);
+	  -moz-transform: rotate(3deg);
+	  -o-transform: rotate(3deg);
+	  -ms-transform: rotate(3deg);
+	  transform: rotate(3deg);
+	  /* posiciona la sombra con respecto al borde izquierdo y derecho */
+	  right: 10px;
+	  left: auto;
+}
+
+/* efecto 3 */
+.efecto3
+{
+	position:relative;       
+	-webkit-box-shadow:0 0px 4px #777, 0 0 20px #CCC inset;
+	-moz-box-shadow:0 0px 4px #777, 0 0 20px #CCC inset;
+	box-shadow:0 0px 4px #777, 0 0 20px #CCC inset;
+}
+.efecto3:before, .efecto3:after
+{
+	/* no aplica contenidos */
+	content:"";
+    position:absolute; 
+	/* posiciona la sombra por detras de la caja */
+    z-index:-1;
+	/* aplica una sombra centrada con un gris oscuro y 20px de difuminado */
+    -webkit-box-shadow:0 0 20px #777;
+    -moz-box-shadow:0 0 20px #777;
+    box-shadow:0 0 20px #777;
+	/* centra verticalmente y separa la sombra de los bordes izquierdo y derecho */
+    top:0;
+    bottom:0;
+    left:10px;
+    right:10px;
+	/* redondea las esquinas de la sombra */
+    -moz-border-radius:100px / 10px;
+    border-radius:100px / 10px;
+} 
+
+/* efecto 1 */
+.efecto1{
+	-webkit-box-shadow: 0 10px 6px -6px #777;
+	-moz-box-shadow: 0 10px 6px -6px #777;
+	box-shadow: 0 10px 6px -6px #777;
+}
+
+/*Textbox Watermark*/
+.unwatermarked {
+	height:18px;
+	width:148px;
+}
+
+.watermarked {
+	height:20px;
+	width:150px;
+	padding:2px 0 0 2px;
+	border:1px solid #BEBEBE;
+	background-color:#F0F8FF;
+	color:gray;
+}

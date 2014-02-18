@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{5D1844AF-FE55-4DF0-863C-65446AE90D23}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Business</RootNamespace>
+    <AssemblyName>Business</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>C:\Windows\assembly\GAC_MSIL\Microsoft.Office.Interop.Excel\14.0.0.0__71e9bce111e9429c\Microsoft.Office.Interop.Excel.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="B_Afiliados.cs" />
+    <Compile Include="B_AreasAtencion.cs" />
+    <Compile Include="B_AtencClinicasXAfiliados.cs" />
+    <Compile Include="B_datosUSxFact.cs" />
+    <Compile Include="B_DatosUSxProceso.cs" />
+    <Compile Include="B_Dx.cs" />
+    <Compile Include="B_Entidad.cs" />
+    <Compile Include="B_Especialidad.cs" />
+    <Compile Include="B_EventosAdversosAtencion.cs" />
+    <Compile Include="B_HallazgosAtencion.cs" />
+    <Compile Include="B_InoportunidadAtencion.cs" />
+    <Compile Include="B_Listados.cs" />
+    <Compile Include="B_Login.cs" />
+    <Compile Include="B_Meses.cs" />
+    <Compile Include="B_NoCalidadAtencion.cs" />
+    <Compile Include="B_Notes.cs" />
+    <Compile Include="B_Objetos.cs" />
+    <Compile Include="B_Patologias.cs" />
+    <Compile Include="B_PendientesAtencion.cs" />
+    <Compile Include="B_PertinenciaAtencion.cs" />
+    <Compile Include="B_Programas.cs" />
+    <Compile Include="B_Rips.cs" />
+    <Compile Include="B_Servicios.cs" />
+    <Compile Include="B_TiposDoc.cs" />
+    <Compile Include="B_Usuarios.cs" />
+    <Compile Include="CreaExcel.cs" />
+    <Compile Include="GenerarExcel.cs" />
+    <Compile Include="CryptingPassword.cs" />
+    <Compile Include="ManejoTextos.cs" />
+    <Compile Include="MessageBox.cs" />
+    <Compile Include="ProcedimientosVarios.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SendEmail.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DataManagement\DataManagement.csproj">
+      <Project>{a81c7045-77fa-4d4d-9263-61a6c168e276}</Project>
+      <Name>DataManagement</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Entities\Entities.csproj">
+      <Project>{A9011966-91D4-4A9C-8741-C5DF427A93F3}</Project>
+      <Name>Entities</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

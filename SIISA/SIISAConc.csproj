@@ -1,0 +1,531 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{059312AD-3AE6-4D89-AD33-22B4484A3844}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SIISA</RootNamespace>
+    <AssemblyName>SIISA</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication>enabled</IISExpressAnonymousAuthentication>
+    <IISExpressWindowsAuthentication>disabled</IISExpressWindowsAuthentication>
+    <IISExpressUseClassicPipelineMode>false</IISExpressUseClassicPipelineMode>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <PublishDatabaseSettings>
+      <Objects>
+      </Objects>
+    </PublishDatabaseSettings>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AjaxControlToolkit, Version=4.1.60623.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\AjaxControlToolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data.Services.Client" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bin\SIISA.dll" />
+    <Content Include="bin\SIISA.pdb" />
+    <Content Include="Concurrencia\CargueConcurrencia.aspx" />
+    <Content Include="Concurrencia\concurrencia.aspx" />
+    <Content Include="CSS\modal\modalCSS3.css" />
+    <Content Include="CSS\StyleJquery\jquery-ui-1.9.2.custom.css" />
+    <Content Include="CSS\StyleJquery\jquery-ui.css" />
+    <Content Include="Herramientas\Usuarios.aspx" />
+    <Content Include="Images\bgBody404.jpg" />
+    <Content Include="Images\filter.png" />
+    <Content Include="Images\gritter-light.png" />
+    <Content Include="Images\gritter-long.png" />
+    <Content Include="Images\gritter.png" />
+    <Content Include="Images\icono.png" />
+    <Content Include="Images\icons\bi\agregarenc.png" />
+    <Content Include="Images\icons\bi\anular.png" />
+    <Content Include="Images\icons\bi\atras.png" />
+    <Content Include="Images\icons\bi\buscar.png" />
+    <Content Include="Images\icons\bi\cancelar.png" />
+    <Content Include="Images\icons\bi\editar.png" />
+    <Content Include="Images\icons\bi\eliminar.png" />
+    <Content Include="Images\icons\bi\email.png" />
+    <Content Include="Images\icons\bi\encabezado.png" />
+    <Content Include="Images\icons\bi\excel.png" />
+    <Content Include="Images\icons\bi\flechaAbajo.png" />
+    <Content Include="Images\icons\bi\guardar.png" />
+    <Content Include="Images\icons\bi\homologar.png" />
+    <Content Include="Images\icons\bi\imprimir.png" />
+    <Content Include="Images\icons\bi\imprimirCG.png" />
+    <Content Include="Images\icons\bi\mas.png" />
+    <Content Include="Images\icons\bi\nuevo.png" />
+    <Content Include="Images\icons\bi\nuevoRips.png" />
+    <Content Include="Images\icons\bi\ok.png" />
+    <Content Include="Images\icons\bi\onebit_18.png" />
+    <Content Include="Images\icons\bi\onebit_23.png" />
+    <Content Include="Images\icons\bi\onebit_25.png" />
+    <Content Include="Images\icons\bi\onebit_50.png" />
+    <Content Include="Images\icons\bi\pdf.png" />
+    <Content Include="Images\icons\bi\print.png" />
+    <Content Include="Images\icons\bi\refrescar.png" />
+    <Content Include="Images\icons\cancelar_opt_opt.png" />
+    <Content Include="Images\icons\Close.png" />
+    <Content Include="Images\icons\sendmail.png" />
+    <Content Include="Images\ie-spacer.gif" />
+    <Content Include="Images\INVERJCJM.png" />
+    <Content Include="Images\masa.png" />
+    <Content Include="js\jquery-1.9.1.js" />
+    <Content Include="js\modal\jquery.avgrund.js" />
+    <Content Include="CSS\Tooltip\tooltipster-light.css" />
+    <Content Include="CSS\Tooltip\tooltipster-noir.css" />
+    <Content Include="CSS\Tooltip\tooltipster-punk.css" />
+    <Content Include="CSS\Tooltip\tooltipster-shadow.css" />
+    <Content Include="CSS\Tooltip\tooltipster.css" />
+    <Content Include="default.aspx" />
+    <Content Include="error.aspx" />
+    <Content Include="Images\body-bgError.jpg" />
+    <Content Include="Images\errorpage\Under-construction.png" />
+    <Content Include="Images\fondohp.png" />
+    <Content Include="Images\icons\AdobeAcrobat.png" />
+    <Content Include="Images\icons\Excel_alt.png" />
+    <Content Include="Images\icons\Help.png" />
+    <Content Include="Images\icons\Search.png" />
+    <Content Include="Images\loading.gif" />
+    <Content Include="Images\Login\BG.jpg" />
+    <Content Include="Images\Login\body.png" />
+    <Content Include="Images\Login\input_left.png" />
+    <Content Include="Images\Login\input_middle.png" />
+    <Content Include="Images\Login\input_right.png" />
+    <Content Include="Images\Login\mailicon.png" />
+    <Content Include="Images\Login\passicon.png" />
+    <Content Include="Images\Login\submit.png" />
+    <Content Include="Images\Login\wrapper_bottom.png" />
+    <Content Include="Images\Login\wrapper_middle.png" />
+    <Content Include="Images\Login\wrapper_top.png" />
+    <Content Include="CSS\Style.css" />
+    <Content Include="js\blockmayuson.js" />
+    <Content Include="js\buttonset.js" />
+    <Content Include="js\jquery.quicksearch.js" />
+    <Content Include="js\jquery-1.4.1.min.js" />
+    <Content Include="js\notify.js" />
+    <Content Include="js\Tooltip\jquery.tooltipster.js" />
+    <Content Include="js\Tooltip\jquery.tooltipster.min.js" />
+    <Content Include="Master\ctrMenuPpal.ascx" />
+    <Content Include="wbsSIISA.asmx" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="webControls\areasAtencion\ctrAreasAtencion.ascx" />
+    <Content Include="webControls\concurrencia\ctrAddPacteConcurr.ascx" />
+    <Content Include="webControls\concurrencia\ctrBusqueda.ascx" />
+    <Content Include="webControls\concurrencia\ctrCargueListPacie.ascx" />
+    <Content Include="webControls\concurrencia\ctrHallazgos.ascx" />
+    <Content Include="webControls\concurrencia\ctrNotas.ascx" />
+    <Content Include="webControls\concurrencia\ctrPtesConcur.ascx" />
+    <Content Include="webControls\concurrencia\ctrSetAtencion.ascx" />
+    <Content Include="webControls\dane\ctrDane.ascx" />
+    <Content Include="webControls\dane\ctrDeptoMpio.ascx" />
+    <Content Include="webControls\dx\ctrDdlDx.ascx" />
+    <Content Include="webControls\entidades\ctrDdlNitNombre.ascx" />
+    <Content Include="webControls\entidades\ctrEntidad.ascx" />
+    <Content Include="webControls\entidades\ctrlistaEntidad.ascx" />
+    <Content Include="webControls\entidades\ctrNitEntidad.ascx" />
+    <Content Include="webControls\especialidad\ctrAddEspecialidad.ascx" />
+    <Content Include="webControls\especialidad\ctrDdlEspecialidad.ascx" />
+    <Content Include="webControls\especialidad\ctrListaEspecialidad.ascx" />
+    <Content Include="webControls\eventosAdversos\ctrEventosAdversos.ascx" />
+    <Content Include="webControls\inoportunidad\ctrInoportunidad.ascx" />
+    <Content Include="webControls\login\ctrLogin.ascx" />
+    <Content Include="webControls\noCalidad\ctrNoCalidad.ascx" />
+    <Content Include="webControls\patologias\ctrAddPatologias.ascx" />
+    <Content Include="webControls\patologias\ctrDdlPatologias.ascx" />
+    <Content Include="webControls\pertinencia\ctrPertinencia.ascx" />
+    <Content Include="webControls\programas\ctrDdlProgramas.ascx" />
+    <Content Include="webControls\tiposDoc\ctrAddTiposDoc.ascx" />
+    <Content Include="webControls\tiposDoc\ctrDdlTiposDoc.ascx" />
+    <Content Include="webControls\usuarios\ctrAddUsuario.ascx" />
+    <Content Include="webControls\usuarios\ctrListUsuarios.ascx" />
+    <Content Include="webControls\usuarios\ctrNick.ascx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Concurrencia\CargueConcurrencia.aspx.cs">
+      <DependentUpon>CargueConcurrencia.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Concurrencia\CargueConcurrencia.aspx.designer.cs">
+      <DependentUpon>CargueConcurrencia.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Concurrencia\concurrencia.aspx.cs">
+      <DependentUpon>concurrencia.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Concurrencia\concurrencia.aspx.designer.cs">
+      <DependentUpon>concurrencia.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="default.aspx.cs">
+      <DependentUpon>default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="default.aspx.designer.cs">
+      <DependentUpon>default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="error.aspx.cs">
+      <DependentUpon>error.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="error.aspx.designer.cs">
+      <DependentUpon>error.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Herramientas\Usuarios.aspx.cs">
+      <DependentUpon>Usuarios.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Herramientas\Usuarios.aspx.designer.cs">
+      <DependentUpon>Usuarios.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Master\ctrMenuPpal.ascx.cs">
+      <DependentUpon>ctrMenuPpal.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Master\ctrMenuPpal.ascx.designer.cs">
+      <DependentUpon>ctrMenuPpal.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Master\SIISAConc.Master.cs">
+      <DependentUpon>SIISAConc.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Master\SIISAConc.Master.designer.cs">
+      <DependentUpon>SIISAConc.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Master\vars.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="wbsSIISA.asmx.cs">
+      <DependentUpon>wbsSIISA.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="webControls\areasAtencion\ctrAreasAtencion.ascx.cs">
+      <DependentUpon>ctrAreasAtencion.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="webControls\areasAtencion\ctrAreasAtencion.ascx.designer.cs">
+      <DependentUpon>ctrAreasAtencion.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="webControls\concurrencia\ctrAddPacteConcurr.ascx.cs">
+      <DependentUpon>ctrAddPacteConcurr.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="webControls\concurrencia\ctrAddPacteConcurr.ascx.designer.cs">
+      <DependentUpon>ctrAddPacteConcurr.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="webControls\concurrencia\ctrBusqueda.ascx.cs">
+      <DependentUpon>ctrBusqueda.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="webControls\concurrencia\ctrBusqueda.ascx.designer.cs">
+      <DependentUpon>ctrBusqueda.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="webControls\concurrencia\ctrCargueListPacie.ascx.cs">
+      <DependentUpon>ctrCargueListPacie.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="webControls\concurrencia\ctrCargueListPacie.ascx.designer.cs">
+      <DependentUpon>ctrCargueListPacie.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="webControls\concurrencia\ctrHallazgos.ascx.cs">
+      <DependentUpon>ctrHallazgos.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="webControls\concurrencia\ctrHallazgos.ascx.designer.cs">
+      <DependentUpon>ctrHallazgos.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="webControls\concurrencia\ctrNotas.ascx.cs">
+      <DependentUpon>ctrNotas.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="webControls\concurrencia\ctrNotas.ascx.designer.cs">
+      <DependentUpon>ctrNotas.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="webControls\concurrencia\ctrPtesConcur.ascx.cs">
+      <DependentUpon>ctrPtesConcur.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="webControls\concurrencia\ctrPtesConcur.ascx.designer.cs">
+      <DependentUpon>ctrPtesConcur.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="webControls\concurrencia\ctrSetAtencion.ascx.cs">
+      <DependentUpon>ctrSetAtencion.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="webControls\concurrencia\ctrSetAtencion.ascx.designer.cs">
+      <DependentUpon>ctrSetAtencion.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="webControls\dane\ctrDane.ascx.cs">
+      <DependentUpon>ctrDane.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="webControls\dane\ctrDane.ascx.designer.cs">
+      <DependentUpon>ctrDane.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="webControls\dane\ctrDeptoMpio.ascx.cs">
+      <DependentUpon>ctrDeptoMpio.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="webControls\dane\ctrDeptoMpio.ascx.designer.cs">
+      <DependentUpon>ctrDeptoMpio.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="webControls\dx\ctrDdlDx.ascx.cs">
+      <DependentUpon>ctrDdlDx.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="webControls\dx\ctrDdlDx.ascx.designer.cs">
+      <DependentUpon>ctrDdlDx.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="webControls\entidades\ctrDdlNitNombre.ascx.cs">
+      <DependentUpon>ctrDdlNitNombre.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="webControls\entidades\ctrDdlNitNombre.ascx.designer.cs">
+      <DependentUpon>ctrDdlNitNombre.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="webControls\entidades\ctrEntidad.ascx.cs">
+      <DependentUpon>ctrEntidad.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="webControls\entidades\ctrEntidad.ascx.designer.cs">
+      <DependentUpon>ctrEntidad.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="webControls\entidades\ctrlistaEntidad.ascx.cs">
+      <DependentUpon>ctrlistaEntidad.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="webControls\entidades\ctrlistaEntidad.ascx.designer.cs">
+      <DependentUpon>ctrlistaEntidad.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="webControls\entidades\ctrNitEntidad.ascx.cs">
+      <DependentUpon>ctrNitEntidad.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="webControls\entidades\ctrNitEntidad.ascx.designer.cs">
+      <DependentUpon>ctrNitEntidad.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="webControls\especialidad\ctrAddEspecialidad.ascx.cs">
+      <DependentUpon>ctrAddEspecialidad.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="webControls\especialidad\ctrAddEspecialidad.ascx.designer.cs">
+      <DependentUpon>ctrAddEspecialidad.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="webControls\especialidad\ctrDdlEspecialidad.ascx.cs">
+      <DependentUpon>ctrDdlEspecialidad.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="webControls\especialidad\ctrDdlEspecialidad.ascx.designer.cs">
+      <DependentUpon>ctrDdlEspecialidad.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="webControls\especialidad\ctrListaEspecialidad.ascx.cs">
+      <DependentUpon>ctrListaEspecialidad.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="webControls\especialidad\ctrListaEspecialidad.ascx.designer.cs">
+      <DependentUpon>ctrListaEspecialidad.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="webControls\eventosAdversos\ctrEventosAdversos.ascx.cs">
+      <DependentUpon>ctrEventosAdversos.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="webControls\eventosAdversos\ctrEventosAdversos.ascx.designer.cs">
+      <DependentUpon>ctrEventosAdversos.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="webControls\inoportunidad\ctrInoportunidad.ascx.cs">
+      <DependentUpon>ctrInoportunidad.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="webControls\inoportunidad\ctrInoportunidad.ascx.designer.cs">
+      <DependentUpon>ctrInoportunidad.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="webControls\login\ctrLogin.ascx.cs">
+      <DependentUpon>ctrLogin.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="webControls\login\ctrLogin.ascx.designer.cs">
+      <DependentUpon>ctrLogin.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="webControls\noCalidad\ctrNoCalidad.ascx.cs">
+      <DependentUpon>ctrNoCalidad.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="webControls\noCalidad\ctrNoCalidad.ascx.designer.cs">
+      <DependentUpon>ctrNoCalidad.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="webControls\patologias\ctrAddPatologias.ascx.cs">
+      <DependentUpon>ctrAddPatologias.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="webControls\patologias\ctrAddPatologias.ascx.designer.cs">
+      <DependentUpon>ctrAddPatologias.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="webControls\patologias\ctrDdlPatologias.ascx.cs">
+      <DependentUpon>ctrDdlPatologias.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="webControls\patologias\ctrDdlPatologias.ascx.designer.cs">
+      <DependentUpon>ctrDdlPatologias.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="webControls\pertinencia\ctrPertinencia.ascx.cs">
+      <DependentUpon>ctrPertinencia.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="webControls\pertinencia\ctrPertinencia.ascx.designer.cs">
+      <DependentUpon>ctrPertinencia.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="webControls\programas\ctrDdlProgramas.ascx.cs">
+      <DependentUpon>ctrDdlProgramas.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="webControls\programas\ctrDdlProgramas.ascx.designer.cs">
+      <DependentUpon>ctrDdlProgramas.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="webControls\tiposDoc\ctrAddTiposDoc.ascx.cs">
+      <DependentUpon>ctrAddTiposDoc.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="webControls\tiposDoc\ctrAddTiposDoc.ascx.designer.cs">
+      <DependentUpon>ctrAddTiposDoc.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="webControls\tiposDoc\ctrDdlTiposDoc.ascx.cs">
+      <DependentUpon>ctrDdlTiposDoc.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="webControls\tiposDoc\ctrDdlTiposDoc.ascx.designer.cs">
+      <DependentUpon>ctrDdlTiposDoc.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="webControls\usuarios\ctrAddUsuario.ascx.cs">
+      <DependentUpon>ctrAddUsuario.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="webControls\usuarios\ctrAddUsuario.ascx.designer.cs">
+      <DependentUpon>ctrAddUsuario.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="webControls\usuarios\ctrListUsuarios.ascx.cs">
+      <DependentUpon>ctrListUsuarios.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="webControls\usuarios\ctrListUsuarios.ascx.designer.cs">
+      <DependentUpon>ctrListUsuarios.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="webControls\usuarios\ctrNick.ascx.cs">
+      <DependentUpon>ctrNick.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="webControls\usuarios\ctrNick.ascx.designer.cs">
+      <DependentUpon>ctrNick.ascx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Business\Business.csproj">
+      <Project>{5d1844af-fe55-4df0-863c-65446ae90d23}</Project>
+      <Name>Business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Entities\Entities.csproj">
+      <Project>{a9011966-91d4-4a9c-8741-c5df427a93f3}</Project>
+      <Name>Entities</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Master\SIISAConc.Master" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ArchivosCargados\" />
+    <Folder Include="ArchivosPlanos\" />
+    <Folder Include="js\procesos\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\PublishProfiles\local.pubxml" />
+    <Content Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>1191</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:26794/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
