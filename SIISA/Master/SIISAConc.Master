@@ -51,11 +51,11 @@
                                 <asp:Panel runat="server" ID="pnlUsuarioLogueado" Visible="false">
                                     <div style="width: 25%; float: left">
                                         <div style="width: 100%">
-                                            <asp:Label ID="label1" Text="Mes Radicación" runat="server"></asp:Label>
+                                            
                                         </div>
                                         <div>
-                                            <asp:DropDownList ID="ddlMesRad" runat="server" OnSelectedIndexChanged="ddlMesRad_SelectedIndexChanged" AutoCallBack="True">
-                                            </asp:DropDownList>
+                                            <%--<asp:DropDownList ID="ddlMesRad" runat="server" OnSelectedIndexChanged="ddlMesRad_SelectedIndexChanged" AutoCallBack="True">
+                                            </asp:DropDownList>--%>
                                         </div>
                                     </div>
                                     <div style="width: 25%; float: left">

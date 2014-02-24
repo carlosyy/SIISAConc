@@ -22,12 +22,12 @@ namespace SIISAConc.webControls.concurrencia {
         protected global::System.Web.UI.WebControls.Button btnGetAtencEstab;
         
         /// <summary>
-        /// gvResultados control.
+        /// gvAuditorias control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvResultados;
+        protected global::System.Web.UI.WebControls.GridView gvAuditorias;
     }
 }

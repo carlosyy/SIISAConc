@@ -64,7 +64,6 @@
     <Compile Include="B_InoportunidadAtencion.cs" />
     <Compile Include="B_Listados.cs" />
     <Compile Include="B_Login.cs" />
-    <Compile Include="B_Meses.cs" />
     <Compile Include="B_NoCalidadAtencion.cs" />
     <Compile Include="B_Notes.cs" />
     <Compile Include="B_Objetos.cs" />

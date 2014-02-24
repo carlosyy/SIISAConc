@@ -16,6 +16,11 @@ namespace Business
                 limitSup: limitSup, orden: orden, idEstadoRev: idEstadoRev);
         }
 
+        public atencClinicasXAfiliado getAuditorias(Int32 idUserEstablece, String fecAuditoria)
+        {
+            return _oDmAtencClinicas.getAuditorias(idUserEstablece: idUserEstablece, fecAuditoria: fecAuditoria);
+        }
+
         public Int32 contarAtenciones(String docIden, Int32 programa, String nit, String codDx, String fecDesc,
             String fecHasta, String filtroNombre)
         {
@@ -23,9 +28,9 @@ namespace Business
                 fecDesc: fecDesc, fecHasta: fecHasta, filtroNombre: filtroNombre);
         }
 
-        public Int32 establecerAuditar(Int32 idRadicado)
+        public String establecerAuditar(Int32 idAtencion, Int32 idUser)
         {
-            return _oDmAtencClinicas.establecerAuditar(idRadicado: idRadicado);
+            return _oDmAtencClinicas.establecerAuditar(idAtencion: idAtencion, idUser: idUser);
         }
 
         public Int32 addAtencClinicasXAfiliados(atencClinicasEntidad eAten)

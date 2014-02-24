@@ -95,9 +95,10 @@
 </style>
 
 <script type="text/javascript">
-    var _idRadicado;
-    var _lblBtnEstablecer;
+    var _idAtencion;
+    var _control;
     var _tr;
+
     $(document).ready(function () {
         agregaBotonConfirm();
     });
@@ -214,19 +215,19 @@
             return false;
         });
         $(document).on('click', '.notifyjs-foo-base .yes', function () {
-            _tr = $(_lblBtnEstablecer).closest('tr');
+            _tr = $(_control).closest('tr');
             $(_tr).fadeOut('slow', function () { $(this).remove(); });
-            SIISAConc.WbsSIISAConc.establecerAuditarWs(_idRadicado, getResultado);
+            SIISAConc.WbsSIISAConc.establecerAuditarWs(_idAtencion, "<%= Session["idUser"]%>", getResultado);
             //hide notification
             $(this).trigger('notify-hide');
             return false;
         });
     }
 
-    function establecerAuditar(idRadicado, nombrePaciente, control) {
-        _idRadicado = idRadicado;
-        _lblBtnEstablecer = document.getElementById(control);
-        $(_lblBtnEstablecer).notify({
+    function establecerAuditar(idAtencion, nombrePaciente, control) {
+        _idAtencion = idAtencion;
+        _control = control;
+        $(_control).notify({
             title: '¿Esta seguro de establecer al paciente ' + nombrePaciente + ' para auditoria?.',
             button: 'Establecer'
         }, {
@@ -238,8 +239,8 @@
     }
 
     function getResultado(result) {
-        if (result == 1) {
-            $.notify("Auditoria establecida.", "info");
+        if (result.length == 8) {
+            $("#btnAplicarFiltro").notify("Auditoria establecida con el radicado: " + result, { className: "info", position: "left" });
         }
     }
 
@@ -265,7 +266,7 @@
                 </div>
                 <div style="text-align: right">
                     <label id="lblTextoFiltro" style="color:darkred"></label>
-                    <img title="Aplicar Filtros" src="../../Images/filter.png" style="height: 25px; width: 25px; cursor: pointer;" onclick="showModal();" />
+                    <img title="Aplicar Filtros" id="btnAplicarFiltro" src="../../Images/filter.png" style="height: 25px; width: 25px; cursor: pointer;" onclick="showModal();" />
                 </div>
             </div>
             <asp:UpdatePanel runat="server" ID="uppGrilla">
@@ -275,8 +276,7 @@
                     </script>
                     <asp:Button runat="server" ID="btnOrdenar" ClientIDMode="Static" OnClick="btnOrdenar_OnClick" Style="display: none" />                    
                     <asp:HiddenField ID="hfOrden" ClientIDMode="Static" runat="server" Value="7" />
-                    <asp:HiddenField ID="hfIdRadicado" ClientIDMode="Static" runat="server" Value="0" />
-                    <asp:GridView ID="gvResultados" runat="server" OnRowDataBound="gvResultados_RowDataBound" AutoGenerateColumns="False" EmptyDataText="Sin registros" Width="100%" DataKeyNames="idRadicado">
+                    <asp:GridView ID="gvResultados" runat="server" OnRowDataBound="gvResultados_RowDataBound" AutoGenerateColumns="False" EmptyDataText="Sin registros" Width="100%" DataKeyNames="idAtencion">
                         <Columns>                            
                             <asp:TemplateField>
                                 <HeaderTemplate>
@@ -294,7 +294,7 @@
                                     <img id="imgOrdenar6" style="display: none; cursor: pointer" title="Ordenar por nombre de usuario" src="../../Images/icons/bi/flechaAbajo.png" onclick="ordenar(6);" width="15" height="15" />
                                 </HeaderTemplate>
                                 <ItemTemplate>
-                                    <asp:Label runat="server" ID="lblNombreUsuario" Text='<%# DataBinder.Eval(Container.DataItem, "nombre_a") %>'></asp:Label>
+                                    <asp:Label runat="server" ID="lblNombreUsuario" Text='<%# DataBinder.Eval(Container.DataItem, "nombreCompleto") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
                             
@@ -307,16 +307,6 @@
                                     <asp:Label runat="server" ID="lblFechaIngreso" Text='<%# DataBinder.Eval(Container.DataItem, "fecIngreso") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
-
-                            <%--<asp:TemplateField>
-                                <HeaderTemplate>
-                                    <asp:Label runat="server" ID="lblHDFechaEgreso" Text="Fecha de Egreso"></asp:Label>
-                                    <img id="imgOrdenar1" style="display: none; cursor: pointer" title="Ordenar por fecha de egreso" src="../../Images/icons/bi/flechaAbajo.png" onclick="ordenar(1);" width="15" height="15" />
-                                </HeaderTemplate>
-                                <ItemTemplate>
-                                    <asp:Label runat="server" ID="lblFechaEgreso" Text='<%# DataBinder.Eval(Container.DataItem, "fecEgreso") %>'></asp:Label>
-                                </ItemTemplate>
-                            </asp:TemplateField>--%>
 
                             <asp:TemplateField>
                                 <HeaderTemplate>

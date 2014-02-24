@@ -15,11 +15,11 @@ namespace SIISAConc
     public class WbsSIISAConc : WebService
     {
         [WebMethod]
-        public Int32 establecerAuditarWs(Int32 idRadicado)
+        public String establecerAuditarWs(Int32 idAtencion, Int32 idUser)
         {
             B_AtencClinicasXAfiliados oBAtencClinicasXAfiliados = new B_AtencClinicasXAfiliados();
-            Int32 retorno = oBAtencClinicasXAfiliados.establecerAuditar(idRadicado: idRadicado);
-            return retorno;
+            String radicado = oBAtencClinicasXAfiliados.establecerAuditar(idAtencion: idAtencion, idUser: idUser);
+            return radicado;
         }
     }
 }

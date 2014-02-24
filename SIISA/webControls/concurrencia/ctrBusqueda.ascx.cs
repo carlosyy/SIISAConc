@@ -336,11 +336,12 @@ namespace SIISAConc.webControls.concurrencia
                     e.Row.Cells[7].Attributes.Add("onmouseout", "showImg(7, false);");
                     break;
                 case DataControlRowType.DataRow:
-                    Label lblBtnEstablecer = (Label) e.Row.FindControl("lblBtnEstablecer");
-                    lblBtnEstablecer.Text = " " + "<a ID=\"btnPage\" OnClick=\"javascript:establecerAuditar('" +
+                    Label lblBtnEstablecer = (Label)e.Row.FindControl("lblBtnEstablecer");
+                    lblBtnEstablecer.Text = " " + "<a ID=\"btnPage" + e.Row.RowIndex +
+                                            "\" OnClick=\"javascript:establecerAuditar('" +
                                             gvResultados.DataKeys[e.Row.RowIndex].Values[0].ToString() + "', '" +
-                                            ((Label)e.Row.FindControl("lblNombreUsuario")).Text +
-                                            "','" + lblBtnEstablecer.ClientID + "');\"><img alt=\"sendMail\" src=\"../../Images/icons/bi/agregarenc.png\" style=\"width: 25px; height: 25px; cursor: pointer;\" /></a>";
+                                            ((Label) e.Row.FindControl("lblNombreUsuario")).Text +
+                                            "', this);\"><img alt=\"sendMail\" src=\"../../Images/icons/bi/agregarenc.png\" style=\"width: 25px; height: 25px; cursor: pointer;\" /></a>";
                     break;
 
             }

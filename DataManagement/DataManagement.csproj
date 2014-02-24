@@ -55,7 +55,6 @@
     <Compile Include="DM_InoportunidadAtencion.cs" />
     <Compile Include="DM_Listados.cs" />
     <Compile Include="DM_Login.cs" />
-    <Compile Include="DM_Meses.cs" />
     <Compile Include="DM_NoCalidadAtencion.cs" />
     <Compile Include="DM_Notes.cs" />
     <Compile Include="DM_Objetos.cs" />

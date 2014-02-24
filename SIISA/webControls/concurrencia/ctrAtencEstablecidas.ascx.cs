@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Data;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Business;
-using Entities;
-using System.Text;
 
 namespace SIISAConc.webControls.concurrencia
 {
@@ -35,8 +32,8 @@ namespace SIISAConc.webControls.concurrencia
 
         public void llenarGrilla(Int32 orden)
         {
-            gvResultados.DataSource = oB_AtencClinicasXAfiliados.buscar(docIden: "", programa: Int32.Parse("0"), nit: "", codDx: "", fecDesde: "", fecHasta: "", filtroNombre: "", limitInf: 0, limitSup: 0, orden: orden, idEstadoRev: 2);
-            gvResultados.DataBind();
+            gvAuditorias.DataSource = oB_AtencClinicasXAfiliados.getAuditorias(Int32.Parse(Session["idUser"] == null ? "3" : Session["idUser"].ToString()), DateTime.Now.ToShortDateString());
+            gvAuditorias.DataBind();
         }
 
 
@@ -77,7 +74,7 @@ namespace SIISAConc.webControls.concurrencia
                 case DataControlRowType.DataRow:
                     Label lblBtnEstablecer = (Label) e.Row.FindControl("lblBtnEstablecer");
                     lblBtnEstablecer.Text = " " + "<a ID=\"btnPage\" OnClick=\"javascript:establecerAuditar('" +
-                                            gvResultados.DataKeys[e.Row.RowIndex].Values[0].ToString() + "', '" +
+                                            gvAuditorias.DataKeys[e.Row.RowIndex].Values[0].ToString() + "', '" +
                                             ((Label)e.Row.FindControl("lblNombreUsuario")).Text +
                                             "','" + lblBtnEstablecer.ClientID + "');\"><img alt=\"sendMail\" src=\"../../Images/icons/bi/agregarenc.png\" style=\"width: 25px; height: 25px; cursor: pointer;\" /></a>";
                     break;
@@ -87,7 +84,7 @@ namespace SIISAConc.webControls.concurrencia
 
         protected void btnGetAtencEstab_OnClick(object sender, EventArgs e)
         {
-            MessageBox.show("Hola mundo.", 4, false, "", "left");
+            llenarGrilla(Int32.Parse("0"/*hfOrden.Value*/));
         }
     }
 }

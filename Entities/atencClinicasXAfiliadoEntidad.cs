@@ -28,6 +28,8 @@ namespace Entities
         public String tipoEstancia { get; set; }
         public Int32 puntaje { get; set; }
         public String estadoRad { get; set; }
-        public Int32 idRadicado { get; set; }
+        public Int32 idAtencion { get; set; }
+        public String radicado { get; set; }
+        public String nombreCompleto { get; set; }
     }
 }

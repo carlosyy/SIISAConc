@@ -233,7 +233,6 @@
     <Compile Include="Master\SIISAConc.Master.designer.cs">
       <DependentUpon>SIISAConc.Master</DependentUpon>
     </Compile>
-    <Compile Include="Master\vars.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
