@@ -65,8 +65,14 @@
   <ItemGroup>
     <Content Include="bin\SIISA.dll" />
     <Content Include="bin\SIISA.pdb" />
+    <Content Include="Concurrencia\Auditoria.aspx" />
     <Content Include="Concurrencia\CargueConcurrencia.aspx" />
     <Content Include="Concurrencia\concurrencia.aspx" />
+    <Content Include="CSS\anytime.css" />
+    <Content Include="CSS\images\ui-anim_basic_16x16.gif" />
+    <Content Include="CSS\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="CSS\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="CSS\jquery-ui.css" />
     <Content Include="CSS\modal\modalCSS3.css" />
     <Content Include="CSS\StyleJquery\jquery-ui-1.9.2.custom.css" />
     <Content Include="CSS\StyleJquery\jquery-ui.css" />
@@ -109,7 +115,9 @@
     <Content Include="Images\ie-spacer.gif" />
     <Content Include="Images\INVERJCJM.png" />
     <Content Include="Images\masa.png" />
-    <Content Include="js\jquery-1.9.1.js" />
+    <Content Include="js\anytime.js" />
+    <Content Include="js\jquery-1.10.2.min.js" />
+    <Content Include="js\jquery-ui-1.10.4.custom.js" />
     <Content Include="js\modal\jquery.avgrund.js" />
     <Content Include="CSS\Tooltip\tooltipster-light.css" />
     <Content Include="CSS\Tooltip\tooltipster-noir.css" />
@@ -141,7 +149,6 @@
     <Content Include="js\blockmayuson.js" />
     <Content Include="js\buttonset.js" />
     <Content Include="js\jquery.quicksearch.js" />
-    <Content Include="js\jquery-1.4.1.min.js" />
     <Content Include="js\notify.js" />
     <Content Include="js\Tooltip\jquery.tooltipster.js" />
     <Content Include="js\Tooltip\jquery.tooltipster.min.js" />
@@ -184,6 +191,13 @@
     <Content Include="webControls\usuarios\ctrNick.ascx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Concurrencia\Auditoria.aspx.cs">
+      <DependentUpon>Auditoria.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Concurrencia\Auditoria.aspx.designer.cs">
+      <DependentUpon>Auditoria.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Concurrencia\CargueConcurrencia.aspx.cs">
       <DependentUpon>CargueConcurrencia.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -494,7 +508,6 @@
   <ItemGroup>
     <Folder Include="ArchivosCargados\" />
     <Folder Include="ArchivosPlanos\" />
-    <Folder Include="js\procesos\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\PublishProfiles\local.pubxml" />

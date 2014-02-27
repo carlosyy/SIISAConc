@@ -11,9 +11,11 @@
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
     <link href="../CSS/Style.css" rel="stylesheet" type="text/css" />
+    <link href="~/CSS/jquery-ui.css" rel="stylesheet" type="text/css"/>
     <link href="../Images/icono.png" rel="shortcut icon" type="image/png" />
-    <script type="text/javascript" src="../js/jquery-1.9.1.js"></script>
-    <script src="../../js/notify.js"></script>
+    <script type="text/javascript" src="../js/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="../js/jquery-ui-1.10.4.custom.js"></script>
+    <script type="text/javascript" src="../../js/notify.js"></script>
 </head>
 <body>
     <script type="text/javascript">
@@ -21,14 +23,6 @@
             if (confirm('¿Esta seguro de salir de la aplicacion?.')) {
                 __doPostBack("cerrar", "");
             }
-        }
-        
-
-        function mensajeBox(mensaje, tipoMensaje) {
-            /// <summary>Muestra mensaje en div autoOcultable</summary>
-            /// <param name="mensaje" type="string">Mensaje a mostrar en pantalla.</param>
-            /// <param name="tipoMensaje" type="string">segun el tipo establecido cambia la forma de muestra del mensaje. "success", "info", "warn", "error"</param>
-            $.notify(mensaje, tipoMensaje);
         }
     </script>
     <form id="form1" runat="server">

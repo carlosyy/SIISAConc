@@ -94,6 +94,15 @@ namespace SIISAConc.webControls.concurrencia {
         protected global::AjaxControlToolkit.CalendarExtender txtFechaIngreso_CalendarExtender;
         
         /// <summary>
+        /// txtHoraIngreso control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtHoraIngreso;
+        
+        /// <summary>
         /// txtDiasEstancia control.
         /// </summary>
         /// <remarks>
@@ -211,13 +220,13 @@ namespace SIISAConc.webControls.concurrencia {
         protected global::System.Web.UI.WebControls.DropDownList ddlTipoContrato;
         
         /// <summary>
-        /// txtTipoAtencionIngreso control.
+        /// ddlTipoAtencion control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtTipoAtencionIngreso;
+        protected global::System.Web.UI.WebControls.DropDownList ddlTipoAtencion;
         
         /// <summary>
         /// txtCama control.
@@ -247,15 +256,6 @@ namespace SIISAConc.webControls.concurrencia {
         protected global::System.Web.UI.WebControls.Button btnGuardar;
         
         /// <summary>
-        /// uppEditarDx control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel uppEditarDx;
-        
-        /// <summary>
         /// txtBusqDx control.
         /// </summary>
         /// <remarks>
@@ -265,13 +265,13 @@ namespace SIISAConc.webControls.concurrencia {
         protected global::System.Web.UI.WebControls.TextBox txtBusqDx;
         
         /// <summary>
-        /// ctrDdlDx1 control.
+        /// ddlDx1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::SIISAConc.webControls.dx.CtrDdlDx ctrDdlDx1;
+        protected global::System.Web.UI.WebControls.DropDownList ddlDx1;
         
         /// <summary>
         /// hfEditarDx control.
@@ -281,14 +281,5 @@ namespace SIISAConc.webControls.concurrencia {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hfEditarDx;
-        
-        /// <summary>
-        /// btnEditarDx control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnEditarDx;
     }
 }

@@ -1,13 +1,16 @@
 ﻿<%@ Control AutoEventWireup="true" CodeBehind="ctrAddPacteConcurr.ascx.cs" Inherits="SIISAConc.webControls.concurrencia.CtrAddPacteConcurr" Language="C#" %>
 <%@ Register Src="~/webControls/tiposDoc/ctrDdlTiposDoc.ascx" TagPrefix="uc1" TagName="ctrDdlTiposDoc" %>
 <%@ Register Src="~/webControls/especialidad/ctrDdlEspecialidad.ascx" TagPrefix="uc1" TagName="ctrDdlEspecialidad" %>
-<%@ Register Src="~/webControls/dx/ctrDdlDx.ascx" TagPrefix="uc1" TagName="ctrDdlDx" %>
 
 <style>
-    .tabla {
-        border-style: none;
-        border-color: silver;
+    .textBoxCentrado {
+        text-align: center;
     }
+
+     .tabla {
+         border-style: none;
+         border-color: silver;
+     }
 
     .fila {
         float: left;
@@ -35,19 +38,36 @@
         position: absolute;
         z-index: 9999;
     }
+
+    .ui-autocomplete {
+        position: absolute;
+        cursor: default;
+        z-index: 999999 !important;        
+    }
+
 </style>
+<script src="../../js/anytime.js"></script>
+<link rel="stylesheet" href="../../CSS/anytime.css" />
 <script>
+    $(document).ready(function () {
+        $("#txtHoraIngreso").AnyTime_picker(
+        {
+            format: "%H:%i",
+            labelTitle: "Hora",
+            labelHour: "Hora",
+            labelMinute: "Minuto"
+        });
+    });
+
     function editarDx(opcionEditar) {
-        divEditarDx.style.display = 'block';
-        divEditarDx.style.opacity = '1';
-        divEditarDx.style.position = 'absolute';
-        divEditarDx.style.pointerEvents = 'auto';
-        document.getElementById('hfEditarDx').value = opcionEditar;
+        window.divEditarDx.style.display = 'block';
+        window.divEditarDx.style.opacity = '1';
+        window.divEditarDx.style.position = 'absolute';
+        window.divEditarDx.style.pointerEvents = 'auto';
+        $("#<%=hfEditarDx.ClientID%>").val(opcionEditar);
     }
     function cerrarEditar() {
-        divEditarDx.style.display = 'none';
-        var btnEditarDx = document.getElementById('btnEditarDx');
-        btnEditarDx.click();
+        window.divEditarDx.style.display = 'none';
     }
 
     function escapeEditar() {
@@ -61,24 +81,131 @@
         var btnGuardar = document.getElementById('btnGuardar');
         btnGuardar.click();
     }
+
+    $().ready(function () {
+
+        $("#<%=ddlDx1.ClientID%>").change(function () {
+            var opcion = $("#hfEditarDx").val();
+            switch (opcion) {
+            case "1":
+                $("#<%=hfCodDxCie.ClientID%>").val($("#ddlDx1").val());
+                $("#<%=txtDxCie.ClientID%>").val($("#ddlDx1 option:selected").text());
+                break;
+            case "2":
+                $("#<%=hfCodDxRel.ClientID%>").val($("#ddlDx1").val());
+                $("#<%=txtDxRel.ClientID%>").val($("#ddlDx1 option:selected").text());
+                break;
+            }
+
+        });
+
+        $("#<%=txtFecNacimiento.ClientID%>").change(function() {
+            var params = new Object();
+            params.fechaNacimiento = $("#<%=txtFecNacimiento.ClientID%>").val();
+            params = JSON.stringify(params);
+
+            $.ajax({
+                type: "POST",
+                url: "concurrencia.aspx/getEdad",
+                data: params,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                async: true,
+                success: setEdad,
+                error: function(xmlHttpRequest, textStatus, errorThrown) {
+                    alert(textStatus + ": " + xmlHttpRequest.responseText);
+                }
+            });
+        });
+
+        $("#<%=txtBusqDx.ClientID%>").change(function() {
+            var params = new Object();
+            params.busqDx = $("#<%=txtBusqDx.ClientID%>").val();
+            params = JSON.stringify(params);
+
+            $.ajax({
+                type: "POST",
+                url: "concurrencia.aspx/getDx",
+                data: params,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                async: true,
+                success: loadDx,
+                error: function(xmlHttpRequest, textStatus, errorThrown) {
+                    alert(textStatus + ": " + xmlHttpRequest.responseText);
+                }
+            });
+        });
+
+        $("#txtFechaIngreso").change(function () {
+            var d1 = $("#txtFechaIngreso").val().split("/");
+            var dat1 = new Date(d1[2], parseFloat(d1[1]) - 1, parseFloat(d1[0]));
+            var dat2 = new Date();
+            
+            var fin = dat2.getTime() - dat1.getTime();
+            var dias = Math.floor(fin / (1000 * 60 * 60 * 24));
+
+            $("#<%= txtDiasEstancia.ClientID%>").val(dias);
+        });
+
+        $("#<%=txtMedico.ClientID%>").autocomplete({
+            source: function (request, response) {
+                var params = new Object();
+                params.nombreMedico = $("#<%=txtMedico.ClientID%>").val();
+                params.q = "'" + request.term + "'";
+                params.limit = '10';
+                params = JSON.stringify(params);
+
+                $.ajax({
+                    url: "concurrencia.aspx/getMedicos",
+                    //data: "{ 'q': '" + request.term + "', 'limit': '10' }",
+                    data: params,
+                    dataType: "json", 
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    dataFilter: function (data) { return data; },
+                    error: function(xmlHttpRequest, textStatus, errorThrown) {
+                        alert(textStatus + ": " + xmlHttpRequest.responseText);
+                    },
+                    success: function(data) {
+                        response($.map(data.d, function(item) {
+                            return {
+                                label: item.nombreMedico,
+                                value: item.nombreMedico + ""
+                            };
+                        }));
+                    }
+                });
+            }
+        });
+    });
+
+    function setEdad(result) {
+        var edad = result.d.split(",");
+        $("#<%=txtEdad.ClientID%>").val(edad[0]);
+        $("#<%=ddlTipoEdad.ClientID%>").val(edad[1]);
+    }
+
+    function loadDx(result) {
+        //quito los options que pudiera tener previamente el combo
+        $("#ddlDx1").html("");
+        $("#ddlDx1").append($("<option></option>").attr("value", "0").text(".::Seleccione::."));
+        //recorro cada item que devuelve el servicio web y lo añado como un opcion
+        $.each(result.d, function() {
+            $("#ddlDx1").append($("<option></option>").attr("value", this.codDx).text(this.codYDx));
+        });
+    }
+
 </script>
 <h1 style="text-align: center">Ingresar información de paciente hospitalizado
 </h1>
 <div class="tabla" style="height: 500px; width: 100%;">
-    <%--<div class="fila" style="width: 10%;">
-        <div class="celda celdaTitulo" style="width: 100%;">
-            Consecutivo Ingreso
-        </div>
-        <div class="celda celdaControl" style="width: 100%;">
-            <asp:TextBox runat="server" ID="txtConsecutivo" Width="35px" />
-        </div>
-    </div>--%>
     <div class="fila" style="width: 17%;">
         <div class="celda celdaTitulo" style="width: 100%;">
             Documento
         </div>
         <div class="celda celdaControl" style="width: 100%;">
-            <asp:TextBox runat="server" ID="txtDocumento" AutoPostBack="True" OnTextChanged="txtDocumento_OnTextChanged" />
+            <asp:TextBox runat="server" ID="txtDocumento" CssClass="textBoxCentrado" AutoPostBack="True" OnTextChanged="txtDocumento_OnTextChanged" />
         </div>
     </div>
     <asp:UpdatePanel runat="server" ID="uppAfiliado">
@@ -91,7 +218,7 @@
                     <uc1:ctrDdlTiposDoc runat="server" ID="ctrDdlTiposDoc" />
                 </div>
             </div>
-            <div class="fila" style="width: 15%;">
+            <div class="fila" style="width: 18%;">
                 <div class="celda celdaTitulo" style="width: 100%;">
                     1er Apellido
                 </div>
@@ -99,7 +226,7 @@
                     <asp:TextBox runat="server" ID="txtApellido_a" />
                 </div>
             </div>
-            <div class="fila" style="width: 15%;">
+            <div class="fila" style="width: 18%;">
                 <div class="celda celdaTitulo" style="width: 100%;">
                     2do Apellido
                 </div>
@@ -107,7 +234,7 @@
                     <asp:TextBox runat="server" ID="txtApellido_b" />
                 </div>
             </div>
-            <div class="fila" style="width: 15%;">
+            <div class="fila" style="width: 18%;">
                 <div class="celda celdaTitulo" style="width: 100%;">
                     1er Nombre
                 </div>
@@ -115,7 +242,7 @@
                     <asp:TextBox runat="server" ID="txtNombre_a" />
                 </div>
             </div>
-            <div class="fila" style="width: 15%;">
+            <div class="fila" style="width: 18%;">
                 <div class="celda celdaTitulo" style="width: 100%;">
                     2do Nombre
                 </div>
@@ -134,27 +261,25 @@
             Fecha ingreso
         </div>
         <div class="celda celdaControl" style="width: 100%;">
-            <asp:TextBox runat="server" ID="txtFechaIngreso" placeholder="dd/MM/yyyy" Width="100px" />
-            <cc1:CalendarExtender ID="txtFechaIngreso_CalendarExtender" Format="dd/MM/yyyy" runat="server" CssClass="calendar" Enabled="True" TargetControlID="txtFechaIngreso">
+            <asp:TextBox runat="server" ID="txtFechaIngreso" CssClass="textBoxCentrado" ClientIDMode="Static" placeholder="dd/MM/yyyy" Width="100px" />
+            <cc1:CalendarExtender ID="txtFechaIngreso_CalendarExtender" Format="dd/MM/yyyy" runat="server" CssClass="cal_Theme1" Enabled="True" TargetControlID="txtFechaIngreso">
             </cc1:CalendarExtender>
         </div>
     </div>
-    <%--<div class="fila" style="width: 10%;">
+    <div class="fila" style="width: 10%;">
         <div class="celda celdaTitulo" style="width: 100%;">
-            Fecha egreso
+            Hora Ingreso
         </div>
         <div class="celda celdaControl" style="width: 100%;">
-            <asp:TextBox runat="server" ID="txtFechaEgreso" placeholder="dd/MM/yyyy" Width="100px" />
-            <cc1:CalendarExtender ID="txtFechaEgreso_CalendarExtender" Format="dd/MM/yyyy" Animated="True" CssClass="calendar" runat="server" Enabled="True" TargetControlID="txtFechaEgreso">
-            </cc1:CalendarExtender>
+            <asp:TextBox runat="server" ClientIDMode="Static" CssClass="textBoxCentrado" ID="txtHoraIngreso" Width="100px" />
         </div>
-    </div>--%>
+    </div>
     <div class="fila" style="width: 8%;">
         <div class="celda celdaTitulo" style="width: 100%;">
             Dias estancia
         </div>
         <div class="celda celdaControl" style="width: 100%;">
-            <asp:TextBox runat="server" ID="txtDiasEstancia" Enabled="False" Width="35px" />
+            <asp:TextBox runat="server" ID="txtDiasEstancia" CssClass="textBoxCentrado" Enabled="False" Width="35px" />
         </div>
     </div>
     <div class="fila" style="width: 25%;">
@@ -191,8 +316,8 @@
             Fecha Nacimiento
         </div>
         <div class="celda celdaControl" style="width: 100%;">
-            <asp:TextBox runat="server" ID="txtFecNacimiento" placeholder="dd/MM/yyyy" Width="100px" />
-            <cc1:CalendarExtender ID="txtFecNacimiento_CalendarExtender" Format="dd/MM/yyyy" Animated="True" CssClass="calendar" runat="server" Enabled="True" TargetControlID="txtFecNacimiento">
+            <asp:TextBox runat="server" ID="txtFecNacimiento" CssClass="textBoxCentrado" ClientIDMode="Static" placeholder="dd/MM/yyyy" Width="100px" />
+            <cc1:CalendarExtender ID="txtFecNacimiento_CalendarExtender" Format="dd/MM/yyyy" Animated="True" CssClass="cal_Theme1" runat="server" Enabled="True" TargetControlID="txtFecNacimiento">
             </cc1:CalendarExtender>
         </div>
     </div>
@@ -201,7 +326,7 @@
             Edad
         </div>
         <div class="celda celdaControl" style="width: 100%;">
-            <asp:TextBox runat="server" ID="txtEdad" Width="45px" />
+            <asp:TextBox ClientIDMode="Static" runat="server" CssClass="textBoxCentrado" ID="txtEdad" Width="45px" />
         </div>
     </div>
     <div class="fila" style="width: 10%;">
@@ -209,7 +334,7 @@
             Tipo edad
         </div>
         <div class="celda celdaControl" style="width: 100%;">
-            <asp:DropDownList runat="server" ID="ddlTipoEdad">
+            <asp:DropDownList runat="server" ClientIDMode="Static" ID="ddlTipoEdad">
                 <asp:ListItem Text=".::Seleccione::." Value="0" />
                 <asp:ListItem Text="Años" Value="1" />
                 <asp:ListItem Text="Meses" Value="2" />
@@ -222,7 +347,7 @@
             Médico
         </div>
         <div class="celda celdaControl" style="width: 100%;">
-            <asp:TextBox runat="server" ID="txtMedico" Width="250px" />
+            <asp:TextBox runat="server" ID="txtMedico" CssClass="textBoxCentrado" Width="250px" ClientIDMode="Static" />
         </div>
     </div>
     <div class="fila" style="width: 40%;">
@@ -250,7 +375,9 @@
             Tipo atención ingreso
         </div>
         <div class="celda celdaControl" style="width: 100%;">
-            <asp:TextBox runat="server" ID="txtTipoAtencionIngreso" />
+            <asp:DropDownList runat="server" ID="ddlTipoAtencion" AppendDataBoundItems="True">
+                <asp:ListItem Text=".::Seleccione::." Value="0" />
+            </asp:DropDownList>
         </div>
     </div>
     <div class="fila" style="width: 17%;">
@@ -258,7 +385,7 @@
             Cama
         </div>
         <div class="celda celdaControl" style="width: 100%;">
-            <asp:TextBox runat="server" ID="txtCama" Width="80px" />
+            <asp:TextBox runat="server" ID="txtCama" CssClass="textBoxCentrado" Width="80px" />
         </div>
     </div>
     <div class="fila" style="width: 20%;">
@@ -266,48 +393,19 @@
             Pabellón
         </div>
         <div class="celda celdaControl" style="width: 100%;">
-            <asp:TextBox runat="server" ID="txtPabellon" />
+            <asp:TextBox runat="server" ID="txtPabellon" CssClass="textBoxCentrado" />
         </div>
     </div>
-    <%--<div class="fila" style="width: 20%;">
-        <div class="celda celdaTitulo" style="width: 100%;">
-            Tipo atención egreso
-        </div>
-        <div class="celda celdaControl" style="width: 100%;">
-            <asp:TextBox runat="server" ID="txtTipoAtencionEgreso" />
-        </div>
-    </div>--%>
-    <%--<div class="fila" style="width: 20%;">
-        <div class="celda celdaTitulo" style="width: 100%;">
-            Motivo salida
-        </div>
-        <div class="celda celdaControl" style="width: 100%;">
-            <asp:DropDownList runat="server" ID="ddlMotivoSalida">
-                <asp:ListItem Text=".::Seleccione::." Value="0" />
-                <asp:ListItem Text="Dado de alta" Value="1" />
-                <asp:ListItem Text="Traslado" Value="2" />
-            </asp:DropDownList>
-        </div>
-    </div>--%>
     <button type="button" style="width: 135px; height: 26px; cursor: pointer" onclick="guardar();">
-        <img src="../../Images/icons/bi/guardar.png" style="vertical-align: middle; horiz-align: left; width: 25px; height: 25px" alt="Guardar" />Guardar 
+        <img src="../../Images/icons/bi/guardar.png" width="24" height="24" style="vertical-align: middle; horiz-align: left;" alt="Guardar" />Guardar 
     </button>
     <asp:Button ID="btnGuardar" OnClick="btnGuardar_OnClick" ClientIDMode="Static" runat="server" style="display: none;" />
 </div>
 <div id="divEditarDx" onkeyup="escapeEditar();" class="modal">
     <div style="margin: 50px;">Editar diagnóstico de paciente        
         <a onclick="cerrarEditar();" id="A2" title="Close" class="close" style="cursor: pointer">X</a>
-        <asp:UpdatePanel runat="server" ID="uppEditarDx" ChildrenAsTriggers="False" UpdateMode="Conditional">
-            <ContentTemplate>
-                <asp:TextBox runat="server" ID="txtBusqDx" AutoPostBack="True" OnTextChanged="txtBusqDx_OnTextChanged" />
-                <uc1:ctrDdlDx runat="server" ID="ctrDdlDx1" />
-                <asp:HiddenField runat="server" ID="hfEditarDx" ClientIDMode="Static"/>
-                <asp:Button ClientIDMode="Static" ID="btnEditarDx" runat="server" OnClick="btnEditarDx_OnClick" Style="display: none" />
-            </ContentTemplate>
-            <Triggers>
-                <asp:AsyncPostBackTrigger ControlID="txtBusqDx" EventName="TextChanged" />
-                <asp:AsyncPostBackTrigger ControlID="btnEditarDx" EventName="Click" />
-            </Triggers>
-        </asp:UpdatePanel>
+        <asp:TextBox runat="server" ID="txtBusqDx"  />
+        <asp:DropDownList runat="server" ClientIDMode="Static" ID="ddlDx1" Width="300px"/>
+        <asp:HiddenField runat="server" ID="hfEditarDx" ClientIDMode="Static"/>
     </div>
 </div>

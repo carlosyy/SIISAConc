@@ -56,6 +56,8 @@
     <Compile Include="dxEntidad.cs" />
     <Compile Include="especialidad.cs" />
     <Compile Include="especialidadEntidad.cs" />
+    <Compile Include="medicos.cs" />
+    <Compile Include="medicosEntidad.cs" />
     <Compile Include="notes.cs" />
     <Compile Include="DatosUSxFact.cs" />
     <Compile Include="DatosUSxFactEntidad.cs" />
@@ -93,6 +95,8 @@
     <Compile Include="RipsEntidad.cs" />
     <Compile Include="servicios.cs" />
     <Compile Include="serviciosEntidad.cs" />
+    <Compile Include="tipoAtenc.cs" />
+    <Compile Include="tipoAtencEntidad.cs" />
     <Compile Include="tiposDoc.cs" />
     <Compile Include="tiposDocEntidad.cs" />
     <Compile Include="Usuario.cs" />

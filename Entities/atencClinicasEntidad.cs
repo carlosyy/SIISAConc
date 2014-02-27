@@ -16,6 +16,7 @@ namespace Entities
         public String codDxRel { get; set; }
         public String medico { get; set; }
         public String cama { get; set; }
+        public Int32 idTipoAtencion { get; set; }
         public String tipoAtencion { get; set; }
         public String motivoSalida { get; set; }
     }

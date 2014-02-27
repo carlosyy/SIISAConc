@@ -9,18 +9,18 @@
     <script type="text/javascript">
         function changeTab() {
             switch ($find("<%=tbcAtenciones.ClientID%>").get_activeTabIndex()) {
-                case 0:
-                    var btnOrdenar = document.getElementById('btnOrdenar');
-                    btnOrdenar.click();
+            case 0:
+                var btnOrdenar = document.getElementById('btnOrdenar');
+                btnOrdenar.click();
                 break;
-                case 1:
-                    var btnGetAtencEstab = document.getElementById('btnGetAtencEstab');
-                    btnGetAtencEstab.click();
+            case 1:
+                var btnGetAtencEstab = document.getElementById('btnGetAtencEstab');
+                btnGetAtencEstab.click();
                 break;
             default:
             }
-        }
-
+        }        
+        
     </script>
     <asp:Panel runat="server" ID="pnlEstablecerIPS">
         <asp:TextBox runat="server" ID="txtBusqIPS" AutoPostBack="true" OnTextChanged="txtBusqIPS_TextChanged"></asp:TextBox>

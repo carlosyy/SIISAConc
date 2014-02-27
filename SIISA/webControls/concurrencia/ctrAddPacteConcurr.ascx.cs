@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Mime;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Business;
@@ -15,34 +11,21 @@ namespace SIISAConc.webControls.concurrencia
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
-        }
-
-        protected void txtBusqDx_OnTextChanged(object sender, EventArgs e)
-        {
-            if (String.IsNullOrEmpty(txtBusqDx.Text))
+            if (!IsPostBack)
             {
-                MessageBox.show("Determine el texto a buscar.");
-            }
-            else
-            {
-                ctrDdlDx1.busqDx(txtBusqDx.Text);
+                setDdlTipoAtencion();
+                txtFechaIngreso_CalendarExtender.EndDate = DateTime.Now;
+                txtFecNacimiento_CalendarExtender.EndDate = DateTime.Now;
             }
         }
 
-        protected void btnEditarDx_OnClick(object sender, EventArgs e)
+        private void setDdlTipoAtencion()
         {
-            DropDownList ddlCodDescrip = (DropDownList)ctrDdlDx1.FindControl("ddlCodDescrip");
-            if (hfEditarDx.Value == "1")
-            {
-                txtDxCie.Text = ddlCodDescrip.SelectedValue == "0" ? "" : ddlCodDescrip.SelectedItem.Text;
-                hfCodDxCie.Value = ddlCodDescrip.SelectedValue == "0" ? "" : ddlCodDescrip.SelectedValue;
-            }
-            else if (hfEditarDx.Value == "2")
-            {
-                txtDxRel.Text = ddlCodDescrip.SelectedValue == "0" ? "" : ddlCodDescrip.SelectedItem.Text;
-                hfCodDxRel.Value = ddlCodDescrip.SelectedValue == "0" ? "" : ddlCodDescrip.SelectedValue;
-            }
+            B_TipoAtenc oBTipoAtenc= new B_TipoAtenc();
+            ddlTipoAtencion.DataSource = oBTipoAtenc.getTipoAtenc();
+            ddlTipoAtencion.DataTextField = "tipoAtenc";
+            ddlTipoAtencion.DataValueField = "idTipoAtenc";
+            ddlTipoAtencion.DataBind();
         }
 
         protected void btnGuardar_OnClick(object sender, EventArgs e)
@@ -62,7 +45,7 @@ namespace SIISAConc.webControls.concurrencia
             //eAten.motivoSalida = ddlMotivoSalida.SelectedValue;
             eAten.nitClinica = ddlContrato.SelectedValue;
             //eAten.programa = Int32.Parse(txtContrato.Text == "" ? "0" : txtContrato.Text);
-            eAten.tipoAtencion = txtTipoAtencionIngreso.Text;
+            eAten.idTipoAtencion = Int32.Parse(ddlTipoAtencion.SelectedValue);
             B_AtencClinicasXAfiliados oB_AtencClinicasXAfiliados = new B_AtencClinicasXAfiliados();
             oB_AtencClinicasXAfiliados.addAtencClinicasXAfiliados(eAten);
         }
@@ -91,5 +74,6 @@ namespace SIISAConc.webControls.concurrencia
                 ((DropDownList)ctrDdlTiposDoc.FindControl("ddlTipoDoc")).Focus();
             }
         }
+        
     }
 }

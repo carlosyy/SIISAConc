@@ -103,6 +103,36 @@
         agregaBotonConfirm();
     });
 
+    function agregaBotonConfirm() {
+        $.notify.addStyle('foo', {
+            html:
+                "<div>" +
+                    "<div>" +
+                    "<div class='title' data-notify-html='title'/>" +
+                    "<div class='buttons'>" +
+                    "<button class='no'>No</button>" +
+                    "<button class='yes' data-notify-text='button'></button>" +
+                    "</div>" +
+                    "</div>" +
+                    "</div>"
+        });
+
+        //listen for click events from this style
+        $(document).on('click', '.notifyjs-foo-base .no', function () {
+            //programmatically trigger propogating hide event
+            $(this).trigger('notify-hide');
+            return false;
+        });
+        $(document).on('click', '.notifyjs-foo-base .yes', function () {
+            _tr = $(_control).closest('tr');
+            $(_tr).fadeOut('slow', function () { $(this).remove(); });
+            SIISAConc.WbsSIISAConc.establecerAuditarWs(_idAtencion, "<%= Session["idUser"]%>", getResultado);
+            //hide notification
+            $(this).trigger('notify-hide');
+            return false;
+        });
+    }
+
     function loadScript() {
         $(document).ready(function() {
             var hfOrden = document.getElementById('hfOrden');
@@ -194,36 +224,6 @@
         btnOrdenar.click();
     }
 
-    function agregaBotonConfirm() {
-        $.notify.addStyle('foo', {
-            html:
-                "<div>" +
-                    "<div>" +
-                    "<div class='title' data-notify-html='title'/>" +
-                    "<div class='buttons'>" +
-                    "<button class='no'>No</button>" +
-                    "<button class='yes' data-notify-text='button'></button>" +
-                    "</div>" +
-                    "</div>" +
-                    "</div>"
-        });
-
-        //listen for click events from this style
-        $(document).on('click', '.notifyjs-foo-base .no', function () {
-            //programmatically trigger propogating hide event
-            $(this).trigger('notify-hide');
-            return false;
-        });
-        $(document).on('click', '.notifyjs-foo-base .yes', function () {
-            _tr = $(_control).closest('tr');
-            $(_tr).fadeOut('slow', function () { $(this).remove(); });
-            SIISAConc.WbsSIISAConc.establecerAuditarWs(_idAtencion, "<%= Session["idUser"]%>", getResultado);
-            //hide notification
-            $(this).trigger('notify-hide');
-            return false;
-        });
-    }
-
     function establecerAuditar(idAtencion, nombrePaciente, control) {
         _idAtencion = idAtencion;
         _control = control;
@@ -245,153 +245,151 @@
     }
 
     function nuevoPaciente() {
-        $("#divNuevoPaciente").fadeIn('slow');
+        //window.divPrincipal.style = 'none';
         window.divNuevoPaciente.style.display = 'block';
         window.divNuevoPaciente.style.opacity = '1';
         window.divNuevoPaciente.style.position = 'absolute';
         window.divNuevoPaciente.style.pointerEvents = 'auto';
         document.getElementById('txtBusqDoc').select();
-        var btnNuevoPaciente = document.getElementById('btnNuevoPaciente');
-        btnNuevoPaciente.click();
     }
 
 </script>
-
-<table style="text-align: center; width: 100%">
-    <tr>
-        <td>
-            <div style="width: 100%">
-                <div style="float: left; text-align: center;">
-                    LISTA DE ATENCIONES EN ORDEN DE RELEVANCIA
+<div id="divPrincipal">
+    <table style="text-align: center; width: 100%">
+        <tr>
+            <td>
+                <div style="width: 100%">
+                    <div style="float: left; text-align: center;">
+                        LISTA DE ATENCIONES EN ORDEN DE RELEVANCIA
+                    </div>
+                    <div style="text-align: right">
+                        <label id="lblTextoFiltro" style="color: darkred"></label>
+                        <img title="Aplicar Filtros" id="btnAplicarFiltro" src="../../Images/filter.png" style="height: 25px; width: 25px; cursor: pointer;" onclick="showModal();" />
+                    </div>
                 </div>
-                <div style="text-align: right">
-                    <label id="lblTextoFiltro" style="color:darkred"></label>
-                    <img title="Aplicar Filtros" id="btnAplicarFiltro" src="../../Images/filter.png" style="height: 25px; width: 25px; cursor: pointer;" onclick="showModal();" />
-                </div>
-            </div>
-            <asp:UpdatePanel runat="server" ID="uppGrilla">
-                <ContentTemplate>
-                    <script type="text/javascript">
-                        Sys.Application.add_load(loadScript);
-                    </script>
-                    <asp:Button runat="server" ID="btnOrdenar" ClientIDMode="Static" OnClick="btnOrdenar_OnClick" Style="display: none" />                    
-                    <asp:HiddenField ID="hfOrden" ClientIDMode="Static" runat="server" Value="7" />
-                    <asp:GridView ID="gvResultados" runat="server" OnRowDataBound="gvResultados_RowDataBound" AutoGenerateColumns="False" EmptyDataText="Sin registros" Width="100%" DataKeyNames="idAtencion">
-                        <Columns>                            
-                            <asp:TemplateField>
-                                <HeaderTemplate>
-                                    <asp:Label runat="server" ID="lblHDIdentificacion" Text="Identificacion"></asp:Label>
-                                    <img id="imgOrdenar2" style="display: none; cursor: pointer" title="Ordenar por numero de identificación" src="../../Images/icons/bi/flechaAbajo.png" onclick="ordenar(2);" width="15" height="15" />
-                                </HeaderTemplate>
-                                <ItemTemplate>
-                                    <asp:Label runat="server" ID="lblIdentificacion" Text='<%# DataBinder.Eval(Container.DataItem, "docIden") %>'></asp:Label>
-                                </ItemTemplate>
-                            </asp:TemplateField>
+                <asp:UpdatePanel runat="server" ID="uppGrilla">
+                    <ContentTemplate>
+                        <script type="text/javascript">
+                            Sys.Application.add_load(loadScript);
+                        </script>
+                        <asp:Button runat="server" ID="btnOrdenar" ClientIDMode="Static" OnClick="btnOrdenar_OnClick" Style="display: none" />
+                        <asp:HiddenField ID="hfOrden" ClientIDMode="Static" runat="server" Value="7" />
+                        <asp:GridView ID="gvResultados" runat="server" OnRowDataBound="gvResultados_RowDataBound" AutoGenerateColumns="False" EmptyDataText="Sin registros" Width="100%" DataKeyNames="idAtencion">
+                            <Columns>
+                                <asp:TemplateField>
+                                    <HeaderTemplate>
+                                        <asp:Label runat="server" ID="lblHDIdentificacion" Text="Identificacion"></asp:Label>
+                                        <img id="imgOrdenar2" style="display: none; cursor: pointer" title="Ordenar por numero de identificación" src="../../Images/icons/bi/flechaAbajo.png" onclick="ordenar(2);" width="15" height="15" />
+                                    </HeaderTemplate>
+                                    <ItemTemplate>
+                                        <asp:Label runat="server" ID="lblIdentificacion" Text='<%# DataBinder.Eval(Container.DataItem, "docIden") %>'></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
 
-                            <asp:TemplateField>
-                                <HeaderTemplate>
-                                    <asp:Label runat="server" ID="lblHDNombreUsuario" Text="Nombre de Usuario"></asp:Label>
-                                    <img id="imgOrdenar6" style="display: none; cursor: pointer" title="Ordenar por nombre de usuario" src="../../Images/icons/bi/flechaAbajo.png" onclick="ordenar(6);" width="15" height="15" />
-                                </HeaderTemplate>
-                                <ItemTemplate>
-                                    <asp:Label runat="server" ID="lblNombreUsuario" Text='<%# DataBinder.Eval(Container.DataItem, "nombreCompleto") %>'></asp:Label>
-                                </ItemTemplate>
-                            </asp:TemplateField>
-                            
-                            <asp:TemplateField>
-                                <HeaderTemplate>
-                                    <asp:Label runat="server" ID="lblHDFechaIngreso" Text="Fecha de Ingreso"></asp:Label>
-                                    <img id="imgOrdenar0" style="display: none; cursor: pointer" title="Ordenar por fecha de ingreso" src="../../Images/icons/bi/flechaAbajo.png" onclick="ordenar(0);" width="15" height="15" />
-                                </HeaderTemplate>
-                                <ItemTemplate>
-                                    <asp:Label runat="server" ID="lblFechaIngreso" Text='<%# DataBinder.Eval(Container.DataItem, "fecIngreso") %>'></asp:Label>
-                                </ItemTemplate>
-                            </asp:TemplateField>
+                                <asp:TemplateField>
+                                    <HeaderTemplate>
+                                        <asp:Label runat="server" ID="lblHDNombreUsuario" Text="Nombre de Usuario"></asp:Label>
+                                        <img id="imgOrdenar6" style="display: none; cursor: pointer" title="Ordenar por nombre de usuario" src="../../Images/icons/bi/flechaAbajo.png" onclick="ordenar(6);" width="15" height="15" />
+                                    </HeaderTemplate>
+                                    <ItemTemplate>
+                                        <asp:Label runat="server" ID="lblNombreUsuario" Text='<%# DataBinder.Eval(Container.DataItem, "nombreCompleto") %>'></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
 
-                            <asp:TemplateField>
-                                <HeaderTemplate>
-                                    <asp:Label runat="server" ID="lblHDCodDx" Text="CodDx"></asp:Label>
-                                    <img id="imgOrdenar3" style="display: none; cursor: pointer" title="Ordenar por código de diagnóstico"  src="../../Images/icons/bi/flechaAbajo.png" onclick="ordenar(3);" width="15" height="15" />
-                                </HeaderTemplate>
-                                <ItemTemplate>
-                                    <asp:Label runat="server" ID="lblCodDx" Text='<%# DataBinder.Eval(Container.DataItem, "codDx") %>'></asp:Label>
-                                </ItemTemplate>
-                            </asp:TemplateField>
+                                <asp:TemplateField>
+                                    <HeaderTemplate>
+                                        <asp:Label runat="server" ID="lblHDFechaIngreso" Text="Fecha de Ingreso"></asp:Label>
+                                        <img id="imgOrdenar0" style="display: none; cursor: pointer" title="Ordenar por fecha de ingreso" src="../../Images/icons/bi/flechaAbajo.png" onclick="ordenar(0);" width="15" height="15" />
+                                    </HeaderTemplate>
+                                    <ItemTemplate>
+                                        <asp:Label runat="server" ID="lblFechaIngreso" Text='<%# DataBinder.Eval(Container.DataItem, "fecIngreso") %>'></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
 
-                            <asp:TemplateField>
-                                <HeaderTemplate>
-                                    <asp:Label runat="server" ID="lblHDCama" Text="Cama"></asp:Label>
-                                    <img id="imgOrdenar4" style="display: none; cursor: pointer" title="Ordenar por tipo de cama" src="../../Images/icons/bi/flechaAbajo.png" onclick="ordenar(4);" width="15" height="15" />
-                                </HeaderTemplate>
-                                <ItemTemplate>
-                                    <asp:Label runat="server" ID="lblCama" Text='<%# DataBinder.Eval(Container.DataItem, "cama") %>'></asp:Label>
-                                </ItemTemplate>
-                            </asp:TemplateField>
-                            
-                            <asp:TemplateField>
-                                <HeaderTemplate>
-                                    <asp:Label runat="server" ID="lblHDTipoEstancia" Text="Tipo de<br /> Estancia"></asp:Label>
-                                    <img id="imgOrdenar5" style="display: none; cursor: pointer" title="Ordenar por tipo de estancia" src="../../Images/icons/bi/flechaAbajo.png" onclick="ordenar(5);" width="15" height="15" />
-                                </HeaderTemplate>
-                                <ItemTemplate>
-                                    <asp:Label runat="server" ID="lblTipoEstancia" Text='<%# DataBinder.Eval(Container.DataItem, "tipoEstancia") %>'></asp:Label>
-                                </ItemTemplate>
-                            </asp:TemplateField>
-                            
-                            <asp:TemplateField>
-                                <HeaderTemplate>
-                                    <asp:Label runat="server" ID="lblHDDiasEstancia" Text="Dias <br />Estancia"></asp:Label>
-                                    <img id="imgOrdenar8" style="display: none; cursor: pointer" title="Ordenar por dias de estancia" src="../../Images/icons/bi/flechaAbajo.png" onclick="ordenar(8);" width="15" height="15" />
-                                </HeaderTemplate>
-                                <ItemTemplate>
-                                    <asp:Label runat="server" ID="lblDiasEstancia" Text='<%# DataBinder.Eval(Container.DataItem, "diasEstancia") %>'></asp:Label>
-                                </ItemTemplate>
-                            </asp:TemplateField>
+                                <asp:TemplateField>
+                                    <HeaderTemplate>
+                                        <asp:Label runat="server" ID="lblHDCodDx" Text="CodDx"></asp:Label>
+                                        <img id="imgOrdenar3" style="display: none; cursor: pointer" title="Ordenar por código de diagnóstico" src="../../Images/icons/bi/flechaAbajo.png" onclick="ordenar(3);" width="15" height="15" />
+                                    </HeaderTemplate>
+                                    <ItemTemplate>
+                                        <asp:Label runat="server" ID="lblCodDx" Text='<%# DataBinder.Eval(Container.DataItem, "codDx") %>'></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
 
-                            <asp:TemplateField>
-                                <HeaderTemplate>
-                                    <asp:Label runat="server" ID="lblHDPuntaje" Text="Puntaje"></asp:Label>
-                                    <img id="imgOrdenar7" style="display: none; cursor: pointer" title="Ordenar por puntaje" src="../../Images/icons/bi/flechaAbajo.png" onclick="ordenar(7);" width="15" height="15" />
-                                </HeaderTemplate>
-                                <ItemTemplate>
-                                    <asp:Label runat="server" ID="lblPuntaje" Text='<%# DataBinder.Eval(Container.DataItem, "puntaje") %>'></asp:Label>
-                                </ItemTemplate>
-                            </asp:TemplateField>
-                            <asp:BoundField HeaderText="Estado" DataField="estadoRad" />
-                            <asp:TemplateField>
-                                <ItemTemplate>
-                                    <asp:Label runat="server" ID="lblBtnEstablecer"></asp:Label>
-                                </ItemTemplate>
-                            </asp:TemplateField>
-                        </Columns>
-                    </asp:GridView>
-                </ContentTemplate>
-                <Triggers>
-                    <asp:AsyncPostBackTrigger ControlID="btnOrdenar" EventName="Click"/>
-                </Triggers>
-            </asp:UpdatePanel>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <asp:Button ID="btnFirst" runat="server" AccessKey="r" ToolTip="Ir a la primera página ( Alt + r )" Text="|<" OnClick="btnFirst_Click" />
-            <asp:Button ID="btnPrev" runat="server" AccessKey="l" ToolTip="Ir a la página anterior ( Alt + l )" Text="<<" OnClick="btnPrev_Click" />
-            <asp:Label ID="lblPagina" runat="server" ForeColor="#0099cc" Font-Bold="true"></asp:Label>
-            <asp:DropDownList runat="server" ID="ddlPagina" ClientIDMode="Static" AutoPostBack="true" OnSelectedIndexChanged="ddlPagina_SelectedIndexChanged"></asp:DropDownList>
-            <asp:Button ID="btnNext" runat="server" AccessKey="n" ToolTip="Ir a la siguiente página ( Alt + n )" Text=">>" OnClick="btnNext_Click" />
-            <asp:Button ID="btnLast" runat="server" AccessKey="u" ToolTip="Ir a la última página ( Alt + u )" Text=">|" OnClick="btnLast_Click" />
-            <asp:Label ClientIDMode="Static" ID="lblFiltrado" runat="server" ForeColor="#0099cc" Font-Bold="true"></asp:Label>
-        </td>
-    </tr>
-</table>
-<asp:HiddenField runat="server" ID="hfPrograma" />
-<asp:HiddenField runat="server" ID="hfNit" />
-<asp:HiddenField runat="server" ID="hfCodDx" />
-<asp:HiddenField runat="server" ID="hfPagina" />
-<asp:HiddenField runat="server" ID="hf" />
-<button id="btnaNuevoPaciente" type="button" style="width: 135px; height: 26px; cursor: pointer" onclick="nuevoPaciente();">
-    <img src="../../Images/icons/bi/nuevo.png" style="vertical-align: top; width: 20px; height: 20px" alt="Agregar nuevo paciente" />Agregar nuevo paciente</button>
+                                <asp:TemplateField>
+                                    <HeaderTemplate>
+                                        <asp:Label runat="server" ID="lblHDCama" Text="Cama"></asp:Label>
+                                        <img id="imgOrdenar4" style="display: none; cursor: pointer" title="Ordenar por tipo de cama" src="../../Images/icons/bi/flechaAbajo.png" onclick="ordenar(4);" width="15" height="15" />
+                                    </HeaderTemplate>
+                                    <ItemTemplate>
+                                        <asp:Label runat="server" ID="lblCama" Text='<%# DataBinder.Eval(Container.DataItem, "cama") %>'></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
 
+                                <asp:TemplateField>
+                                    <HeaderTemplate>
+                                        <asp:Label runat="server" ID="lblHDTipoEstancia" Text="Tipo de<br /> Estancia"></asp:Label>
+                                        <img id="imgOrdenar5" style="display: none; cursor: pointer" title="Ordenar por tipo de estancia" src="../../Images/icons/bi/flechaAbajo.png" onclick="ordenar(5);" width="15" height="15" />
+                                    </HeaderTemplate>
+                                    <ItemTemplate>
+                                        <asp:Label runat="server" ID="lblTipoEstancia" Text='<%# DataBinder.Eval(Container.DataItem, "tipoEstancia") %>'></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+
+                                <asp:TemplateField>
+                                    <HeaderTemplate>
+                                        <asp:Label runat="server" ID="lblHDDiasEstancia" Text="Dias <br />Estancia"></asp:Label>
+                                        <img id="imgOrdenar8" style="display: none; cursor: pointer" title="Ordenar por dias de estancia" src="../../Images/icons/bi/flechaAbajo.png" onclick="ordenar(8);" width="15" height="15" />
+                                    </HeaderTemplate>
+                                    <ItemTemplate>
+                                        <asp:Label runat="server" ID="lblDiasEstancia" Text='<%# DataBinder.Eval(Container.DataItem, "diasEstancia") %>'></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+
+                                <asp:TemplateField>
+                                    <HeaderTemplate>
+                                        <asp:Label runat="server" ID="lblHDPuntaje" Text="Puntaje"></asp:Label>
+                                        <img id="imgOrdenar7" style="display: none; cursor: pointer" title="Ordenar por puntaje" src="../../Images/icons/bi/flechaAbajo.png" onclick="ordenar(7);" width="15" height="15" />
+                                    </HeaderTemplate>
+                                    <ItemTemplate>
+                                        <asp:Label runat="server" ID="lblPuntaje" Text='<%# DataBinder.Eval(Container.DataItem, "puntaje") %>'></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:BoundField HeaderText="Estado" DataField="estadoRad" />
+                                <asp:TemplateField>
+                                    <ItemTemplate>
+                                        <asp:Label runat="server" ID="lblBtnEstablecer"></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                            </Columns>
+                        </asp:GridView>
+                    </ContentTemplate>
+                    <Triggers>
+                        <asp:AsyncPostBackTrigger ControlID="btnOrdenar" EventName="Click" />
+                    </Triggers>
+                </asp:UpdatePanel>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <asp:Button ID="btnFirst" runat="server" AccessKey="r" ToolTip="Ir a la primera página ( Alt + r )" Text="|<" OnClick="btnFirst_Click" />
+                <asp:Button ID="btnPrev" runat="server" AccessKey="l" ToolTip="Ir a la página anterior ( Alt + l )" Text="<<" OnClick="btnPrev_Click" />
+                <asp:Label ID="lblPagina" runat="server" ForeColor="#0099cc" Font-Bold="true"></asp:Label>
+                <asp:DropDownList runat="server" ID="ddlPagina" ClientIDMode="Static" AutoPostBack="true" OnSelectedIndexChanged="ddlPagina_SelectedIndexChanged"></asp:DropDownList>
+                <asp:Button ID="btnNext" runat="server" AccessKey="n" ToolTip="Ir a la siguiente página ( Alt + n )" Text=">>" OnClick="btnNext_Click" />
+                <asp:Button ID="btnLast" runat="server" AccessKey="u" ToolTip="Ir a la última página ( Alt + u )" Text=">|" OnClick="btnLast_Click" />
+                <asp:Label ClientIDMode="Static" ID="lblFiltrado" runat="server" ForeColor="#0099cc" Font-Bold="true"></asp:Label>
+            </td>
+        </tr>
+    </table>
+    <asp:HiddenField runat="server" ID="hfPrograma" />
+    <asp:HiddenField runat="server" ID="hfNit" />
+    <asp:HiddenField runat="server" ID="hfCodDx" />
+    <asp:HiddenField runat="server" ID="hfPagina" />
+    <asp:HiddenField runat="server" ID="hf" />
+    <button id="btnaNuevoPaciente" type="button" style="width: 135px; height: 26px; cursor: pointer" onclick="nuevoPaciente();">
+        <img src="../../Images/icons/bi/nuevo.png" style="vertical-align: top; width: 20px; height: 20px" alt="Agregar nuevo paciente" />Agregar nuevo paciente</button>
+</div>
 <%--Modal para agregar nuevo paciente*/--%>
 <div id="divNuevoPaciente" onkeyup="escape();" class="modal">
     <div style="height: 370px; margin: 50px; width: 90%">

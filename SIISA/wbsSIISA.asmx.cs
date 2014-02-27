@@ -1,7 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
 using System.Web.Services;
 using Business;
 using System.Web.Script.Services;
+using Entities;
 
 namespace SIISAConc
 {
@@ -20,6 +25,18 @@ namespace SIISAConc
             B_AtencClinicasXAfiliados oBAtencClinicasXAfiliados = new B_AtencClinicasXAfiliados();
             String radicado = oBAtencClinicasXAfiliados.establecerAuditar(idAtencion: idAtencion, idUser: idUser);
             return radicado;
+        }
+
+        [WebMethod]
+        public String encriptar(String texto)
+        {
+            return ManejoTextos.Encriptar(texto: texto);
+        }
+
+        [WebMethod]
+        public static String desencriptar(String textoEncriptado)
+        {
+            return ManejoTextos.Desencriptar(textoEncriptado: textoEncriptado);
         }
     }
 }
