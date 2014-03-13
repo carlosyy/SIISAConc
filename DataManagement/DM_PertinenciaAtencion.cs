@@ -10,12 +10,12 @@ namespace DataManagement
     {
         SQLConn oDataAccess = new SQLConn();
         // selecciona todos los atributos de accion
-        public pertinenciaAtencion GetPertinenciaAtencion(Int32 id = 0, String PertinenciaAtencion = "")
+        public PertinenciaAtencion GetPertinenciaAtencion(Int32 id = 0, String PertinenciaAtencion = "")
         {
             StringBuilder sbPertinenciaAtencion = new StringBuilder();
             IDataReader reader;
-            pertinenciaAtencion lista = new pertinenciaAtencion();
-            pertinenciaAtencionEntidad oPertinenciaAtencion = new pertinenciaAtencionEntidad();
+            PertinenciaAtencion lista = new PertinenciaAtencion();
+            PertinenciaAtencionEntidad oPertinenciaAtencion = new PertinenciaAtencionEntidad();
 
             sbPertinenciaAtencion.Append("SELECT");
             sbPertinenciaAtencion.Append(" idPertinenciaAtencion");
@@ -41,7 +41,7 @@ namespace DataManagement
 
                 while (reader.Read())
                 {
-                    oPertinenciaAtencion = new pertinenciaAtencionEntidad();
+                    oPertinenciaAtencion = new PertinenciaAtencionEntidad();
                     oPertinenciaAtencion.idPertinenciaAtencion = Int32.Parse(reader["idPertinenciaAtencion"].ToString());
                     oPertinenciaAtencion.pertinenciaAtencion = reader["pertinenciaAtencion"].ToString();
                     lista.Add(oPertinenciaAtencion);
@@ -62,7 +62,7 @@ namespace DataManagement
         }
 
         // adiciona una nueva accion
-        public Int32 AddPertinenciaAtencion(pertinenciaAtencionEntidad oPertinenciaAtencion)
+        public Int32 AddPertinenciaAtencion(PertinenciaAtencionEntidad oPertinenciaAtencion)
         {
             Int32 retorno = 0;
             StringBuilder sbPertinenciaAtencion = new StringBuilder();
@@ -97,7 +97,7 @@ namespace DataManagement
 
         // Actualiza un registro de la tabla accion
 
-        public Int32 UpdatePertinenciaAtencion(pertinenciaAtencionEntidad oPertinenciaAtencion)
+        public Int32 UpdatePertinenciaAtencion(PertinenciaAtencionEntidad oPertinenciaAtencion)
         {
             Int32 retorno = 0;
             StringBuilder sbPertinenciaAtencion = new StringBuilder();

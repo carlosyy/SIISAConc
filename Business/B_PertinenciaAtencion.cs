@@ -8,17 +8,17 @@ namespace Business
     {
         DM_PertinenciaAtencion oDMPertinenciaAtencion = new DM_PertinenciaAtencion();
 
-        public pertinenciaAtencion getPertinenciaAtencion()
+        public PertinenciaAtencion getPertinenciaAtencion()
         {
             return oDMPertinenciaAtencion.GetPertinenciaAtencion();
         }
 
-        public Int32 AddPertinenciaAtencion(pertinenciaAtencionEntidad oPertinenciaAtencion)
+        public Int32 AddPertinenciaAtencion(PertinenciaAtencionEntidad oPertinenciaAtencion)
         {
             return oDMPertinenciaAtencion.AddPertinenciaAtencion(oPertinenciaAtencion);
         }
 
-        public Int32 UpdatePertinenciaAtencion(pertinenciaAtencionEntidad oPertinenciaAtencion)
+        public Int32 UpdatePertinenciaAtencion(PertinenciaAtencionEntidad oPertinenciaAtencion)
         {
             return oDMPertinenciaAtencion.UpdatePertinenciaAtencion(oPertinenciaAtencion);
         }

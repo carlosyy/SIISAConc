@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Entities
 {
-    public class programasEntidad
+    public class ProgramasEntidad
     {
         public Int32 idPrograma { get; set; } //Llave Primaria
         public String programa { get; set; }

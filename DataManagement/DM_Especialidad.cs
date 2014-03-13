@@ -10,12 +10,12 @@ namespace DataManagement
     {
         SQLConn oDataAccess = new SQLConn();
         // selecciona todos los atributos de Especialidad
-        public especialidad GetEspecialidad(Int32 idEspecialidad = 0, String especialidad = "")
+        public Especialidad GetEspecialidad(Int32 idEspecialidad = 0, String especialidad = "")
         {
             StringBuilder sbEspecialidad = new StringBuilder();
             IDataReader reader;
-            especialidad lista = new especialidad();
-            especialidadEntidad oEspecialidad = new especialidadEntidad();
+            Especialidad lista = new Especialidad();
+            EspecialidadEntidad oEspecialidad = new EspecialidadEntidad();
 
             sbEspecialidad.Append("SELECT");
             sbEspecialidad.Append(" idEspecialidad");
@@ -46,7 +46,7 @@ namespace DataManagement
 
                 while (reader.Read())
                 {
-                    oEspecialidad = new especialidadEntidad();
+                    oEspecialidad = new EspecialidadEntidad();
                     oEspecialidad.idEspecialidad = Int32.Parse(reader["idEspecialidad"].ToString());
                     oEspecialidad.especialidad = reader["especialidad"].ToString();
                     oEspecialidad.subMayor = reader["subMayor"].ToString();
@@ -70,12 +70,12 @@ namespace DataManagement
             }
         }
 
-        public especialidad getEspecialidad3ro(String nit = "")
+        public Especialidad getEspecialidad3ro(String nit = "")
         {
             StringBuilder sbEspecialidad = new StringBuilder();
             IDataReader reader;
-            especialidad lista = new especialidad();
-            especialidadEntidad oEspecialidad = new especialidadEntidad();
+            Especialidad lista = new Especialidad();
+            EspecialidadEntidad oEspecialidad = new EspecialidadEntidad();
 
             sbEspecialidad.Append("SELECT");
             sbEspecialidad.Append(" idEspecialidad");
@@ -101,7 +101,7 @@ namespace DataManagement
 
                 while (reader.Read())
                 {
-                    oEspecialidad = new especialidadEntidad();
+                    oEspecialidad = new EspecialidadEntidad();
                     oEspecialidad.idEspecialidad = Int32.Parse(reader["idEspecialidad"].ToString());
                     oEspecialidad.especialidad = reader["especialidad"].ToString();
                     oEspecialidad.subMayor = reader["subMayor"].ToString();
@@ -126,7 +126,7 @@ namespace DataManagement
         }        
 
         // adiciona una nueva Especialidad
-        public Int32 AddEspecialidad(especialidadEntidad oEspecialidad)
+        public Int32 AddEspecialidad(EspecialidadEntidad oEspecialidad)
         {
             Int32 retorno = 0;
             StringBuilder sbEspecialidad = new StringBuilder();
@@ -167,7 +167,7 @@ namespace DataManagement
 
         // Actualiza un registro de la tabla Especialidad
 
-        public Int32 UpdateEspecialidad(especialidadEntidad oEspecialidad)
+        public Int32 UpdateEspecialidad(EspecialidadEntidad oEspecialidad)
         {
             Int32 retorno = 0;
             StringBuilder sbEspecialidad = new StringBuilder();

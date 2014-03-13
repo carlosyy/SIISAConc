@@ -10,12 +10,12 @@ namespace DataManagement
     {
         SQLConn oDataAccess = new SQLConn();
         // selecciona todos los atributos de accion
-        public areasAtencion GetAreasAtencion(Int32 id = 0, String AreasAtencion = "")
+        public AreasAtencion GetAreasAtencion(Int32 id = 0, String AreasAtencion = "")
         {
             StringBuilder sbAreasAtencion = new StringBuilder();
             IDataReader reader;
-            areasAtencion lista = new areasAtencion();
-            areasAtencionEntidad oAreasAtencion = new areasAtencionEntidad();
+            AreasAtencion lista = new AreasAtencion();
+            AreasAtencionEntidad oAreasAtencion = new AreasAtencionEntidad();
 
             sbAreasAtencion.Append("SELECT");
             sbAreasAtencion.Append(" idAreasAtencion");
@@ -41,7 +41,7 @@ namespace DataManagement
 
                 while (reader.Read())
                 {
-                    oAreasAtencion = new areasAtencionEntidad();
+                    oAreasAtencion = new AreasAtencionEntidad();
                     oAreasAtencion.idAreasAtencion = Int32.Parse(reader["idAreasAtencion"].ToString());
                     oAreasAtencion.areasAtencion = reader["areasAtencion"].ToString();
                     lista.Add(oAreasAtencion);
@@ -62,7 +62,7 @@ namespace DataManagement
         }
 
         // adiciona una nueva accion
-        public Int32 AddAreasAtencion(areasAtencionEntidad oAreasAtencion)
+        public Int32 AddAreasAtencion(AreasAtencionEntidad oAreasAtencion)
         {
             Int32 retorno = 0;
             StringBuilder sbAreasAtencion = new StringBuilder();
@@ -97,7 +97,7 @@ namespace DataManagement
 
         // Actualiza un registro de la tabla accion
 
-        public Int32 UpdateAreasAtencion(areasAtencionEntidad oAreasAtencion)
+        public Int32 UpdateAreasAtencion(AreasAtencionEntidad oAreasAtencion)
         {
             Int32 retorno = 0;
             StringBuilder sbAreasAtencion = new StringBuilder();

@@ -10,12 +10,12 @@ namespace DataManagement
     {
         SQLConn oDataAccess = new SQLConn();
         // selecciona todos los atributos de accion
-        public hallazgoAtencion GetHallazgoAtencion(Int32 id = 0, String hallazgoAtencion = "")
+        public HallazgoAtencion GetHallazgoAtencion(Int32 id = 0, String hallazgoAtencion = "")
         {
             StringBuilder sbHallazgoAtencion = new StringBuilder();
             IDataReader reader;
-            hallazgoAtencion lista = new hallazgoAtencion();
-            hallazgoAtencionEntidad oHallazgoAtencion = new hallazgoAtencionEntidad();
+            HallazgoAtencion lista = new HallazgoAtencion();
+            HallazgoAtencionEntidad oHallazgoAtencion = new HallazgoAtencionEntidad();
 
             sbHallazgoAtencion.Append("SELECT");
             sbHallazgoAtencion.Append(" idHallazgoAtencion");
@@ -48,7 +48,7 @@ namespace DataManagement
 
                 while (reader.Read())
                 {
-                    oHallazgoAtencion = new hallazgoAtencionEntidad();
+                    oHallazgoAtencion = new HallazgoAtencionEntidad();
                     oHallazgoAtencion.idhallazgoAtencion = Int32.Parse(reader["idhallazgoAtencion"].ToString());
                     oHallazgoAtencion.hallazgoAtencion = reader["hallazgoAtencion"].ToString();
                     oHallazgoAtencion.idDatosUS = Int32.Parse(reader["idDatosUS"].ToString());
@@ -76,12 +76,12 @@ namespace DataManagement
         }
 
 
-        public hallazgoAtencion GetHallazgoAtencionXidDatosUS(Int32 idDatosUS)
+        public HallazgoAtencion GetHallazgoAtencionXidDatosUS(Int32 idDatosUS)
         {
             StringBuilder sbHallazgoAtencion = new StringBuilder();
             IDataReader reader;
-            hallazgoAtencion lista = new hallazgoAtencion();
-            hallazgoAtencionEntidad oHallazgoAtencion = new hallazgoAtencionEntidad();
+            HallazgoAtencion lista = new HallazgoAtencion();
+            HallazgoAtencionEntidad oHallazgoAtencion = new HallazgoAtencionEntidad();
 
             sbHallazgoAtencion.Append("SELECT     ha.idHallazgoAtencion, ha.hallazgoAtencion, ha.idDatosUS, ha.idAuditor, ha.idArea, ha.idPertinenciaAtencion, ha.idInoportunidadAtencion, ha.idNoCalidadAtencion,");
             sbHallazgoAtencion.Append(" ha.idEventosAdversosAtencion, ea.eventosAdversosAtencion, pa.pertinenciaAtencion, aa.areasAtencion, us.nombreUsuario, noca.noCalidadAtencion,");
@@ -106,7 +106,7 @@ namespace DataManagement
 
                 while (reader.Read())
                 {
-                    oHallazgoAtencion = new hallazgoAtencionEntidad();
+                    oHallazgoAtencion = new HallazgoAtencionEntidad();
                     oHallazgoAtencion.idhallazgoAtencion = Int32.Parse(reader["idhallazgoAtencion"].ToString());
                     oHallazgoAtencion.hallazgoAtencion = reader["hallazgoAtencion"].ToString();
                     oHallazgoAtencion.idDatosUS = Int32.Parse(reader["idDatosUS"].ToString());
@@ -140,7 +140,7 @@ namespace DataManagement
         }
 
         // adiciona una nueva accion
-        public Int32 AddHallazgoAtencion(hallazgoAtencionEntidad oHallazgoAtencion)
+        public Int32 AddHallazgoAtencion(HallazgoAtencionEntidad oHallazgoAtencion)
         {
             Int32 retorno = 0;
             StringBuilder sbHallazgoAtencion = new StringBuilder();
@@ -187,7 +187,7 @@ namespace DataManagement
 
         // Actualiza un registro de la tabla accion
 
-        public Int32 UpdateHallazgoAtencion(hallazgoAtencionEntidad oHallazgoAtencion)
+        public Int32 UpdateHallazgoAtencion(HallazgoAtencionEntidad oHallazgoAtencion)
         {
             Int32 retorno = 0;
             StringBuilder sbHallazgoAtencion = new StringBuilder();

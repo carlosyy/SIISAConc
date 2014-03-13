@@ -2,7 +2,7 @@
 
 namespace Entities
 {
-    public class pendientesAtencionEntidad
+    public class PendientesAtencionEntidad
     {
         public Int32 idPdtesAtencion { get; set; } //Llave Primaria
         public Int32 idDatosUS { get; set; }

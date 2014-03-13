@@ -17,6 +17,7 @@ namespace SIISAConc.webControls.concurrencia
                 ctrDdlEspecialidad.setEspecialidad();
                 ctrDdlProgramas1.buscaProgramaxNombre("");
                 txtFechaIngreso_CalendarExtender.EndDate = DateTime.Now;
+                txtFechaIngreso_CalendarExtender.StartDate = DateTime.Now.AddMonths(-1);
                 txtFecNacimiento_CalendarExtender.EndDate = DateTime.Now;
             }
         }
@@ -32,24 +33,57 @@ namespace SIISAConc.webControls.concurrencia
 
         protected void btnGuardar_OnClick(object sender, EventArgs e)
         {
-           //MessageBox.show("Registro guardado.");
-            atencClinicasEntidad eAten = new atencClinicasEntidad();
-            eAten.cama = txtCama.Text;
+            AtencClinicasEntidad eAten = new AtencClinicasEntidad();
+            eAten.docIden = txtDocumento.Text;
+            eAten.idTipoDoc = Int32.Parse(((DropDownList)ctrDdlTiposDoc.FindControl("ddlTipoDoc")).SelectedValue);
+            eAten.apellidoA = txtApellido_a.Text;
+            eAten.apellidoB = txtApellido_b.Text;
+            eAten.nombreA = txtNombre_a.Text;
+            eAten.nombreB = txtNombre_b.Text;
+            eAten.sexo = txtSexo.Text;
+            eAten.fecIngreso = txtFechaIngreso.Text;
+            eAten.horaIngreso = txtHoraIngreso.Text;
+            eAten.diasEstancia = Int32.Parse(txtDiasEstancia.Value);
+            eAten.especialidad = ((DropDownList) ctrDdlEspecialidad.FindControl("ddlEspecialidad")).SelectedValue;
             eAten.codDx = hfCodDxCie.Value;
             eAten.codDxRel = hfCodDxRel.Value;
-            eAten.diasEstancia = Int32.Parse(txtDiasEstancia.Text == "" ? "0" : txtDiasEstancia.Text);
-            eAten.docIden = txtDocumento.Text;
-            eAten.especialidad = ((DropDownList)ctrDdlEspecialidad.FindControl("ddlEspecialidad")).SelectedValue;
-            //eAten.fecEgreso = txtFechaEgreso.Text;
-            eAten.fecIngreso = txtFechaIngreso.Text;
+            eAten.fecNacimiento = txtFecNacimiento.Text;
+            eAten.edad = Int32.Parse(txtEdad.Value);
+            eAten.tipoEdad= Int32.Parse(ddlTipoEdad.SelectedValue);
             eAten.medico = txtMedico.Text;
-            eAten.mesIngreso = txtFechaIngreso.Text;
-            //eAten.motivoSalida = ddlMotivoSalida.SelectedValue;
-            eAten.nitClinica = ((DropDownList)ctrDdlProgramas1.FindControl("ddlProgramas")).SelectedValue;
-            //eAten.programa = Int32.Parse(txtContrato.Text == "" ? "0" : txtContrato.Text);
+            eAten.contrato= Int32.Parse(((DropDownList)ctrDdlProgramas1.FindControl("ddlProgramas")).SelectedValue);
+            eAten.tipoContrato = Int32.Parse(ddlTipoContrato.SelectedValue);
             eAten.idTipoAtencion = Int32.Parse(ddlTipoAtencion.SelectedValue);
+            eAten.cama = txtCama.Text;
+            eAten.pabellon = txtPabellon.Text;
+            eAten.idUser = Int32.Parse(Session["idUser"].ToString());
             B_AtencClinicasXAfiliados oB_AtencClinicasXAfiliados = new B_AtencClinicasXAfiliados();
-            oB_AtencClinicasXAfiliados.addAtencClinicasXAfiliados(eAten);
+            String radicado = oB_AtencClinicasXAfiliados.addAtencClinicasXAfiliados(eAten);
+            limpiarControles();
+            MessageBox.show("Se ha radicado exitosamente la atención con el número:" + radicado, 4, false);
+        }
+
+        private void limpiarControles()
+        {
+            txtDocumento.Text = "";
+            txtApellido_a.Text = "";
+            txtApellido_b.Text = "";
+            txtNombre_a.Text = "";
+            txtNombre_b.Text = "";
+            txtSexo.Text = "";
+            txtFechaIngreso.Text = "";
+            txtHoraIngreso.Text = "";
+            txtDiasEstancia.Value = "";
+            hfCodDxCie.Value = "";
+            hfCodDxRel.Value = "";
+            txtFecNacimiento.Text = "";
+            txtEdad.Value = "";
+            ddlTipoEdad.SelectedValue = "0";
+            txtMedico.Text = "";
+            ddlTipoContrato.SelectedValue = "0";
+            ddlTipoAtencion.SelectedValue = "0";
+            txtCama.Text = "";
+            txtPabellon.Text = "";
         }
 
         protected void txtDocumento_OnTextChanged(object sender, EventArgs e)
@@ -62,6 +96,7 @@ namespace SIISAConc.webControls.concurrencia
                 txtApellido_b.Text = eAfil.apellido2;
                 txtNombre_a.Text = eAfil.nombre1;
                 txtNombre_b.Text = eAfil.nombre2;
+                txtSexo.Text = eAfil.sexo;
                 ((DropDownList)ctrDdlTiposDoc.FindControl("ddlTipoDoc")).SelectedValue = eAfil.tipoDocId.ToString();
                 encontrado = true;
                 txtFechaIngreso.Focus();
@@ -72,6 +107,7 @@ namespace SIISAConc.webControls.concurrencia
                 txtApellido_b.Text = "";
                 txtNombre_a.Text = "";
                 txtNombre_b.Text = "";
+                txtSexo.Text = "";
                 ((DropDownList)ctrDdlTiposDoc.FindControl("ddlTipoDoc")).SelectedValue = "0";
                 ((DropDownList)ctrDdlTiposDoc.FindControl("ddlTipoDoc")).Focus();
             }

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Entities
 {
-    public class tiposDocEntidad
+    public class TiposDocEntidad
     {
         public Int32 idTipoDoc { get; set; } //Llave Primaria
         public String tipoDoc { get; set; }

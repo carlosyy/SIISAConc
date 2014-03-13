@@ -8,37 +8,37 @@ namespace Business
     {
         DM_Programas oDMProgramas = new DM_Programas();
 
-        public programas getProgramas()
+        public Programas getProgramas()
         {
             return oDMProgramas.GetProgramas();
         }
 
-        public programas getProgramasID(Int32 idPrograma)
+        public Programas getProgramasID(Int32 idPrograma)
         {
             return oDMProgramas.GetProgramas(idPrograma: idPrograma);
         }
 
-        public programas getProgramasPrograma(String programa)
+        public Programas getProgramasPrograma(String programa)
         {
             return oDMProgramas.GetProgramas(programa: programa);
         }
 
-        public programas getProgramas3ro(String nit)
+        public Programas getProgramas3ro(String nit)
         {
             return oDMProgramas.getProgramas3ro(nit: nit);
         }
 
-        public programas getProgramaValidaVsRad(String radicado)
+        public Programas getProgramaValidaVsRad(String radicado)
         {
             return oDMProgramas.getProgramaValidaVsRad(radicado: radicado);
         }
 
-        public programas getProgramasActivo(Boolean activo)
+        public Programas getProgramasActivo(Boolean activo)
         {
             return oDMProgramas.GetProgramas(activo: activo);
         }
 
-        public Int32 AddProgramas(programasEntidad oProgramas)
+        public Int32 AddProgramas(ProgramasEntidad oProgramas)
         {
             return oDMProgramas.AddProgramas(oProgramas);
         }
@@ -47,7 +47,7 @@ namespace Business
         {
             return oDMProgramas.updateProgramaValidRadVsAud(radicado: radicado, programa: programa, programaRad: programaRad, actualizaEn: actualizaEn);
         }
-        public Int32 UpdateProgramas(programasEntidad oProgramas)
+        public Int32 UpdateProgramas(ProgramasEntidad oProgramas)
         {
             return oDMProgramas.UpdateProgramas(oProgramas);
         }

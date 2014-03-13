@@ -5,7 +5,7 @@ using System.Collections.ObjectModel;
 
 namespace Entities
 {
-    public class programas : Collection<programasEntidad>
+    public class Programas : Collection<ProgramasEntidad>
     {
     }
 }

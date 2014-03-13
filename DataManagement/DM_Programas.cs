@@ -10,12 +10,12 @@ namespace DataManagement
     {
         SQLConn oDataAccess = new SQLConn();
         // selecciona todos los atributos de Programas
-        public programas GetProgramas(Int32 idPrograma = 0, String programa = "", Boolean activo =false)
+        public Programas GetProgramas(Int32 idPrograma = 0, String programa = "", Boolean activo =false)
         {
             StringBuilder sbProgramas = new StringBuilder();
             IDataReader reader;
-            programas lista = new programas();
-            programasEntidad oProgramas = new programasEntidad();
+            Programas lista = new Programas();
+            ProgramasEntidad oProgramas = new ProgramasEntidad();
 
             sbProgramas.Append("SELECT");
             sbProgramas.Append(" idPrograma");
@@ -51,7 +51,7 @@ namespace DataManagement
 
                 while (reader.Read())
                 {
-                    oProgramas = new programasEntidad();
+                    oProgramas = new ProgramasEntidad();
                     oProgramas.idPrograma = Int32.Parse(reader["idPrograma"].ToString());
                     oProgramas.programa = reader["programa"].ToString();
                     oProgramas.idProgEquiv = Int32.Parse(reader["idProgEquiv"].ToString());
@@ -73,12 +73,12 @@ namespace DataManagement
             }
         }
 
-        public programas getProgramas3ro(String nit = "")
+        public Programas getProgramas3ro(String nit = "")
         {
             StringBuilder sbProgramas = new StringBuilder();
             IDataReader reader;
-            programas lista = new programas();
-            programasEntidad oProgramas = new programasEntidad();
+            Programas lista = new Programas();
+            ProgramasEntidad oProgramas = new ProgramasEntidad();
 
             sbProgramas.Append("SELECT");
             sbProgramas.Append(" idPrograma");
@@ -101,7 +101,7 @@ namespace DataManagement
 
                 while (reader.Read())
                 {
-                    oProgramas = new programasEntidad();
+                    oProgramas = new ProgramasEntidad();
                     oProgramas.idPrograma = Int32.Parse(reader["idPrograma"].ToString());
                     oProgramas.programa = reader["programa"].ToString();
                     oProgramas.idProgEquiv = Int32.Parse(reader["idProgEquiv"].ToString());
@@ -124,12 +124,12 @@ namespace DataManagement
         }
 
 
-        public programas getProgramaValidaVsRad(String radicado)
+        public Programas getProgramaValidaVsRad(String radicado)
         {
             String sbProgramas = String.Format("EXEC SPS_ValidaProg @radicado='{0}'", radicado);
             IDataReader reader;
-            programas lista = new programas();
-            programasEntidad oProgramas = new programasEntidad();            
+            Programas lista = new Programas();
+            ProgramasEntidad oProgramas = new ProgramasEntidad();            
 
             
             try
@@ -139,7 +139,7 @@ namespace DataManagement
 
                 while (reader.Read())
                 {
-                    oProgramas = new programasEntidad();
+                    oProgramas = new ProgramasEntidad();
                     oProgramas.idPrograma = Int32.Parse(reader["programa"].ToString());
                     oProgramas.programa = reader["nPrograma"].ToString();
                     oProgramas.idProgEquiv = Int32.Parse(reader["programaEquiv"].ToString());
@@ -164,7 +164,7 @@ namespace DataManagement
         }
 
         // adiciona una nueva Programas
-        public Int32 AddProgramas(programasEntidad oProgramas)
+        public Int32 AddProgramas(ProgramasEntidad oProgramas)
         {
             Int32 retorno = 0;
             StringBuilder sbProgramas = new StringBuilder();
@@ -223,7 +223,7 @@ namespace DataManagement
 
         // Actualiza un registro de la tabla Programas
 
-        public Int32 UpdateProgramas(programasEntidad oProgramas)
+        public Int32 UpdateProgramas(ProgramasEntidad oProgramas)
         {
             Int32 retorno = 0;
             StringBuilder sbProgramas = new StringBuilder();

@@ -10,10 +10,10 @@ namespace DataManagement
     {
         SQLConn oDataAccess = new SQLConn();
         // selecciona todos los atributos de Objetos
-        public objetos GetObjetos(Int32 idPerfil, Int32 nivel)
+        public Objetos GetObjetos(Int32 idPerfil, Int32 nivel)
         {            
             IDataReader reader;
-            objetos lista = new objetos();
+            Objetos lista = new Objetos();
             string sQuery = string.Format("EXEC SPS_Objetos @idPerfil={0}, @nivel={1}", idPerfil, nivel);
 
             try
@@ -23,7 +23,7 @@ namespace DataManagement
 
                 while (reader.Read())
                 {
-                    lista.Add(new objetosEntidad()
+                    lista.Add(new ObjetosEntidad()
                     {
                         idObjeto = Int32.Parse(reader["idObjeto"].ToString()),
                         menuObjeto = reader["menuObjeto"].ToString(),
@@ -47,7 +47,7 @@ namespace DataManagement
         }
 
         // adiciona una nueva Objetos
-        public Int32 AddObjetos(objetosEntidad oObjetos)
+        public Int32 AddObjetos(ObjetosEntidad oObjetos)
         {
             Int32 retorno = 0;
             StringBuilder sbObjetos = new StringBuilder();
@@ -84,7 +84,7 @@ namespace DataManagement
 
         // Actualiza un registro de la tabla Objetos
 
-        public Int32 UpdateObjetos(objetosEntidad oObjetos)
+        public Int32 UpdateObjetos(ObjetosEntidad oObjetos)
         {
             Int32 retorno = 0;
             StringBuilder sbObjetos = new StringBuilder();

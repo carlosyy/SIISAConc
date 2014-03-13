@@ -10,12 +10,12 @@ namespace DataManagement
     {
         SQLConn oDataAccess = new SQLConn();
         // selecciona todos los atributos de Dx
-        public dx GetDx(String codDx = "", String descDx = "",Boolean unido = false)
+        public Dx GetDx(String codDx = "", String descDx = "",Boolean unido = false)
         {
             StringBuilder sbDx = new StringBuilder();
             IDataReader reader;
-            dx lista = new dx();
-            dxEntidad oDx = new dxEntidad();
+            Dx lista = new Dx();
+            DxEntidad oDx = new DxEntidad();
 
             sbDx.Append("SELECT");
             sbDx.Append(" codDx");
@@ -41,7 +41,7 @@ namespace DataManagement
 
                 while (reader.Read())
                 {
-                    oDx = new dxEntidad();
+                    oDx = new DxEntidad();
                     oDx.codDx = reader["codDx"].ToString();
                     oDx.dx = reader["dx"].ToString();
 
@@ -66,12 +66,12 @@ namespace DataManagement
             }
         }
 
-        public dx GetCodDesc(String codDesc = "")
+        public Dx GetCodDesc(String codDesc = "")
         {
             StringBuilder sbDx = new StringBuilder();
             IDataReader reader;
-            dx lista = new dx();
-            dxEntidad oDx = new dxEntidad();
+            Dx lista = new Dx();
+            DxEntidad oDx = new DxEntidad();
 
             sbDx.Append("SELECT");
             sbDx.Append(" codDx + N' / ' + dx AS codDesc");
@@ -90,7 +90,7 @@ namespace DataManagement
 
                 while (reader.Read())
                 {
-                    oDx = new dxEntidad();
+                    oDx = new DxEntidad();
                     oDx.codDx = reader["codDx"].ToString();
                     oDx.codYDx = reader["codDesc"].ToString();
                     

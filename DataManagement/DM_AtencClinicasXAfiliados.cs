@@ -13,10 +13,10 @@ namespace DataManagement
     {
         readonly SQLConn oDataAccess = new SQLConn();
 
-        public atencClinicasXAfiliado buscar(String docIden = "", Int32 programa = 0, String nit = "", String codDx = "", String fecDesde = "", String fecHasta = "", String filtroNombre = "", Int32 limitInf = 0, Int32 limitSup = 0, Int32 orden = 0, Int32 idEstadoRev = 0)
+        public AtencClinicasXAfiliado buscar(String docIden = "", Int32 programa = 0, String nit = "", String codDx = "", String fecDesde = "", String fecHasta = "", String filtroNombre = "", Int32 limitInf = 0, Int32 limitSup = 0, Int32 orden = 0, Int32 idEstadoRev = 0)
         {
             IDataReader reader;
-            atencClinicasXAfiliado lista = new atencClinicasXAfiliado();
+            AtencClinicasXAfiliado lista = new AtencClinicasXAfiliado();
             String sQuery = String.Format("EXEC SP_BuscarAtencClinicas @docIden='{0}', @programa={1}, @nit='{2}', @codDx='{3}', @fecDesde='{4}', @fecHasta='{5}', @filtroNombre='{6}', @limitInf={7}, @limitSup={8}, @orden={9}, @idEstadoRev={10}", docIden, programa, nit, codDx, fecDesde, fecHasta, filtroNombre, limitInf, limitSup, orden, idEstadoRev);
 
             try
@@ -26,7 +26,7 @@ namespace DataManagement
 
                 while (reader.Read())
                 {
-                    atencClinicasXAfiliadoEntidad ac = new atencClinicasXAfiliadoEntidad();
+                    AtencClinicasXAfiliadoEntidad ac = new AtencClinicasXAfiliadoEntidad();
                     ac.mesIngreso = reader["mesIngreso"].ToString();
                     ac.docIden = reader["docIden"] != DBNull.Value ? (String)reader["docIden"] : String.Empty;
                     ac.programa = reader["programa"].ToString() == "" ? 0 : Int32.Parse(reader["programa"].ToString());
@@ -64,10 +64,10 @@ namespace DataManagement
             }
         }
 
-        public atencClinicasXAfiliado getAuditorias(Int32 idUserEstablece, String fecAuditoria)
+        public AtencClinicasXAfiliado getAuditorias(Int32 idUserEstablece, String fecAuditoria)
         {
             IDataReader reader;
-            atencClinicasXAfiliado lista = new atencClinicasXAfiliado();
+            AtencClinicasXAfiliado lista = new AtencClinicasXAfiliado();
             String sQuery = String.Format("EXEC SPS_Auditorias @idUserEstablece={0}, @fecAuditoria='{1}'", idUserEstablece, fecAuditoria);
 
             try
@@ -77,7 +77,7 @@ namespace DataManagement
 
                 while (reader.Read())
                 {
-                    atencClinicasXAfiliadoEntidad ac = new atencClinicasXAfiliadoEntidad();
+                    AtencClinicasXAfiliadoEntidad ac = new AtencClinicasXAfiliadoEntidad();
                     ac.cama = reader["cama"] != DBNull.Value ? (String)reader["cama"] : String.Empty;
                     ac.codDx = reader["codDx"] != DBNull.Value ? (String)reader["codDx"] : String.Empty;
                     ac.diasEstancia = reader["diasEstancia"] != DBNull.Value ? Convert.ToInt32(reader["diasEstancia"].ToString()) : 0;
@@ -180,6 +180,62 @@ namespace DataManagement
             return retorno;
         }
 
+        public AtencClinicasXAfiliado getDatosAuditoria(String radicado)
+        {
+            IDataReader reader;
+            AtencClinicasXAfiliado lista = new AtencClinicasXAfiliado();
+            String sQuery = String.Format("EXEC SP_Auditoria @radicado='{0}'", radicado);
+
+            try
+            {
+                oDataAccess.open();
+                reader = oDataAccess.executeReader(CommandType.Text, sQuery.ToString());
+
+                while (reader.Read())
+                {
+                    AtencClinicasXAfiliadoEntidad ac = new AtencClinicasXAfiliadoEntidad();
+                    ac.mesIngreso = reader["mesIngreso"].ToString();
+                    ac.docIden = reader["docIden"] != DBNull.Value ? (String)reader["docIden"] : String.Empty;
+                    ac.tipoDoc = reader["tipoDoc"].ToString();
+                    ac.programa = reader["programa"].ToString() == "" ? 0 : Int32.Parse(reader["programa"].ToString());
+                    ac.nitIps = reader["nitIps"] != DBNull.Value ? reader["nitIps"].ToString() : String.Empty;
+                    ac.entidad = reader["entidad"].ToString();
+                    ac.fecIngreso = reader["fecIngreso"].ToString();
+                    ac.fecEgreso = reader["fecEgreso"].ToString();
+                    ac.diasEstancia = reader["diasEstancia"] != DBNull.Value ? Convert.ToInt32(reader["diasEstancia"].ToString()) : 0;
+                    ac.especialidad = reader["especialidad"] != DBNull.Value ? (String)reader["especialidad"] : String.Empty;
+                    ac.codDx = reader["codDx"] != DBNull.Value ? (String)reader["codDx"] : String.Empty;
+                    ac.dx = reader["dx"] != DBNull.Value ? (String)reader["dx"] : String.Empty;
+                    //ac.codDxRel = reader["codDxRel"] != DBNull.Value ? (String)reader["codDxRel"] : String.Empty;
+                    ac.apellidoA = reader["apellido_a"].ToString();
+                    ac.apellidoB = reader["apellido_b"].ToString();
+                    ac.nombreA = reader["nombre_a"].ToString();
+                    ac.nombreB = reader["nombre_b"].ToString();
+                    ac.medico = reader["medico"] != DBNull.Value ? (String)reader["medico"] : String.Empty;
+                    ac.cama = reader["cama"] != DBNull.Value ? (String)reader["cama"] : String.Empty;
+                    ac.tipoAtencion = reader["tipoAtencion"] != DBNull.Value ? (String)reader["tipoAtencion"] : String.Empty;
+                    ac.motivoSalida = reader["motivoSalida"] != DBNull.Value ? (String)reader["motivoSalida"] : String.Empty;
+                    ac.tipoEstancia = reader["abrevTipoEstancia"] != DBNull.Value ? (String)reader["abrevTipoEstancia"] : String.Empty;
+                    //ac.puntaje = reader["puntaje"].ToString() != "" ? Int32.Parse(reader["puntaje"].ToString()) : 0;
+                    ac.diasEstancia = reader["diasEstancia"].ToString() != "" ? Int32.Parse(reader["diasEstancia"].ToString()) : 0;
+                    ac.estadoRad = reader["estadoRad"].ToString();
+                    ac.idAtencion = Int32.Parse(reader["idAtencion"].ToString());
+                    ac.sexo = reader["sexo"].ToString();
+                    lista.Add(ac);
+                }
+                reader.Close();
+                return lista;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                oDataAccess.close();
+            }
+        }
+
         public String establecerAuditar(Int32 idAtencion, Int32 idUser)
         {
             
@@ -203,19 +259,45 @@ namespace DataManagement
                 throw;
             }
         }
-        public Int32 addAtencClinicasXAfiliados(atencClinicasEntidad eAten)
+        public String addAtencClinicasXAfiliados(AtencClinicasEntidad eAten)
         {
-            String sQuery = String.Format("EXEC SPI_Atencion @docIden='{0}', ");
+            oDataAccess.addInParameters("@docIden", DbType.String, paramValue: eAten.docIden);
+            oDataAccess.addInParameters("@idTipoDoc", DbType.Int32, paramValue: eAten.idTipoDoc);
+            oDataAccess.addInParameters("@apellido_a", DbType.String, paramValue: eAten.apellidoA);
+            oDataAccess.addInParameters("@apellido_b", DbType.String, paramValue: eAten.apellidoB);
+            oDataAccess.addInParameters("@nombre_a", DbType.String, paramValue: eAten.nombreA);
+            oDataAccess.addInParameters("@nombre_b", DbType.String, paramValue: eAten.nombreB);
+            oDataAccess.addInParameters("@fecIngreso", DbType.String, paramValue: eAten.fecIngreso);
+            oDataAccess.addInParameters("@horaIngreso", DbType.String, paramValue: eAten.horaIngreso);
+            oDataAccess.addInParameters("@diasEstancia", DbType.Int32, paramValue: eAten.diasEstancia);
+            oDataAccess.addInParameters("@idEspecialidad", DbType.Int32, paramValue: eAten.especialidad);
+            oDataAccess.addInParameters("@codDxCie", DbType.String, paramValue: eAten.codDx);
+            oDataAccess.addInParameters("@codDxRel", DbType.String, paramValue: eAten.codDxRel);
+            oDataAccess.addInParameters("@fecNacimiento", DbType.String, paramValue: eAten.fecNacimiento);
+            oDataAccess.addInParameters("@edad", DbType.Int32, paramValue: eAten.edad);
+            oDataAccess.addInParameters("@tipoEdad", DbType.Int32, paramValue: eAten.tipoEdad);
+            oDataAccess.addInParameters("@medico", DbType.String, paramValue: eAten.medico);
+            oDataAccess.addInParameters("@contrato", DbType.Int32, paramValue: eAten.contrato);
+            oDataAccess.addInParameters("@tipoContrato", DbType.Int32, paramValue: eAten.tipoContrato);
+            oDataAccess.addInParameters("@tipoAtencionIngreso", DbType.Int32, paramValue: eAten.idTipoAtencion);
+            oDataAccess.addInParameters("@cama", DbType.String, paramValue: eAten.cama);
+            oDataAccess.addInParameters("@pabellon", DbType.String, paramValue: eAten.pabellon);
+            oDataAccess.addInParameters("@idUser", DbType.Int32, paramValue: eAten.idUser);
+            oDataAccess.addInParameters("@sexo", DbType.String, paramValue: eAten.sexo); ;
             try
             {
                 oDataAccess.open();
-                Int32 retorno = oDataAccess.executeNonQuery(CommandType.Text, sQuery);
-                oDataAccess.close();
-                return retorno;
+                oDataAccess.executeNonQuery(CommandType.StoredProcedure, "SPI_Atencion", true);
+                String radicado = oDataAccess.commando.Parameters["@RETURN_VALUE"].Value.ToString();
+                while (radicado.Length < 8)
+                {
+                    radicado = "0" + radicado;
+                }
+                oDataAccess.commando.Parameters.Clear();
+                return radicado;
             }
             catch (Exception)
             {
-                
                 throw;
             }
             

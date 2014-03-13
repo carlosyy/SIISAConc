@@ -58,16 +58,16 @@ namespace SIISAConc.Concurrencia
         }
 
         [WebMethod]
-        public static List<dxEntidad> getDx(String busqDx)
+        public static List<DxEntidad> getDx(String busqDx)
         {
             B_Dx oBDx = new B_Dx();
             var query = from item in oBDx.GetCodDesc(busqDx).AsEnumerable()
-                select new dxEntidad
+                select new DxEntidad
                 {
                     codDx = item.codDx,
                     codYDx = item.codYDx
                 };
-            return query.ToList<dxEntidad>();
+            return query.ToList<DxEntidad>();
         }
 
         [WebMethod]
@@ -127,16 +127,16 @@ namespace SIISAConc.Concurrencia
         }
 
         [WebMethod]
-        public static List<medicosEntidad> getMedicos(String nombreMedico)
+        public static List<MedicosEntidad> getMedicos(String nombreMedico)
         {
             B_Medicos oBMedicos = new B_Medicos();
-            var query = from item in oBMedicos.getMedicosFiltro(nombreMedico:nombreMedico).AsEnumerable()
-                        select new medicosEntidad
-                        {
-                            idMedico = item.idMedico,
-                            nombreMedico = item.nombreMedico
-                        };
-            return query.ToList<medicosEntidad>();
+            var query = from item in oBMedicos.getMedicosFiltro(nombreMedico: nombreMedico).AsEnumerable()
+                select new MedicosEntidad
+                {
+                    idMedico = item.idMedico,
+                    nombreMedico = item.nombreMedico
+                };
+            return query.ToList<MedicosEntidad>();
         }
     }
 }

@@ -2,7 +2,7 @@
 
 namespace Entities
 {
-    public class pertinenciaAtencionEntidad
+    public class PertinenciaAtencionEntidad
     {
         public Int32 idPertinenciaAtencion { get; set; }
         public String pertinenciaAtencion { get; set; }

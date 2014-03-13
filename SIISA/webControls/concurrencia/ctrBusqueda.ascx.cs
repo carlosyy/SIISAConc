@@ -40,9 +40,9 @@ namespace SIISAConc.webControls.concurrencia
             gvResultados.DataBind();
         }
 
-        private atencClinicasXAfiliado paginacion(Int32 cantRegs, Int32 orden)
+        private AtencClinicasXAfiliado paginacion(Int32 cantRegs, Int32 orden)
         {
-            atencClinicasXAfiliado eCenso = null;
+            AtencClinicasXAfiliado eCenso = null;
             btnLast.Visible = true;
             btnNext.Visible = true;
             btnFirst.Visible = true;

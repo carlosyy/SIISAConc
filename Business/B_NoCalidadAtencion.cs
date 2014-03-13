@@ -8,17 +8,17 @@ namespace Business
     {
         DM_NoCalidadAtencion oDMNoCalidadAtencion = new DM_NoCalidadAtencion();
 
-        public noCalidadAtencion getNoCalidadAtencion()
+        public NoCalidadAtencion getNoCalidadAtencion()
         {
             return oDMNoCalidadAtencion.GetNoCalidadAtencion();
         }
 
-        public Int32 AddNoCalidadAtencion(noCalidadAtencionEntidad oNoCalidadAtencion)
+        public Int32 AddNoCalidadAtencion(NoCalidadAtencionEntidad oNoCalidadAtencion)
         {
             return oDMNoCalidadAtencion.AddNoCalidadAtencion(oNoCalidadAtencion);
         }
 
-        public Int32 UpdateNoCalidadAtencion(noCalidadAtencionEntidad oNoCalidadAtencion)
+        public Int32 UpdateNoCalidadAtencion(NoCalidadAtencionEntidad oNoCalidadAtencion)
         {
             return oDMNoCalidadAtencion.UpdateNoCalidadAtencion(oNoCalidadAtencion);
         }

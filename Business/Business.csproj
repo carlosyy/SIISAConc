@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="B_Afiliados.cs" />
+    <Compile Include="B_AutoCompletar.cs" />
     <Compile Include="B_Medicos.cs" />
     <Compile Include="B_AreasAtencion.cs" />
     <Compile Include="B_AtencClinicasXAfiliados.cs" />
@@ -73,6 +74,7 @@
     <Compile Include="B_PertinenciaAtencion.cs" />
     <Compile Include="B_Programas.cs" />
     <Compile Include="B_Rips.cs" />
+    <Compile Include="B_ServiciosAtencion.cs" />
     <Compile Include="B_Servicios.cs" />
     <Compile Include="B_TipoAtenc.cs" />
     <Compile Include="B_TiposDoc.cs" />

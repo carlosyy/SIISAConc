@@ -2,7 +2,7 @@
 
 namespace Entities
 {
-    public class tipoAtencEntidad
+    public class TipoAtencEntidad
     {
         public Int32 idTipoAtenc { get; set; } //Llave Primaria
         public String abrevTipoAtenc { get; set; }

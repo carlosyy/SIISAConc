@@ -4,7 +4,7 @@
 namespace Entities
 {
 
-    public class medicosEntidad
+    public class MedicosEntidad
     {
         public Int32 idMedico { get; set; }
         public String docMedico { get; set; }

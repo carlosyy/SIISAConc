@@ -5,7 +5,7 @@ using System.Collections.ObjectModel;
 
 namespace Entities
 {
-    public class login : Collection<loginEntidad>
+    public class Login : Collection<LoginEntidad>
     {
     }
 }

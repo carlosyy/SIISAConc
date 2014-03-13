@@ -11,9 +11,9 @@ namespace DataManagement
     {
         SQLConn oDataAccess = new SQLConn();
         // selecciona todos los atributos de Servicios
-        public servicios GetServicios(String codServ = "", String descripcion = "", String tipoBusq = "c")
+        public Servicios GetServicios(String codServ = "", String descripcion = "", String tipoBusq = "c")
         {
-            servicios lServicios = new servicios();
+            Servicios lServicios = new Servicios();
             IDataReader reader;
             //  AccionL lista = new AccionL();            
             String sQuery = string.Format("EXEC SPS_Servicios @codServ='{0}', @descServ='{1}', @tipoBusq='{2}'", codServ, descripcion, tipoBusq);
@@ -24,7 +24,7 @@ namespace DataManagement
                 reader = oDataAccess.executeReader(CommandType.Text, sQuery.ToString());
                 while (reader.Read())
                 {
-                    lServicios.Add(new serviciosEntidad()
+                    lServicios.Add(new ServiciosEntidad()
                     {
                         codConcepto = int.Parse(reader["codConcepto"].ToString()),
                         codServ = reader["codServ"].ToString(),
@@ -46,11 +46,11 @@ namespace DataManagement
             return (lServicios);
         }
 
-        public servicios getServicioxCod(String codServ)
+        public Servicios getServicioxCod(String codServ)
         {
             StringBuilder sbServicios = new StringBuilder();
             IDataReader reader;
-            servicios lServicios = new servicios();
+            Servicios lServicios = new Servicios();
 
 
             sbServicios.Append("SELECT");
@@ -73,7 +73,7 @@ namespace DataManagement
 
                 while (reader.Read())
                 {
-                    lServicios.Add(new serviciosEntidad()
+                    lServicios.Add(new ServiciosEntidad()
                     {
                         codConcepto = int.Parse(reader["codConcepto"].ToString()),
                         codServ = reader["codServ"].ToString(),
@@ -144,21 +144,24 @@ namespace DataManagement
         }
 
 
-        public servicios getCodDescr(String codDescr = "", String tipoBusq = "c")
+        public Servicios getServiciosXBusq(String codDescr)
         {
-            servicios lServicios = new servicios();
-            IDataReader reader;
-            String sQuery = string.Format("EXEC SPS_DescServicios @busqueda='{0}', @tipoBusq='{1}'", codDescr, tipoBusq);
+            Servicios lServicios = new Servicios();
+            String sQuery = string.Format("EXEC SPS_DescServicios @busqueda='{0}'", codDescr);
             try
             {
                 oDataAccess.open();
-                reader = oDataAccess.executeReader(CommandType.Text, sQuery.ToString());
+                IDataReader reader = oDataAccess.executeReader(CommandType.Text, sQuery);
                 while (reader.Read())
                 {
-                    lServicios.Add(new serviciosEntidad()
+                    lServicios.Add(new ServiciosEntidad()
                     {
                         codServ = reader["codServ"].ToString(),
-                        descripcion = (reader["codDesc"].ToString().Length > 60 ? reader["codDesc"].ToString().Substring(0, 60) : reader["codDesc"].ToString())
+                        descripcion =
+                            (reader["codDesc"].ToString().Length > 60
+                                ? reader["codDesc"].ToString().Substring(0, 60)
+                                : reader["codDesc"].ToString()),
+                        nombreConcepto = reader["nombreConcepto"].ToString()
                     });
                 }
                 reader.Close();
@@ -176,7 +179,7 @@ namespace DataManagement
 
 
         // adiciona una nueva Servicios
-        public Int32 AddServicios(serviciosEntidad oServicios)
+        public Int32 AddServicios(ServiciosEntidad oServicios)
         {
             Int32 retorno = 0;
             StringBuilder sbServicios = new StringBuilder();
@@ -219,7 +222,7 @@ namespace DataManagement
 
         // Actualiza un registro de la tabla Servicios
 
-        public Int32 UpdateServicios(serviciosEntidad oServicios)
+        public Int32 UpdateServicios(ServiciosEntidad oServicios)
         {
             Int32 retorno = 0;
             StringBuilder sbServicios = new StringBuilder();

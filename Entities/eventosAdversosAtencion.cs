@@ -2,7 +2,7 @@
 
 namespace Entities
 {
-    public class eventosAdversosAtencion : Collection<eventosAdversosAtencionEntidad>
+    public class EventosAdversosAtencion : Collection<EventosAdversosAtencionEntidad>
     {
     }
 }

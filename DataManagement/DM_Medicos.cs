@@ -10,12 +10,12 @@ namespace DataManagement
     {
         SQLConn oDataAccess = new SQLConn();
         // selecciona todos los atributos de accion
-        public medicos getMedicos(Int32 idMedico = 0, String nombreMedico = "")
+        public Medicos getMedicos(Int32 idMedico = 0, String nombreMedico = "")
         {
             StringBuilder sb = new StringBuilder();
             IDataReader reader;
-            medicos lista = new medicos();
-            medicosEntidad oMedicos = new medicosEntidad();
+            Medicos lista = new Medicos();
+            MedicosEntidad oMedicos = new MedicosEntidad();
             String w = " WHERE";
             
             sb.Append("SELECT");
@@ -44,7 +44,7 @@ namespace DataManagement
 
                 while (reader.Read())
                 {
-                    oMedicos = new medicosEntidad();
+                    oMedicos = new MedicosEntidad();
                     oMedicos.idMedico = Int32.Parse(reader["idMedico"].ToString());
                     oMedicos.nombreMedico = reader["nombreMedico"].ToString();
                     oMedicos.docMedico = reader["docMedico"].ToString();
@@ -66,7 +66,7 @@ namespace DataManagement
         }
 
         // adiciona una nueva accion
-        public Int32 addMedico(medicosEntidad oMedicos)
+        public Int32 addMedico(MedicosEntidad oMedicos)
         {
             Int32 retorno = 0;
             StringBuilder sb = new StringBuilder();
@@ -101,7 +101,7 @@ namespace DataManagement
 
         // Actualiza un registro de la tabla accion
 
-        public Int32 updateMedico(medicosEntidad oMedicos)
+        public Int32 updateMedico(MedicosEntidad oMedicos)
         {
             Int32 retorno = 0;
             StringBuilder sbAreasAtencion = new StringBuilder();

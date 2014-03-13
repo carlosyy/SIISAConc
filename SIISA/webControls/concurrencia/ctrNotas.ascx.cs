@@ -28,7 +28,7 @@ namespace SIISAConc.webControls.concurrencia
             if (id == null) return;
 
 
-						notes.AddNotes(new notesEntidad
+						notes.AddNotes(new NotesEntidad
                 {
                     idDatosUS = Convert.ToInt32(id),
                     nota = txtNota.Text,

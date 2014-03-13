@@ -10,12 +10,12 @@ namespace DataManagement
     {
         SQLConn oDataAccess = new SQLConn();
         // selecciona todos los atributos de accion
-        public noCalidadAtencion GetNoCalidadAtencion(Int32 id = 0, String NoCalidadAtencion = "")
+        public NoCalidadAtencion GetNoCalidadAtencion(Int32 id = 0, String NoCalidadAtencion = "")
         {
             StringBuilder sbNoCalidadAtencion = new StringBuilder();
             IDataReader reader;
-            noCalidadAtencion lista = new noCalidadAtencion();
-            noCalidadAtencionEntidad oNoCalidadAtencion = new noCalidadAtencionEntidad();
+            NoCalidadAtencion lista = new NoCalidadAtencion();
+            NoCalidadAtencionEntidad oNoCalidadAtencion = new NoCalidadAtencionEntidad();
 
             sbNoCalidadAtencion.Append("SELECT");
             sbNoCalidadAtencion.Append(" idNoCalidadAtencion");
@@ -41,7 +41,7 @@ namespace DataManagement
 
                 while (reader.Read())
                 {
-                    oNoCalidadAtencion = new noCalidadAtencionEntidad();
+                    oNoCalidadAtencion = new NoCalidadAtencionEntidad();
                     oNoCalidadAtencion.idNoCalidadAtencion = Int32.Parse(reader["idNoCalidadAtencion"].ToString());
                     oNoCalidadAtencion.noCalidadAtencion = reader["noCalidadAtencion"].ToString();
                     lista.Add(oNoCalidadAtencion);
@@ -62,7 +62,7 @@ namespace DataManagement
         }
 
         // adiciona una nueva accion
-        public Int32 AddNoCalidadAtencion(noCalidadAtencionEntidad oNoCalidadAtencion)
+        public Int32 AddNoCalidadAtencion(NoCalidadAtencionEntidad oNoCalidadAtencion)
         {
             Int32 retorno = 0;
             StringBuilder sbNoCalidadAtencion = new StringBuilder();
@@ -97,7 +97,7 @@ namespace DataManagement
 
         // Actualiza un registro de la tabla accion
 
-        public Int32 UpdateNoCalidadAtencion(noCalidadAtencionEntidad oNoCalidadAtencion)
+        public Int32 UpdateNoCalidadAtencion(NoCalidadAtencionEntidad oNoCalidadAtencion)
         {
             Int32 retorno = 0;
             StringBuilder sbNoCalidadAtencion = new StringBuilder();

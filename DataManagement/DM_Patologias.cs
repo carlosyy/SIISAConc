@@ -10,12 +10,12 @@ namespace DataManagement
     {
         SQLConn oDataAccess = new SQLConn();
         // selecciona todos los atributos de Patologias
-        public patologias GetPatologias(Int32 idPatologia = 0)
+        public Patologias GetPatologias(Int32 idPatologia = 0)
         {
             StringBuilder sbPatologias = new StringBuilder();
             IDataReader reader;
-            patologias lista = new patologias();
-            patologiasEntidad oPatologias = new patologiasEntidad();
+            Patologias lista = new Patologias();
+            PatologiasEntidad oPatologias = new PatologiasEntidad();
 
             sbPatologias.Append("SELECT");
             sbPatologias.Append(" idPatologia");
@@ -35,7 +35,7 @@ namespace DataManagement
 
                 while (reader.Read())
                 {
-                    oPatologias = new patologiasEntidad();
+                    oPatologias = new PatologiasEntidad();
                     oPatologias.idPatologia = Int32.Parse(reader["idPatologia"].ToString());
                     oPatologias.patologia = reader["patologia"].ToString();
                     lista.Add(oPatologias);
@@ -56,7 +56,7 @@ namespace DataManagement
         }
 
         // adiciona una nueva Patologias
-        public Int32 AddPatologias(patologiasEntidad oPatologias)
+        public Int32 AddPatologias(PatologiasEntidad oPatologias)
         {
             Int32 retorno = 0;
             StringBuilder sbPatologias = new StringBuilder();
@@ -91,7 +91,7 @@ namespace DataManagement
 
         // Actualiza un registro de la tabla Patologias
 
-        public Int32 UpdatePatologias(patologiasEntidad oPatologias)
+        public Int32 UpdatePatologias(PatologiasEntidad oPatologias)
         {
             Int32 retorno = 0;
             StringBuilder sbPatologias = new StringBuilder();

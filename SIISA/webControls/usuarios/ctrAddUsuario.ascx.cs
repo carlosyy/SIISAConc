@@ -8,7 +8,7 @@ namespace SIISAConc.webControls
     {
         B_Usuarios oBUsuario = new B_Usuarios();
         B_Login oLogin = new B_Login();
-        loginEntidad oLogEnt=new loginEntidad();
+        LoginEntidad oLogEnt=new LoginEntidad();
         UsuarioEntidad oUsuario = new UsuarioEntidad();
 
         public delegate void ImageClickEventHandler(ImageClickEventArgs e);

@@ -8,17 +8,17 @@ namespace Business
     {
         DM_Objetos oDMObjetos = new DM_Objetos();        
 
-        public objetos getObjetosXPerfil(Int32 idPerfil, Int32 nivel)
+        public Objetos getObjetosXPerfil(Int32 idPerfil, Int32 nivel)
         {
             return oDMObjetos.GetObjetos(idPerfil: idPerfil, nivel: nivel);
         }       
 
-        public Int32 AddObjetos(objetosEntidad oObjetos)
+        public Int32 AddObjetos(ObjetosEntidad oObjetos)
         {
             return oDMObjetos.AddObjetos(oObjetos);
         }
 
-        public Int32 UpdateObjetos(objetosEntidad oObjetos)
+        public Int32 UpdateObjetos(ObjetosEntidad oObjetos)
         {
             return oDMObjetos.UpdateObjetos(oObjetos);
         }

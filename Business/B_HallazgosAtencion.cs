@@ -8,22 +8,22 @@ namespace Business
     {
         DM_HallazgoAtencion oDMHallazgosAtencion = new DM_HallazgoAtencion();
 
-        public hallazgoAtencion getHallazgosAtencion()
+        public HallazgoAtencion getHallazgosAtencion()
         {
             return oDMHallazgosAtencion.GetHallazgoAtencion();
         }
 
-        public hallazgoAtencion GetHallazgoAtencionXidDatosUS(Int32 idDatosUS)
+        public HallazgoAtencion GetHallazgoAtencionXidDatosUS(Int32 idDatosUS)
         {
             return oDMHallazgosAtencion.GetHallazgoAtencionXidDatosUS(idDatosUS: idDatosUS);
         }
 
-        public Int32 AddHallazgosAtencion(hallazgoAtencionEntidad oHallazgosAtencion)
+        public Int32 AddHallazgosAtencion(HallazgoAtencionEntidad oHallazgosAtencion)
         {
             return oDMHallazgosAtencion.AddHallazgoAtencion(oHallazgosAtencion);
         }
 
-        public Int32 UpdateHallazgosAtencion(hallazgoAtencionEntidad oHallazgosAtencion)
+        public Int32 UpdateHallazgosAtencion(HallazgoAtencionEntidad oHallazgosAtencion)
         {
             return oDMHallazgosAtencion.UpdateHallazgoAtencion(oHallazgosAtencion);
         }

@@ -8,32 +8,32 @@ namespace Business
     {
         DM_Especialidad oDMEspecialidad = new DM_Especialidad();
 
-        public especialidad getEspecialidad()
+        public Especialidad getEspecialidad()
         {
             return oDMEspecialidad.GetEspecialidad();
         }
 
-        public especialidad getEspecialidadID(Int32 idEspecialidad)
+        public Especialidad getEspecialidadID(Int32 idEspecialidad)
         {
             return oDMEspecialidad.GetEspecialidad(idEspecialidad: idEspecialidad);
         }
 
-        public especialidad getEspecialidad3ro(String nit)
+        public Especialidad getEspecialidad3ro(String nit)
         {
             return oDMEspecialidad.getEspecialidad3ro(nit: nit);
         }
 
-        public especialidad getEspecialidadEspecialidad(String especialidad)
+        public Especialidad getEspecialidadEspecialidad(String especialidad)
         {
             return oDMEspecialidad.GetEspecialidad(especialidad: especialidad);
         }
 
-        public Int32 AddEspecialidad(especialidadEntidad oEspecialidad)
+        public Int32 AddEspecialidad(EspecialidadEntidad oEspecialidad)
         {
             return oDMEspecialidad.AddEspecialidad(oEspecialidad);
         }
 
-        public Int32 UpdateEspecialidad(especialidadEntidad oEspecialidad)
+        public Int32 UpdateEspecialidad(EspecialidadEntidad oEspecialidad)
         {
             return oDMEspecialidad.UpdateEspecialidad(oEspecialidad);
         }

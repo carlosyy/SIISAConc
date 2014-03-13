@@ -8,32 +8,32 @@ namespace Business
     {
         DM_TiposDoc oDMTiposDoc = new DM_TiposDoc();
 
-        public tiposDoc getTiposDoc()
+        public TiposDoc getTiposDoc()
         {
             return oDMTiposDoc.getTiposDoc();
         }
 
-        public tiposDoc getTiposDocTipo(Int32 tipo)
+        public TiposDoc getTiposDocTipo(Int32 tipo)
         {
             return oDMTiposDoc.getTiposDoc(tipo: tipo);
         }
 
-        public tiposDoc getTiposDocID(Int32 idtiposDoc, Int32 tipo)
+        public TiposDoc getTiposDocID(Int32 idtiposDoc, Int32 tipo)
         {
             return oDMTiposDoc.getTiposDoc(idtiposDoc: idtiposDoc, tipo: tipo);
         }
 
-        public tiposDoc getTiposDocDescrip(String tipoDoc, Int32 tipo)
+        public TiposDoc getTiposDocDescrip(String tipoDoc, Int32 tipo)
         {
             return oDMTiposDoc.getTiposDoc(tipoDoc: tipoDoc, tipo: tipo);
         }
 
-        public Int32 AddTiposDoc(tiposDocEntidad oTiposDoc)
+        public Int32 AddTiposDoc(TiposDocEntidad oTiposDoc)
         {
             return oDMTiposDoc.AddTiposDoc(oTiposDoc);
         }
 
-        public Int32 UpdateTiposDoc(tiposDocEntidad oTiposDoc)
+        public Int32 UpdateTiposDoc(TiposDocEntidad oTiposDoc)
         {
             return oDMTiposDoc.UpdatetiposDoc(oTiposDoc);
         }

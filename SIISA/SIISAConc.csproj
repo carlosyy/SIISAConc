@@ -119,12 +119,6 @@
     <Content Include="js\anytime.js" />
     <Content Include="js\jquery-1.10.2.min.js" />
     <Content Include="js\jquery-ui-1.10.4.custom.js" />
-    <Content Include="js\modal\jquery.avgrund.js" />
-    <Content Include="CSS\Tooltip\tooltipster-light.css" />
-    <Content Include="CSS\Tooltip\tooltipster-noir.css" />
-    <Content Include="CSS\Tooltip\tooltipster-punk.css" />
-    <Content Include="CSS\Tooltip\tooltipster-shadow.css" />
-    <Content Include="CSS\Tooltip\tooltipster.css" />
     <Content Include="default.aspx" />
     <Content Include="error.aspx" />
     <Content Include="Images\body-bgError.jpg" />
@@ -147,19 +141,16 @@
     <Content Include="Images\Login\wrapper_middle.png" />
     <Content Include="Images\Login\wrapper_top.png" />
     <Content Include="CSS\Style.css" />
-    <Content Include="js\blockmayuson.js" />
-    <Content Include="js\buttonset.js" />
-    <Content Include="js\jquery.quicksearch.js" />
     <Content Include="js\notify.js" />
+    <Content Include="js\socket.io.js" />
     <Content Include="js\timePicker.js" />
-    <Content Include="js\Tooltip\jquery.tooltipster.js" />
-    <Content Include="js\Tooltip\jquery.tooltipster.min.js" />
     <Content Include="Master\ctrMenuPpal.ascx" />
     <Content Include="wbsSIISA.asmx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="webControls\areasAtencion\ctrAreasAtencion.ascx" />
+    <Content Include="webControls\auditoria\ctrAuditoria.ascx" />
     <Content Include="webControls\concurrencia\ctrAddPacteConcurr.ascx" />
     <Content Include="webControls\concurrencia\ctrAtencEstablecidas.ascx" />
     <Content Include="webControls\concurrencia\ctrBusqueda.ascx" />
@@ -185,6 +176,7 @@
     <Content Include="webControls\patologias\ctrAddPatologias.ascx" />
     <Content Include="webControls\patologias\ctrDdlPatologias.ascx" />
     <Content Include="webControls\pertinencia\ctrPertinencia.ascx" />
+    <Content Include="webControls\procedimientos\ctrProcedimientos.ascx" />
     <Content Include="webControls\programas\ctrDdlProgramas.ascx" />
     <Content Include="webControls\tiposDoc\ctrAddTiposDoc.ascx" />
     <Content Include="webControls\tiposDoc\ctrDdlTiposDoc.ascx" />
@@ -265,6 +257,13 @@
     </Compile>
     <Compile Include="webControls\areasAtencion\ctrAreasAtencion.ascx.designer.cs">
       <DependentUpon>ctrAreasAtencion.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="webControls\auditoria\ctrAuditoria.ascx.cs">
+      <DependentUpon>ctrAuditoria.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="webControls\auditoria\ctrAuditoria.ascx.designer.cs">
+      <DependentUpon>ctrAuditoria.ascx</DependentUpon>
     </Compile>
     <Compile Include="webControls\concurrencia\ctrAddPacteConcurr.ascx.cs">
       <DependentUpon>ctrAddPacteConcurr.ascx</DependentUpon>
@@ -440,6 +439,13 @@
     </Compile>
     <Compile Include="webControls\pertinencia\ctrPertinencia.ascx.designer.cs">
       <DependentUpon>ctrPertinencia.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="webControls\procedimientos\ctrProcedimientos.ascx.cs">
+      <DependentUpon>ctrProcedimientos.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="webControls\procedimientos\ctrProcedimientos.ascx.designer.cs">
+      <DependentUpon>ctrProcedimientos.ascx</DependentUpon>
     </Compile>
     <Compile Include="webControls\programas\ctrDdlProgramas.ascx.cs">
       <DependentUpon>ctrDdlProgramas.ascx</DependentUpon>

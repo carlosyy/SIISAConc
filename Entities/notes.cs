@@ -2,7 +2,7 @@
 
 namespace Entities
 {
-	public class notes : Collection<notesEntidad>
+	public class Notes : Collection<NotesEntidad>
 	{
 	}
 }

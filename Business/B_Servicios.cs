@@ -8,35 +8,35 @@ namespace Business
     {
         DM_Servicios oDMServicios = new DM_Servicios();
 
-        public servicios getServicios()
-        {            
+        public Servicios getServicios()
+        {
             return oDMServicios.GetServicios();
         }
 
-        public servicios GetServicios(String codServ = "", String descripcion = "")
-        {            
+        public Servicios GetServicios(String codServ = "", String descripcion = "")
+        {
             return oDMServicios.GetServicios(codServ: codServ, descripcion: descripcion);
         }
 
-        public servicios getServiciosCodServHomol(String codServ, String tipoBusq)
+        public Servicios getServiciosCodServHomol(String codServ, String tipoBusq)
         {
             return oDMServicios.GetServicios(codServ: codServ, tipoBusq: tipoBusq);
         }
 
-        public servicios getServiciosDescripcionHomol(String descripcion,String tipoBusq)
+        public Servicios getServiciosDescripcionHomol(String descripcion, String tipoBusq)
         {
             return oDMServicios.GetServicios(descripcion: descripcion, tipoBusq: tipoBusq);
         }
 
-        public servicios getCodDescr(String codDescr, String tipoBusq)
+        public Servicios getCodDescr(String codDescr, String tipoBusq)
         {
             return oDMServicios.getCodDescr(codDescr: codDescr, tipoBusq: tipoBusq);
         }
 
-        public servicios getServicioxCod(String codServ)
+        public Servicios getServicioxCod(String codServ)
         {
             return oDMServicios.getServicioxCod(codServ: codServ);
-        }        
+        }
 
         public String getExisteCodServicios(String codServ)
         {

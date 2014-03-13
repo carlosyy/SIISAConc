@@ -8,22 +8,22 @@ namespace Business
     {
         DM_dx oDMDx = new DM_dx();
 
-        public dx getDx(Boolean unido)
+        public Dx getDx(Boolean unido)
         {
             return oDMDx.GetDx(unido: unido);
         }
 
-        public dx getDxCodDx(String codDx)
+        public Dx getDxCodDx(String codDx)
         {
             return oDMDx.GetDx(codDx: codDx);
         }
 
-        public dx getDxDescDx(String descDx)
+        public Dx getDxDescDx(String descDx)
         {
             return oDMDx.GetDx(descDx: descDx);
         }
 
-        public dx GetCodDesc(String codDesc)
+        public Dx GetCodDesc(String codDesc)
         {
             return oDMDx.GetCodDesc(codDesc: codDesc);
         }        

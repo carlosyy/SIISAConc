@@ -2,7 +2,7 @@
 
 namespace Entities
 {
-    public class atencClinicasEntidad
+    public class AtencClinicasEntidad
     {
         public String mesIngreso { get; set; }        
         public String docIden { get; set; }
@@ -19,6 +19,20 @@ namespace Entities
         public Int32 idTipoAtencion { get; set; }
         public String tipoAtencion { get; set; }
         public String motivoSalida { get; set; }
+        public Int32 idTipoDoc { get; set; }
+        public String apellidoA { get; set; }
+        public String apellidoB { get; set; }
+        public String nombreA { get; set; }
+        public String nombreB { get; set; }
+        public String horaIngreso { get; set; }
+        public String fecNacimiento { get; set; }
+        public Int32 edad { get; set; }
+        public Int32 tipoEdad { get; set; }
+        public Int32 contrato { get; set; }
+        public Int32 tipoContrato { get; set; }
+        public String pabellon { get; set; }
+        public Int32 idUser { get; set; }
+        public String sexo { get; set; }
     }
 
 }

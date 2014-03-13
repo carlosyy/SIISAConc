@@ -10,11 +10,11 @@ namespace DataManagement
     {
         SQLConn oDataAccess = new SQLConn();
         // selecciona todos los atributos de tiposDoc
-        public tiposDoc getTiposDoc(Int32 idtiposDoc = 0, String tipoDoc = "",Int32 tipo=0)
+        public TiposDoc getTiposDoc(Int32 idtiposDoc = 0, String tipoDoc = "",Int32 tipo=0)
         {
             StringBuilder sbtiposDoc = new StringBuilder();
-            tiposDoc lista = new tiposDoc();
-            tiposDocEntidad otiposDoc = new tiposDocEntidad();
+            TiposDoc lista = new TiposDoc();
+            TiposDocEntidad otiposDoc = new TiposDocEntidad();
 
             sbtiposDoc.Append("SELECT");
             sbtiposDoc.Append(" idTipoDoc");
@@ -40,7 +40,7 @@ namespace DataManagement
 
                 while (reader.Read())
                 {
-                    otiposDoc = new tiposDocEntidad();
+                    otiposDoc = new TiposDocEntidad();
                     otiposDoc.idTipoDoc = Int32.Parse(reader["idTipoDoc"].ToString());                    
                     otiposDoc.tipoDoc = reader["tipoDoc"].ToString();
                     otiposDoc.tipo = Int32.Parse(reader["tipo"].ToString());
@@ -62,7 +62,7 @@ namespace DataManagement
         }
 
         // adiciona una nueva tiposDoc
-        public Int32 AddTiposDoc(tiposDocEntidad otiposDoc)
+        public Int32 AddTiposDoc(TiposDocEntidad otiposDoc)
         {
             Int32 retorno = 0;
             StringBuilder sbtiposDoc = new StringBuilder();
@@ -99,7 +99,7 @@ namespace DataManagement
 
         // Actualiza un registro de la tabla tiposDoc
 
-        public Int32 UpdatetiposDoc(tiposDocEntidad otiposDoc)
+        public Int32 UpdatetiposDoc(TiposDocEntidad otiposDoc)
         {
             Int32 retorno = 0;
             StringBuilder sbtiposDoc = new StringBuilder();

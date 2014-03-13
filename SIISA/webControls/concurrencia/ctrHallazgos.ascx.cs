@@ -25,7 +25,7 @@ namespace SIISAConc.webControls.concurrencia
 
         protected void btnGuardar_Click(object sender, ImageClickEventArgs e)
         {
-            hallazgoAtencionEntidad eHallazgo = new hallazgoAtencionEntidad();
+            HallazgoAtencionEntidad eHallazgo = new HallazgoAtencionEntidad();
             eHallazgo.hallazgoAtencion = txtHallazgo.Text;
             eHallazgo.idArea = Int32.Parse(((DropDownList)ctrAreasAtencion.FindControl("ddlAreaAtencion")).SelectedValue);
             eHallazgo.idAuditor = Int32.Parse(Session["idUser"].ToString());

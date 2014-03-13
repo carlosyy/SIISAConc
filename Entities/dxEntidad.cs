@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Entities
 {
-    public class dxEntidad
+    public class DxEntidad
     {
         public String codDx { get; set; } //Llave Primaria
         public String dx { get; set; }

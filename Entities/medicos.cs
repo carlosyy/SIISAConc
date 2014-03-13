@@ -2,7 +2,7 @@
 
 namespace Entities
 {
-    public class medicos : Collection<medicosEntidad>
+    public class Medicos : Collection<MedicosEntidad>
     {
     }
 }

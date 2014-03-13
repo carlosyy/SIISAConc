@@ -8,7 +8,7 @@ namespace Business
     {
         private readonly DM_AtencClinicasXAfiliados _oDmAtencClinicas = new DM_AtencClinicasXAfiliados();
 
-        public atencClinicasXAfiliado buscar(String docIden, Int32 programa, String nit, String codDx, String fecDesde,
+        public AtencClinicasXAfiliado buscar(String docIden, Int32 programa, String nit, String codDx, String fecDesde,
             String fecHasta, String filtroNombre, Int32 limitInf, Int32 limitSup, Int32 orden, Int32 idEstadoRev)
         {
             return _oDmAtencClinicas.buscar(docIden: docIden, programa: programa, nit: nit, codDx: codDx,
@@ -16,7 +16,7 @@ namespace Business
                 limitSup: limitSup, orden: orden, idEstadoRev: idEstadoRev);
         }
 
-        public atencClinicasXAfiliado getAuditorias(Int32 idUserEstablece, String fecAuditoria)
+        public AtencClinicasXAfiliado getAuditorias(Int32 idUserEstablece, String fecAuditoria)
         {
             return _oDmAtencClinicas.getAuditorias(idUserEstablece: idUserEstablece, fecAuditoria: fecAuditoria);
         }
@@ -28,14 +28,19 @@ namespace Business
                 fecDesc: fecDesc, fecHasta: fecHasta, filtroNombre: filtroNombre);
         }
 
+        public AtencClinicasXAfiliado getDatosAuditoria(String radicado)
+        {
+            return _oDmAtencClinicas.getDatosAuditoria(radicado: radicado);
+        }
+
         public String establecerAuditar(Int32 idAtencion, Int32 idUser)
         {
             return _oDmAtencClinicas.establecerAuditar(idAtencion: idAtencion, idUser: idUser);
         }
 
-        public Int32 addAtencClinicasXAfiliados(atencClinicasEntidad eAten)
+        public String addAtencClinicasXAfiliados(AtencClinicasEntidad eAten)
         {
             return _oDmAtencClinicas.addAtencClinicasXAfiliados(eAten);
         }
-}
+    }
 }

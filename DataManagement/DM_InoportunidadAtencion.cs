@@ -10,12 +10,12 @@ namespace DataManagement
     {
         SQLConn oDataAccess = new SQLConn();
         // selecciona todos los atributos de accion
-        public inoportunidadAtencion GetInoportunidadAtencion(Int32 id = 0, String InoportunidadAtencion = "")
+        public InoportunidadAtencion GetInoportunidadAtencion(Int32 id = 0, String InoportunidadAtencion = "")
         {
             StringBuilder sbInoportunidadAtencion = new StringBuilder();
             IDataReader reader;
-            inoportunidadAtencion lista = new inoportunidadAtencion();
-            inoportunidadAtencionEntidad oInoportunidadAtencion = new inoportunidadAtencionEntidad();
+            InoportunidadAtencion lista = new InoportunidadAtencion();
+            InoportunidadAtencionEntidad oInoportunidadAtencion = new InoportunidadAtencionEntidad();
 
             sbInoportunidadAtencion.Append("SELECT");
             sbInoportunidadAtencion.Append(" idInoportunidadAtencion");
@@ -41,7 +41,7 @@ namespace DataManagement
 
                 while (reader.Read())
                 {
-                    oInoportunidadAtencion = new inoportunidadAtencionEntidad();
+                    oInoportunidadAtencion = new InoportunidadAtencionEntidad();
                     oInoportunidadAtencion.idInoportunidadAtencion = Int32.Parse(reader["idInoportunidadAtencion"].ToString());
                     oInoportunidadAtencion.inoportunidadAtencion = reader["inoportunidadAtencion"].ToString();
                     lista.Add(oInoportunidadAtencion);
@@ -62,7 +62,7 @@ namespace DataManagement
         }
 
         // adiciona una nueva accion
-        public Int32 AddInoportunidadAtencion(inoportunidadAtencionEntidad oInoportunidadAtencion)
+        public Int32 AddInoportunidadAtencion(InoportunidadAtencionEntidad oInoportunidadAtencion)
         {
             Int32 retorno = 0;
             StringBuilder sbInoportunidadAtencion = new StringBuilder();
@@ -97,7 +97,7 @@ namespace DataManagement
 
         // Actualiza un registro de la tabla accion
 
-        public Int32 UpdateInoportunidadAtencion(inoportunidadAtencionEntidad oInoportunidadAtencion)
+        public Int32 UpdateInoportunidadAtencion(InoportunidadAtencionEntidad oInoportunidadAtencion)
         {
             Int32 retorno = 0;
             StringBuilder sbInoportunidadAtencion = new StringBuilder();

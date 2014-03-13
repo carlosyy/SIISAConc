@@ -1,5 +1,4 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="ctrListUsuarios.ascx.cs" Inherits="SIISAConc.webControls.ctrListUsuarios" %>
-<%@ Register Assembly="Anthem" Namespace="Anthem" TagPrefix="anthem" %>
 <div>
     <asp:TextBox ID="txtConsulta" runat="server" Width="247px"></asp:TextBox>
     <asp:Button ID="btnConsulta" runat="server" Text="Consultar" OnClick="btnConsulta_Click" />

@@ -11,12 +11,12 @@ namespace DataManagement
         SQLConn oDataAccess = new SQLConn();
 
         // selecciona todos los atributos de Login
-        public login GetLogin(Int32 idUser = 0)
+        public Login GetLogin(Int32 idUser = 0)
         {
             StringBuilder sbLogin = new StringBuilder();
             IDataReader reader;
-            login lista = new login();
-            loginEntidad oLogin = new loginEntidad();
+            Login lista = new Login();
+            LoginEntidad oLogin = new LoginEntidad();
 
             sbLogin.Append("SELECT");
             sbLogin.Append(" idUser");
@@ -37,7 +37,7 @@ namespace DataManagement
 
                 while (reader.Read())
                 {
-                    oLogin = new loginEntidad();
+                    oLogin = new LoginEntidad();
                     oLogin.idUser = Int32.Parse(reader["idUser"].ToString());
                     oLogin.claveUsuario = reader["claveUsuario"].ToString();
                     oLogin.nick = reader["nick"].ToString();
@@ -60,7 +60,7 @@ namespace DataManagement
         }
 
         // adiciona una nueva Login
-        public Int32 AddLogin(loginEntidad oLogin)
+        public Int32 AddLogin(LoginEntidad oLogin)
         {
             Int32 retorno = 0;
             StringBuilder sbLogin = new StringBuilder();
@@ -98,7 +98,7 @@ namespace DataManagement
         }
 
         // Actualiza un registro de la tabla Login
-        public Int32 UpdateLogin(loginEntidad oLogin)
+        public Int32 UpdateLogin(LoginEntidad oLogin)
         {
             Int32 retorno = 0;
             StringBuilder sbLogin = new StringBuilder();

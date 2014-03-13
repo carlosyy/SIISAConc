@@ -10,12 +10,12 @@ namespace DataManagement
     {
         SQLConn oDataAccess = new SQLConn();
         // selecciona todos los atributos de TipoAtenc
-        public tipoAtenc getTipoAtenc(Int32 idTipoAtenc = 0, String abrevTipoAtenc = "")
+        public TipoAtenc getTipoAtenc(Int32 idTipoAtenc = 0, String abrevTipoAtenc = "")
         {
             StringBuilder sbTipoAtenc = new StringBuilder();
             IDataReader reader;
-            tipoAtenc lista = new tipoAtenc();
-            tipoAtencEntidad oTipoAtenc = new tipoAtencEntidad();
+            TipoAtenc lista = new TipoAtenc();
+            TipoAtencEntidad oTipoAtenc = new TipoAtencEntidad();
 
             sbTipoAtenc.Append("SELECT");
             sbTipoAtenc.Append(" idTipoAtenc");
@@ -43,7 +43,7 @@ namespace DataManagement
 
                 while (reader.Read())
                 {
-                    oTipoAtenc = new tipoAtencEntidad();
+                    oTipoAtenc = new TipoAtencEntidad();
                     oTipoAtenc.idTipoAtenc = Int32.Parse(reader["idTipoAtenc"].ToString());
                     oTipoAtenc.abrevTipoAtenc = reader["abrevTipoAtenc"].ToString();
                     oTipoAtenc.tipoAtenc = reader["tipoAtenc"].ToString();
@@ -65,7 +65,7 @@ namespace DataManagement
         }
 
         // adiciona una nueva TipoAtenc
-        public Int32 AddTipoAtenc(tipoAtencEntidad oTipoAtenc)
+        public Int32 AddTipoAtenc(TipoAtencEntidad oTipoAtenc)
         {
             Int32 retorno = 0;
             StringBuilder sbTipoAtenc = new StringBuilder();
@@ -100,7 +100,7 @@ namespace DataManagement
 
         // Actualiza un registro de la tabla TipoAtenc
 
-        public Int32 UpdateTipoAtenc(tipoAtencEntidad oTipoAtenc)
+        public Int32 UpdateTipoAtenc(TipoAtencEntidad oTipoAtenc)
         {
             Int32 retorno = 0;
             StringBuilder sbTipoAtenc = new StringBuilder();

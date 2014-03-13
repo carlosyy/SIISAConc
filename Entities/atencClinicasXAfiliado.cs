@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.ObjectModel;
 
 namespace Entities
 {
-    public class atencClinicasXAfiliado : Collection<atencClinicasXAfiliadoEntidad>
+    public class AtencClinicasXAfiliado : Collection<AtencClinicasXAfiliadoEntidad>
     {
     }
 }

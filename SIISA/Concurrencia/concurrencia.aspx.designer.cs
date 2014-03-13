@@ -76,24 +76,6 @@ namespace SIISAConc.Concurrencia {
         protected global::System.Web.UI.WebControls.Panel pnlConcurrencia;
         
         /// <summary>
-        /// tbcAtenciones control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::AjaxControlToolkit.TabContainer tbcAtenciones;
-        
-        /// <summary>
-        /// tbpBuscarAtencion control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::AjaxControlToolkit.TabPanel tbpBuscarAtencion;
-        
-        /// <summary>
         /// ctrBusqueda control.
         /// </summary>
         /// <remarks>
@@ -101,15 +83,6 @@ namespace SIISAConc.Concurrencia {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::SIISAConc.webControls.concurrencia.CtrBusqueda ctrBusqueda;
-        
-        /// <summary>
-        /// tbpAtencEstablecidas control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::AjaxControlToolkit.TabPanel tbpAtencEstablecidas;
         
         /// <summary>
         /// ctrAtencEstablecidas control.

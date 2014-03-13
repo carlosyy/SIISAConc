@@ -2,7 +2,7 @@
 
 namespace Entities
 {
-    public class areasAtencionEntidad
+    public class AreasAtencionEntidad
     {
         public Int32 idAreasAtencion { get; set; }
         public String areasAtencion { get; set; }

@@ -8,22 +8,22 @@ namespace Business
     {
         DM_PendientesAtencion oDMPendientesAtencion = new DM_PendientesAtencion();
 
-        public pendientesAtencion getPendientesAtencion()
+        public PendientesAtencion getPendientesAtencion()
         {
             return oDMPendientesAtencion.getPendientesAtencion();
         }
 
-        public pendientesAtencion getPendientesAtencionXidDatosUs(Int32 idDatosUs)
+        public PendientesAtencion getPendientesAtencionXidDatosUs(Int32 idDatosUs)
         {
             return oDMPendientesAtencion.getPendientesAtencion(idDatosUs: idDatosUs);
         }
 
-        public Int32 addPendientesAtencion(pendientesAtencionEntidad oPendientesAtencion)
+        public Int32 addPendientesAtencion(PendientesAtencionEntidad oPendientesAtencion)
         {
             return oDMPendientesAtencion.addPendientesAtencion(oPendientesAtencion);
         }
 
-        public Int32 updatePertinenciaAtencion(pendientesAtencionEntidad oPendientesAtencion)
+        public Int32 updatePertinenciaAtencion(PendientesAtencionEntidad oPendientesAtencion)
         {
             return oDMPendientesAtencion.updatePendientesAtencion(oPendientesAtencion);
         }

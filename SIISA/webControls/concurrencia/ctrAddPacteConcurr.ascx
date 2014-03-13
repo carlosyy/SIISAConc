@@ -49,36 +49,19 @@
 
 </style>
 <script src="../../js/timePicker.js"></script>
+
 <script>
-    $(document).ready(function () {
+    
+    $().ready(function () {
+
         $('#txtHoraIngreso').timepicker();
         $('#txtHoraIngreso').prop('readonly', true);
-    });
 
-    function editarDx(opcionEditar) {
-        window.divEditarDx.style.display = 'block';
-        window.divEditarDx.style.opacity = '1';
-        window.divEditarDx.style.position = 'absolute';
-        window.divEditarDx.style.pointerEvents = 'auto';
-        $("#<%=hfEditarDx.ClientID%>").val(opcionEditar);
-    }
-    function cerrarEditar() {
-        window.divEditarDx.style.display = 'none';
-    }
-
-    function escapeEditar() {
-        var key = window.event.keyCode;
-        if (key == 27) {
-            cerrarEditar();
-        }
-    }
-
-    function guardar() {
-        var btnGuardar = document.getElementById('btnGuardar');
-        btnGuardar.click();
-    }
-
-    $().ready(function () {
+        $('.nombres').change(function () {
+            $("input").val(function (i, val) {
+                return val.toUpperCase();
+            });
+        });
 
         $("#<%=ddlDx1.ClientID%>").change(function () {
             var opcion = $("#hfEditarDx").val();
@@ -154,7 +137,6 @@
 
                 $.ajax({
                     url: "concurrencia.aspx/getMedicos",
-                    //data: "{ 'q': '" + request.term + "', 'limit': '10' }",
                     data: params,
                     dataType: "json", 
                     type: "POST",
@@ -176,9 +158,64 @@
         });
     });
 
+    function editarDx(opcionEditar) {
+        window.divEditarDx.style.display = 'block';
+        window.divEditarDx.style.opacity = '1';
+        window.divEditarDx.style.position = 'absolute';
+        window.divEditarDx.style.pointerEvents = 'auto';
+        $("#<%=hfEditarDx.ClientID%>").val(opcionEditar);
+        $("#<%=txtBusqDx.ClientID%>").focus();
+        $("#<%=txtBusqDx.ClientID%>").notify("Establezca un filtro para la búsqueda del diagnóstico puede ser el código del CIE10 o una parte del texto.", { className: "info", position: "top" });
+    }
+    function cerrarEditar() {
+        window.divEditarDx.style.display = 'none';
+    }
+
+    function escapeEditar() {
+        var key = window.event.keyCode;
+        if (key == 27) {
+            cerrarEditar();
+        }
+    }
+
+    function guardar() {
+        if (validar()) {
+            $("#<%=btnGuardar.ClientID%>").click();
+        }
+    }
+
+    function validar() {
+        var valido = true;
+        if ($("#<%=txtDocumento.ClientID%>").val() == "") {
+            $("#<%=txtDocumento.ClientID%>").notify("Debe establecer el numero de documento.", { className: "error", position: "bottom" });
+            valido = false;
+        }
+        if ($("#<%=txtApellido_a.ClientID%>").val() == "") {
+            $("#<%=txtApellido_a.ClientID%>").notify("Debe establecer el primer apellido.", { className: "error", position: "bottom" });
+            valido = false;
+        }
+        if ($("#<%=txtNombre_a.ClientID%>").val() == "") {
+            $("#<%=txtNombre_a.ClientID%>").notify("Debe establecer el primer nombre.", { className: "error", position: "bottom" });
+            valido = false;
+        }
+        if ($("#<%=txtFechaIngreso.ClientID%>").val() == "") {
+            $("#<%=txtFechaIngreso.ClientID%>").notify("Debe establecer la fecha de ingreso.", { className: "error", position: "bottom" });
+            valido = false;
+        }
+        if ($("#<%=txtFecNacimiento.ClientID%>").val() == "" || $("#txtEdad").val() == "") {
+            $("#<%=txtFecNacimiento.ClientID%>").notify("Debe establecer la fecha de nacimiento o la edad del paciente.", { className: "error", position: "bottom" });
+            valido = false;
+        }
+        if ($("#<%=txtDxCie.ClientID%>").val() == "") {
+            $("#<%=txtDxCie.ClientID%>").notify("Debe establecer el diagnóstico de ingreso.", { className: "error", position: "bottom" });
+            valido = false;
+        }
+        return valido;
+    }
+
     function setEdad(result) {
         var edad = result.d.split(",");
-        $("#<%=txtEdad.ClientID%>").val(edad[0]);
+        $("#txtEdad").val(edad[0]);
         $("#<%=ddlTipoEdad.ClientID%>").val(edad[1]);
     }
 
@@ -190,6 +227,7 @@
         $.each(result.d, function() {
             $("#ddlDx1").append($("<option></option>").attr("value", this.codDx).text(this.codYDx));
         });
+        $("#ddlDx1").notify("Determine el diagnóstico.", { className: "info", position: "bottom" });
     }
 
 </script>
@@ -214,36 +252,44 @@
                     <uc1:ctrDdlTiposDoc runat="server" ID="ctrDdlTiposDoc" />
                 </div>
             </div>
-            <div class="fila" style="width: 18%;">
+            <div class="fila" style="width: 17%;">
                 <div class="celda celdaTitulo" style="width: 100%;">
                     1er Apellido
                 </div>
                 <div class="celda celdaControl" style="width: 100%;">
-                    <asp:TextBox runat="server" ID="txtApellido_a" />
+                    <asp:TextBox runat="server" CssClass="nombres" ID="txtApellido_a" />
                 </div>
             </div>
-            <div class="fila" style="width: 18%;">
+            <div class="fila" style="width: 17%;">
                 <div class="celda celdaTitulo" style="width: 100%;">
                     2do Apellido
                 </div>
                 <div class="celda celdaControl" style="width: 100%;">
-                    <asp:TextBox runat="server" ID="txtApellido_b" />
+                    <asp:TextBox runat="server" CssClass="nombres" ID="txtApellido_b" />
                 </div>
             </div>
-            <div class="fila" style="width: 18%;">
+            <div class="fila" style="width: 17%;">
                 <div class="celda celdaTitulo" style="width: 100%;">
                     1er Nombre
                 </div>
                 <div class="celda celdaControl" style="width: 100%;">
-                    <asp:TextBox runat="server" ID="txtNombre_a" />
+                    <asp:TextBox runat="server" CssClass="nombres" ID="txtNombre_a" />
                 </div>
             </div>
-            <div class="fila" style="width: 18%;">
+            <div class="fila" style="width: 17%;">
                 <div class="celda celdaTitulo" style="width: 100%;">
                     2do Nombre
                 </div>
                 <div class="celda celdaControl" style="width: 100%;">
-                    <asp:TextBox runat="server" ID="txtNombre_b" />
+                    <asp:TextBox runat="server" CssClass="nombres" ID="txtNombre_b" />
+                </div>
+            </div>
+            <div class="fila" style="width: 4%;">
+                <div class="celda celdaTitulo" style="width: 100%;">
+                    Sexo
+                </div>
+                <div class="celda celdaControl" style="width: 100%;">
+                    <asp:TextBox runat="server" ID="txtSexo" MaxLength="1" Width="30px" />
                 </div>
             </div>
         </ContentTemplate>
@@ -275,7 +321,7 @@
             Dias estancia
         </div>
         <div class="celda celdaControl" style="width: 100%;">
-            <asp:TextBox runat="server" ID="txtDiasEstancia" CssClass="textBoxCentrado" Enabled="False" Width="35px" />
+            <input id="txtDiasEstancia" runat="Server" class="textBoxCentrado" type="text" style="width: 35px" readonly="readonly" title="ejemplo" />
         </div>
     </div>
     <div class="fila" style="width: 26%;">
@@ -322,7 +368,7 @@
             Edad
         </div>
         <div class="celda celdaControl" style="width: 100%;">
-            <asp:TextBox ClientIDMode="Static" runat="server" CssClass="textBoxCentrado" ID="txtEdad" Width="45px" />
+            <input id="txtEdad" runat="Server" class="textBoxCentrado" type="text" style="width: 35px" />
         </div>
     </div>
     <div class="fila" style="width: 10%;">
@@ -366,7 +412,7 @@
         </div>
     </div>
     <%----------------------------------------------------------------%>
-    <div class="fila" style="width: 20%;">
+    <div class="fila" style="width: 30%;">
         <div class="celda celdaTitulo" style="width: 100%;">
             Tipo atención ingreso
         </div>
@@ -376,7 +422,7 @@
             </asp:DropDownList>
         </div>
     </div>
-    <div class="fila" style="width: 17%;">
+    <div class="fila" style="width: 27%;">
         <div class="celda celdaTitulo" style="width: 100%;">
             Cama
         </div>
@@ -384,7 +430,7 @@
             <asp:TextBox runat="server" ID="txtCama" CssClass="textBoxCentrado" Width="80px" />
         </div>
     </div>
-    <div class="fila" style="width: 20%;">
+    <div class="fila" style="width: 30%;">
         <div class="celda celdaTitulo" style="width: 100%;">
             Pabellón
         </div>
@@ -392,12 +438,12 @@
             <asp:TextBox runat="server" ID="txtPabellon" CssClass="textBoxCentrado" />
         </div>
     </div>
-    <button type="button" style="width: 135px; height: 26px; cursor: pointer" onclick="guardar();">
+    <button type="button" style="width: 135px; height: 60px; cursor: pointer" onclick="guardar();">
         <img src="../../Images/icons/bi/guardar.png" width="24" height="24" style="vertical-align: middle; horiz-align: left;" alt="Guardar" />Guardar 
     </button>
     <asp:Button ID="btnGuardar" OnClick="btnGuardar_OnClick" ClientIDMode="Static" runat="server" style="display: none;" />
 </div>
-<div id="divEditarDx" onkeyup="escapeEditar();" class="modal">
+<div id="divEditarDx" class="modal">
     <div style="margin: 50px;">Editar diagnóstico de paciente        
         <a onclick="cerrarEditar();" id="A2" title="Close" class="close" style="cursor: pointer">X</a>
         <asp:TextBox runat="server" ID="txtBusqDx"  />

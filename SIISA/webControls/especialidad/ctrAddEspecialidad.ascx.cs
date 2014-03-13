@@ -10,7 +10,7 @@ namespace SIISAConc.webControls.especialidad
     {
         Int32 _idEspecialidad = 0;
         B_Especialidad oBEspecialidad = new B_Especialidad();
-        especialidadEntidad OEspecialidad = new especialidadEntidad();
+        EspecialidadEntidad OEspecialidad = new EspecialidadEntidad();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -31,7 +31,7 @@ namespace SIISAConc.webControls.especialidad
         {
             if (_idEspecialidad != 0)
             {
-                foreach (especialidadEntidad eEspecialidad in oBEspecialidad.getEspecialidadID(_idEspecialidad))
+                foreach (EspecialidadEntidad eEspecialidad in oBEspecialidad.getEspecialidadID(_idEspecialidad))
                 {
                     txtIdEspecialidad.Text = eEspecialidad.idEspecialidad.ToString();
                     txtEspecialidad.Text = eEspecialidad.especialidad;

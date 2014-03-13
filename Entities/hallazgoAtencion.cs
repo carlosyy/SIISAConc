@@ -4,7 +4,7 @@ using System.Collections.ObjectModel;
 
 namespace Entities
 {
-    public class hallazgoAtencion : Collection<hallazgoAtencionEntidad>
+    public class HallazgoAtencion : Collection<HallazgoAtencionEntidad>
     {
     }
 }

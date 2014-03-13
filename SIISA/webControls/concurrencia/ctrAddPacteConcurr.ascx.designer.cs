@@ -76,6 +76,15 @@ namespace SIISAConc.webControls.concurrencia {
         protected global::System.Web.UI.WebControls.TextBox txtNombre_b;
         
         /// <summary>
+        /// txtSexo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtSexo;
+        
+        /// <summary>
         /// txtFechaIngreso control.
         /// </summary>
         /// <remarks>
@@ -109,7 +118,7 @@ namespace SIISAConc.webControls.concurrencia {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDiasEstancia;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtDiasEstancia;
         
         /// <summary>
         /// ctrDdlEspecialidad control.
@@ -181,7 +190,7 @@ namespace SIISAConc.webControls.concurrencia {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtEdad;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtEdad;
         
         /// <summary>
         /// ddlTipoEdad control.

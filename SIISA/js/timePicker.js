@@ -170,7 +170,7 @@
 					}
 				}
 			}
-		    debugger;
+		    
 			overrides = {
 				beforeShow: function (input, dp_inst) {
 					if ($.isFunction(tp_inst._defaults.evnts.beforeShow)) {

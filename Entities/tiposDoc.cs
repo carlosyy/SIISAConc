@@ -5,7 +5,7 @@ using System.Collections.ObjectModel;
 
 namespace Entities
 {
-    public class tiposDoc : Collection<tiposDocEntidad>
+    public class TiposDoc : Collection<TiposDocEntidad>
     {
     }
 }

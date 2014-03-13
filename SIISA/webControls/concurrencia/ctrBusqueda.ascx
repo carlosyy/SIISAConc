@@ -254,6 +254,7 @@
     }
 
 </script>
+<div id="chatlog"></div>
 <div id="divPrincipal">
     <table style="text-align: center; width: 100%">
         <tr>

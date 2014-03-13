@@ -10,11 +10,11 @@ namespace DataManagement
     {
         SQLConn oDataAccess = new SQLConn();
         // selecciona todos los atributos de accion
-        public pendientesAtencion getPendientesAtencion(Int32 id = 0, Int32 idDatosUs = 0)
+        public PendientesAtencion getPendientesAtencion(Int32 id = 0, Int32 idDatosUs = 0)
         {
             StringBuilder sbPendientesAtencion = new StringBuilder();
-            pendientesAtencion lista = new pendientesAtencion();
-            pendientesAtencionEntidad oPendientesAtencion;
+            PendientesAtencion lista = new PendientesAtencion();
+            PendientesAtencionEntidad oPendientesAtencion;
 
             sbPendientesAtencion.Append("SELECT");
             sbPendientesAtencion.Append(" idPdtesAtencion");
@@ -43,7 +43,7 @@ namespace DataManagement
 
                 while (reader.Read())
                 {
-                    oPendientesAtencion = new pendientesAtencionEntidad();
+                    oPendientesAtencion = new PendientesAtencionEntidad();
                     oPendientesAtencion.idPdtesAtencion = Int32.Parse(reader["idPdtesAtencion"].ToString());
                     oPendientesAtencion.idAreaAtencion = Int32.Parse(reader["idAreaAtencion"].ToString());
                     oPendientesAtencion.idPatologia = Int32.Parse(reader["idPatologia"].ToString());
@@ -64,7 +64,7 @@ namespace DataManagement
         }
 
         // adiciona una nueva accion
-        public Int32 addPendientesAtencion(pendientesAtencionEntidad oPendientesAtencion)
+        public Int32 addPendientesAtencion(PendientesAtencionEntidad oPendientesAtencion)
         {
             StringBuilder sbPendientesAtencion = new StringBuilder();
             {
@@ -100,7 +100,7 @@ namespace DataManagement
 
         // Actualiza un registro de la tabla accion
 
-        public Int32 updatePendientesAtencion(pendientesAtencionEntidad oPendientesAtencion)
+        public Int32 updatePendientesAtencion(PendientesAtencionEntidad oPendientesAtencion)
         {
             StringBuilder sbPendientesAtencion = new StringBuilder();
             {

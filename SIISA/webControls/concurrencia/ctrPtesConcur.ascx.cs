@@ -34,15 +34,15 @@ namespace SIISAConc.webControls.concurrencia
             }
             else
             {
-                busqServicio(txtBusqServ.Text, "c");
+                busqServicio(txtBusqServ.Text);
                 ddlServicio.Focus();
             }
         }
 
-        public void busqServicio(String servBuscar, String tipoBusq)
+        public void busqServicio(String servBuscar)
         {
             B_Servicios oBServicios = new B_Servicios();
-            Entities.servicios lServicios = oBServicios.getCodDescr(servBuscar, tipoBusq);
+            Entities.Servicios lServicios = oBServicios.getServiciosXBusq(servBuscar);
             if (lServicios.Count > 0)
             {
                 ddlServicio.DataSource = lServicios;
@@ -63,7 +63,7 @@ namespace SIISAConc.webControls.concurrencia
 
         protected void btnGuardarServ_Click(object sender, System.Web.UI.ImageClickEventArgs e)
         {
-            Entities.pendientesAtencionEntidad ePendientes = new Entities.pendientesAtencionEntidad();
+            Entities.PendientesAtencionEntidad ePendientes = new Entities.PendientesAtencionEntidad();
             ePendientes.idDatosUS = Int32.Parse(Session["idDatosUS"].ToString());
             ePendientes.idAreaAtencion = Int32.Parse(((DropDownList)ctrAreasAtencion1.FindControl("ddlAreaAtencion")).SelectedValue);
             ePendientes.idPatologia = Int32.Parse(((DropDownList)ctrDdlPatologias.FindControl("ddlPatologia")).SelectedValue);

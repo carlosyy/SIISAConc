@@ -2,7 +2,7 @@
 
 namespace Entities
 {
-    public class pertinenciaAtencion : Collection<pertinenciaAtencionEntidad>
+    public class PertinenciaAtencion : Collection<PertinenciaAtencionEntidad>
     {
     }
 }

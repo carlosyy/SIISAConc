@@ -8,22 +8,22 @@ namespace Business
     {
         DM_Patologias oDMPatologias = new DM_Patologias();
 
-        public patologias getPatologias()
+        public Patologias getPatologias()
         {
             return oDMPatologias.GetPatologias();
         }
 
-        public patologias getPatologiasIdPatologia(Int32 idPatologia)
+        public Patologias getPatologiasIdPatologia(Int32 idPatologia)
         {
             return oDMPatologias.GetPatologias(idPatologia: idPatologia);
         }
 
-        public Int32 AddPatologias(patologiasEntidad oPatologias)
+        public Int32 AddPatologias(PatologiasEntidad oPatologias)
         {
             return oDMPatologias.AddPatologias(oPatologias);
         }
 
-        public Int32 UpdatePatologias(patologiasEntidad oPatologias)
+        public Int32 UpdatePatologias(PatologiasEntidad oPatologias)
         {
             return oDMPatologias.UpdatePatologias(oPatologias);
         }

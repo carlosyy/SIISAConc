@@ -2,12 +2,12 @@
 
 namespace Entities
 {
-    public class atencClinicasXAfiliadoEntidad
+    public class AtencClinicasXAfiliadoEntidad
     {
-        public String nombre_a { get; set; }
-        public String nombre_b { get; set; }
-        public String apellido_a { get; set; }
-        public String apellido_b { get; set; }
+        public String nombreA { get; set; }
+        public String nombreB { get; set; }
+        public String apellidoA { get; set; }
+        public String apellidoB { get; set; }
         public String mesIngreso { get; set; }
         public String docIden { get; set; }
         public Int32 programa { get; set; }
@@ -31,5 +31,7 @@ namespace Entities
         public Int32 idAtencion { get; set; }
         public String radicado { get; set; }
         public String nombreCompleto { get; set; }
+        public String sexo { get; set; }
+        public String tipoDoc { get; set; }
     }
 }

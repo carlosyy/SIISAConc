@@ -2,7 +2,7 @@
 
 namespace Entities
 {
-    public class noCalidadAtencion : Collection<noCalidadAtencionEntidad>
+    public class NoCalidadAtencion : Collection<NoCalidadAtencionEntidad>
     {
     }
 }

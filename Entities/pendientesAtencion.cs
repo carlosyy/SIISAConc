@@ -3,7 +3,7 @@
 
 namespace Entities
 {
-    public class pendientesAtencion : Collection<pendientesAtencionEntidad>
+    public class PendientesAtencion : Collection<PendientesAtencionEntidad>
     {
     }
 }

@@ -10,7 +10,7 @@ namespace DataManagement
     {
         readonly SQLConn oDataAccess = new SQLConn();
 
-				public Int32 AddNotes(notesEntidad notes)
+				public Int32 AddNotes(NotesEntidad notes)
         {
             Int32 retorno = 0;
 

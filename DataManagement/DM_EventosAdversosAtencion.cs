@@ -10,12 +10,12 @@ namespace DataManagement
     {
         SQLConn oDataAccess = new SQLConn();
         // selecciona todos los atributos de accion
-        public eventosAdversosAtencion GetEventosAdversosAtencion(Int32 id = 0, String EventosAdversosAtencion = "")
+        public EventosAdversosAtencion GetEventosAdversosAtencion(Int32 id = 0, String EventosAdversosAtencion = "")
         {
             StringBuilder sbEventosAdversosAtencion = new StringBuilder();
             IDataReader reader;
-            eventosAdversosAtencion lista = new eventosAdversosAtencion();
-            eventosAdversosAtencionEntidad oEventosAdversosAtencion = new eventosAdversosAtencionEntidad();
+            EventosAdversosAtencion lista = new EventosAdversosAtencion();
+            EventosAdversosAtencionEntidad oEventosAdversosAtencion = new EventosAdversosAtencionEntidad();
 
             sbEventosAdversosAtencion.Append("SELECT");
             sbEventosAdversosAtencion.Append(" idEventosAdversosAtencion");
@@ -41,7 +41,7 @@ namespace DataManagement
 
                 while (reader.Read())
                 {
-                    oEventosAdversosAtencion = new eventosAdversosAtencionEntidad();
+                    oEventosAdversosAtencion = new EventosAdversosAtencionEntidad();
                     oEventosAdversosAtencion.idEventosAdversosAtencion = Int32.Parse(reader["idEventosAdversosAtencion"].ToString());
                     oEventosAdversosAtencion.eventosAdversosAtencion = reader["EventosAdversosAtencion"].ToString();
                     lista.Add(oEventosAdversosAtencion);
@@ -62,7 +62,7 @@ namespace DataManagement
         }
 
         // adiciona una nueva accion
-        public Int32 AddEventosAdversosAtencion(eventosAdversosAtencionEntidad oEventosAdversosAtencion)
+        public Int32 AddEventosAdversosAtencion(EventosAdversosAtencionEntidad oEventosAdversosAtencion)
         {
             Int32 retorno = 0;
             StringBuilder sbEventosAdversosAtencion = new StringBuilder();
@@ -97,7 +97,7 @@ namespace DataManagement
 
         // Actualiza un registro de la tabla accion
 
-        public Int32 UpdateEventosAdversosAtencion(eventosAdversosAtencionEntidad oEventosAdversosAtencion)
+        public Int32 UpdateEventosAdversosAtencion(EventosAdversosAtencionEntidad oEventosAdversosAtencion)
         {
             Int32 retorno = 0;
             StringBuilder sbEventosAdversosAtencion = new StringBuilder();

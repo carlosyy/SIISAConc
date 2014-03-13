@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Entities
 {
-    public class patologiasEntidad
+    public class PatologiasEntidad
     {
         public Int32 idPatologia { get; set; } //Llave Primaria
         public String patologia { get; set; }

@@ -8,22 +8,22 @@ namespace Business
     {
         DM_Medicos oDMMedicos = new DM_Medicos();
 
-        public medicos getMedicos()
+        public Medicos getMedicos()
         {
             return oDMMedicos.getMedicos();
         }
 
-        public medicos getMedicosFiltro(String nombreMedico)
+        public Medicos getMedicosFiltro(String nombreMedico)
         {
             return oDMMedicos.getMedicos(nombreMedico: nombreMedico);
         }
 
-        public Int32 addMedico(medicosEntidad oMedicos)
+        public Int32 addMedico(MedicosEntidad oMedicos)
         {
             return oDMMedicos.addMedico(oMedicos);
         }
 
-        public Int32 updateMedico(medicosEntidad oMedicos)
+        public Int32 updateMedico(MedicosEntidad oMedicos)
         {
             return oDMMedicos.updateMedico(oMedicos);
         }

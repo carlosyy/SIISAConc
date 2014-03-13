@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Entities
 {
-    public class loginEntidad
+    public class LoginEntidad
     {
         public Int32 idUser { get; set; } //Llave Primaria        
         public String claveUsuario { get; set; }

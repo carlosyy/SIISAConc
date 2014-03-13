@@ -3,7 +3,7 @@
 
 namespace Entities
 {
-    public class tipoAtenc : Collection<tipoAtencEntidad>
+    public class TipoAtenc : Collection<TipoAtencEntidad>
     {
     }
 }

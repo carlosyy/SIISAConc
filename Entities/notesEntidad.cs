@@ -2,7 +2,7 @@
 
 namespace Entities
 {
-	public class notesEntidad
+	public class NotesEntidad
     {
         public Int32 idNota { get; set; }
 
