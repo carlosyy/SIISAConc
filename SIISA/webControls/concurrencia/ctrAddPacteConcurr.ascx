@@ -439,7 +439,7 @@
         </div>
     </div>
     <button type="button" style="width: 135px; height: 60px; cursor: pointer" onclick="guardar();">
-        <img src="../../Images/icons/bi/guardar.png" width="24" height="24" style="vertical-align: middle; horiz-align: left;" alt="Guardar" />Guardar 
+        <img src="../../Images/icons/bi/guardar.png" width="24" height="24" style="vertical-align: middle; horizontal-align: left;" alt="Guardar" />Guardar 
     </button>
     <asp:Button ID="btnGuardar" OnClick="btnGuardar_OnClick" ClientIDMode="Static" runat="server" style="display: none;" />
 </div>

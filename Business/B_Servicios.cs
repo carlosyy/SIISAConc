@@ -8,34 +8,9 @@ namespace Business
     {
         DM_Servicios oDMServicios = new DM_Servicios();
 
-        public Servicios getServicios()
+        public Servicios getServiciosXBusq(String codDescr)
         {
-            return oDMServicios.GetServicios();
-        }
-
-        public Servicios GetServicios(String codServ = "", String descripcion = "")
-        {
-            return oDMServicios.GetServicios(codServ: codServ, descripcion: descripcion);
-        }
-
-        public Servicios getServiciosCodServHomol(String codServ, String tipoBusq)
-        {
-            return oDMServicios.GetServicios(codServ: codServ, tipoBusq: tipoBusq);
-        }
-
-        public Servicios getServiciosDescripcionHomol(String descripcion, String tipoBusq)
-        {
-            return oDMServicios.GetServicios(descripcion: descripcion, tipoBusq: tipoBusq);
-        }
-
-        public Servicios getCodDescr(String codDescr, String tipoBusq)
-        {
-            return oDMServicios.getCodDescr(codDescr: codDescr, tipoBusq: tipoBusq);
-        }
-
-        public Servicios getServicioxCod(String codServ)
-        {
-            return oDMServicios.getServicioxCod(codServ: codServ);
+            return oDMServicios.getServiciosXBusq(codDescr: codDescr);
         }
 
         public String getExisteCodServicios(String codServ)
@@ -48,12 +23,12 @@ namespace Business
             return oDMServicios.getExisteServicio(descripServ: descripServ);
         }
 
-        public Int32 AddServicios(serviciosEntidad oServicios)
+        public Int32 AddServicios(ServiciosEntidad oServicios)
         {
             return oDMServicios.AddServicios(oServicios);
         }
 
-        public Int32 UpdateServicios(serviciosEntidad oServicios)
+        public Int32 UpdateServicios(ServiciosEntidad oServicios)
         {
             return oDMServicios.UpdateServicios(oServicios);
         }

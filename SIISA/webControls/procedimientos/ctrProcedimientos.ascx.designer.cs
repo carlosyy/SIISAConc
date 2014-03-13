@@ -58,15 +58,6 @@ namespace SIISAConc.webControls.procedimientos {
         protected global::System.Web.UI.WebControls.DropDownList ddlTipoAutoriz;
         
         /// <summary>
-        /// btnGuardarServ control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton btnGuardarServ;
-        
-        /// <summary>
         /// lblServRips control.
         /// </summary>
         /// <remarks>
@@ -76,12 +67,12 @@ namespace SIISAConc.webControls.procedimientos {
         protected global::System.Web.UI.WebControls.Label lblServRips;
         
         /// <summary>
-        /// gvCustomers control.
+        /// gvServiciosAtencion control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvCustomers;
+        protected global::System.Web.UI.WebControls.GridView gvServiciosAtencion;
     }
 }

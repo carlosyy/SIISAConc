@@ -6,7 +6,7 @@ namespace Business
 {
     public class B_ServiciosAtencion
     {
-        DM_ServiciosAtencion oDMServicios = new DM_Servicios();
+        DM_ServiciosAtencion oDMServicios = new DM_ServiciosAtencion();
 
         public ServiciosAtencion getServiciosAtencion()
         {

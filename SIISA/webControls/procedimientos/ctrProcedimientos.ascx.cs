@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Business;
+using System;
+using System.Data;
 
 namespace SIISAConc.webControls.procedimientos
 {
@@ -6,7 +8,30 @@ namespace SIISAConc.webControls.procedimientos
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
+                bindEncabezadoGrilla();
+            }
+        }
 
+        private void bindEncabezadoGrilla()
+        {
+            try
+            {
+                DataTable dt = new DataTable();
+                dt.Columns.Add("codServ");
+                dt.Columns.Add("descripServ");
+                dt.Columns.Add("noAutorizacion");
+                dt.Columns.Add("concepto");
+                dt.Rows.Add();
+                gvServiciosAtencion.DataSource = dt;
+                gvServiciosAtencion.DataBind();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.show(ex.Message);
+            }
+            
         }
     }
 }

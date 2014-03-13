@@ -65,8 +65,7 @@
         opacity: 0.85;
         background: #F5F5F5;
         padding: 5px;
-        border-radius: 10px;
-        background: lightblue;
+        border-radius: 10px;        
         float: left;
         font-weight: bold;
     }

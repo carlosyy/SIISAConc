@@ -10,6 +10,8 @@ namespace Entities
         public String noAutorizacion { get; set; }
         public Int32 tipoAutorizacion { get; set; }
         public Int32 idUser { get; set; }
+        public String concepto { get; set; }
 
+        public String descripServ { get; set; }
     }
 }

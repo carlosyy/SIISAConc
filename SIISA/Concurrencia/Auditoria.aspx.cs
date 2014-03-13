@@ -4,6 +4,9 @@ using System.Linq;
 using System.Web.Services;
 using Business;
 using Entities;
+using System.Web;
+using System.Collections;
+
 
 namespace SIISAConc.Concurrencia
 {
@@ -19,12 +22,12 @@ namespace SIISAConc.Concurrencia
         {
             B_Servicios oBServicios = new B_Servicios();
             var query = from item in oBServicios.getServiciosXBusq(busqDx).AsEnumerable()
-                select new ServiciosEntidad
-                {
-                    codServ = item.codServ,
-                    descripcion = item.descripcion,
-                    nombreConcepto = item.nombreConcepto
-                };
+                        select new ServiciosEntidad
+                        {
+                            codServ = item.codServ,
+                            descripcion = item.descripcion,
+                            nombreConcepto = item.nombreConcepto
+                        };
             return query.ToList<ServiciosEntidad>();
         }
 
@@ -33,49 +36,42 @@ namespace SIISAConc.Concurrencia
         {
             B_AutoCompletar oBAutoCompletar = new B_AutoCompletar();
             var query = from item in oBAutoCompletar.getAutoCompletar(prefixText: prefixText, proceso: proceso)
-                select new AutoCompletarEntidad
-                {
-                    indexSeleccion = item.indexSeleccion,
-                    textoAutoCompletar = item.textoAutoCompletar
-                };
+                        select new AutoCompletarEntidad
+                        {
+                            indexSeleccion = item.indexSeleccion,
+                            textoAutoCompletar = item.textoAutoCompletar
+                        };
             return query.ToList<AutoCompletarEntidad>();
         }
 
         [WebMethod]
-        public static string GetCustomers()
+        public static ServiciosAtencionEntidad[] getServiciosAtencionxRadicado(String radicado)
         {
-            string query = "SELECT top 10 CustomerID, ContactName, City FROM Customers";
-            SqlCommand cmd = new SqlCommand(query);
-            return GetData(cmd).GetXml();
-        }
-        private static DataSet GetData(SqlCommand cmd)
-        {
-            string strConnString = ConfigurationManager.ConnectionStrings["conString"].ConnectionString;
-            using (SqlConnection con = new SqlConnection(strConnString))
-            {
-                using (SqlDataAdapter sda = new SqlDataAdapter())
-                {
-                    cmd.Connection = con;
-                    sda.SelectCommand = cmd;
-                    using (DataSet ds = new DataSet())
-                    {
-                        sda.Fill(ds);
-                        return ds;
-
-                    }
-                }
-            }
+            B_ServiciosAtencion oBServiciosAtencion = new B_ServiciosAtencion();
+            var query = from item in oBServiciosAtencion.getServiciosAtencionxRadicado(radicado).AsEnumerable()
+                        select new ServiciosAtencionEntidad
+                        {
+                            idServ = item.idServ,
+                            codServ = item.codServ,
+                            descripServ = item.descripServ,
+                            concepto = item.concepto,
+                            noAutorizacion = item.noAutorizacion
+                        };
+            IEnumerable query1 = query.ToList<ServiciosAtencionEntidad>();
+            ServiciosAtencionEntidad[] array = query1.Cast<ServiciosAtencionEntidad>().ToArray();
+            return array;
+            //return oBServiciosAtencion.getServiciosAtencionxRadicado(radicado).ToArray();
         }
 
         [WebMethod]
-        public static Int32 AddServiciosAtencion(Int32 tipoAutorizacion, String noAutorizacion, String codServ, String radicado, Int32 idUser)
+        public static Int32 AddServiciosAtencion(Int32 tipoAutorizacion, String noAutorizacion, String codServ, Int32 idUser, String radicado)
         {
             ServiciosAtencionEntidad oServiciosAtencion = new ServiciosAtencionEntidad();
             oServiciosAtencion.tipoAutorizacion = tipoAutorizacion;
             oServiciosAtencion.noAutorizacion = noAutorizacion;
             oServiciosAtencion.codServ = codServ;
             oServiciosAtencion.radicado = radicado;
-            oServiciosAtencion.idUser = idUser;
+            oServiciosAtencion.idUser = Int32.Parse(HttpContext.Current.Session["idUser"].ToString());
             B_ServiciosAtencion oB_ServiciosAtencion = new B_ServiciosAtencion();
             return oB_ServiciosAtencion.AddServiciosAtencion(oServiciosAtencion);
             

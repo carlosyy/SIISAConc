@@ -9,42 +9,7 @@ namespace DataManagement
 {
     public class DM_Servicios
     {
-        SQLConn oDataAccess = new SQLConn();
-        // selecciona todos los atributos de Servicios
-        public Servicios GetServicios(String codServ = "", String descripcion = "", String tipoBusq = "c")
-        {
-            Servicios lServicios = new Servicios();
-            IDataReader reader;
-            //  AccionL lista = new AccionL();            
-            String sQuery = string.Format("EXEC SPS_Servicios @codServ='{0}', @descServ='{1}', @tipoBusq='{2}'", codServ, descripcion, tipoBusq);
-
-            try
-            {
-                oDataAccess.open();
-                reader = oDataAccess.executeReader(CommandType.Text, sQuery.ToString());
-                while (reader.Read())
-                {
-                    lServicios.Add(new ServiciosEntidad()
-                    {
-                        codConcepto = int.Parse(reader["codConcepto"].ToString()),
-                        codServ = reader["codServ"].ToString(),
-                        descripcion = reader["descripcion"].ToString(),
-                        idArea = int.Parse(reader["idArea"].ToString()),
-                        inactivo = bool.Parse(reader["inactivo"].ToString())
-                    });
-                }
-            }
-            catch (DbException ex)
-            {
-
-                throw new Exception("Se ha generado el siguiente error : " + ex.Message);
-            }
-            finally
-            {
-                oDataAccess.close();
-            }
-            return (lServicios);
-        }
+        SQLConn oDataAccess = new SQLConn();        
 
         public Servicios getServicioxCod(String codServ)
         {

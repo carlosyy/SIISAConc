@@ -24,6 +24,7 @@
             <li><a href="#tabs-3">Hallazgo</a></li>
             <li><a href="#tabs-4">Notas</a></li>
             <li><a href="#tabs-5">Pendientes Concurrencia</a></li>
+            <li><span id="lblRadicado" title="Hola mundo"></span></li>
         </ul>
         <div id="tabs-1">
             <uc1:ctrAuditoria runat="server" ID="ctrAuditoria" />
@@ -41,4 +42,5 @@
             <uc1:ctrPtesConcur runat="server" ID="ctrPtesConcur" />
         </div>
     </div>
+    
 </asp:Content>

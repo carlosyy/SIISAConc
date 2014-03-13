@@ -1,6 +1,7 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="ctrProcedimientos.ascx.cs" Inherits="SIISAConc.webControls.procedimientos.ctrProcedimientos" %>
 <script>
     $(document).ready(function () {
+        getServiciosAtencion();
         $("#txtBusqServ").change(function () {
             if ($("#txtBusqServ").val().length > 5) {
                 getServicios();
@@ -72,8 +73,7 @@
         $("#ddlServicio").get(0).selectedIndex = indexSeleccion;
     }
 
-    function getServicios() {
-        console.log('a');
+    function getServicios() {        
         var params = new Object();
         params.busqDx = $("#txtBusqServ").val();
         params = JSON.stringify(params);
@@ -93,31 +93,60 @@
         return false;
     }
 
-    function addServiciosAtencion() {        
+    function getServiciosAtencion() {
+        limpiarControles();
         var params = new Object();
-        params.tipoAutorizacion = $("#txtBusqServ").val();
-        params.noAutorizacion = $("#txtBusqServ").val();
-        params.codServ = $("#txtBusqServ").val();
-        params.radicado = $("#txtBusqServ").val();
-        params.idUser = '<%= Session["idUser"].ToString()%> ';
-
-        params = JSON.stringify(params);
-
+        params.radicado = $("#hfRadicado").val();
+        params = JSON.stringify(params);        
         $.ajax({
             type: "POST",
-            url: "Auditoria.aspx/getServicios",
+            url: "Auditoria.aspx/getServiciosAtencionxRadicado",
             data: params,
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             async: true,
-            success: loadPx,
-            error: function (xmlHttpRequest, textStatus, errorThrown) {
-                alert(textStatus + ": " + xmlHttpRequest.responseText);
+            success: function (msg) {                
+                $("[id*=gvServiciosAtencion] tr").not($("[id*=gvServiciosAtencion] tr:first-child")).remove();
+                for (var i = 0; i < msg.d.length; i++) {                    
+                    $("#gvServiciosAtencion").append("<tr><td>" + msg.d[i].codServ + "</td><td>" + msg.d[i].descripServ + "</td><td>" + msg.d[i].noAutorizacion + "</td><td>" + msg.d[i].concepto + "</td></tr>");
+                }                
+            },
+            error: function (msg) {
+                alert("error " + msg.responseText);
             }
         });
         return false;
     }
 
+    function addServiciosAtencion() {        
+        if (validarGuardar()) {
+            var params = new Object();
+            params.tipoAutorizacion = $("#ddlTipoAutoriz").val();
+            params.noAutorizacion = $("#txtAutorizacion").val();
+            params.codServ = $("#ddlServicio").val();            
+            params.idUser = '<%= Session["idUser"].ToString()%> ';
+            params.radicado = $("#hfRadicado").val();
+            params = JSON.stringify(params);
+
+            $.ajax({
+                type: "POST",
+                url: "Auditoria.aspx/AddServiciosAtencion",
+                data: params,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                async: true,
+                success: function (msg) {
+                    $("#btnGuardarServ").notify("Se ha agregado el procedimiento satisfactoriamente.", { className: "success", position: "left bottom" });                    
+                    getServiciosAtencion();                    
+                },
+                error: function (xmlHttpRequest, textStatus, errorThrown) {
+                    alert(textStatus + ": " + xmlHttpRequest.responseText);
+                }
+            });
+        }
+        return false;
+    }
+    
     function loadPx(result) {
         $("#ddlServicio").html("");
         $("#ddlServicio").append($("<option></option>").attr("value", "0").text(".::Seleccione::.").attr("cpto", ""));
@@ -130,24 +159,27 @@
         } else {
             getIndexBusqueda(1);
         }
-        $("#ddlServicio").focus();
+        $("#ddlServicio").focus();        
         return false;
+    }    
+
+    function validarGuardar() {
+        var ok = true;
+        if ($("#ddlServicio").val() == "0") {
+            $("#ddlServicio").notify("Establezca el procedimiento a agregar.", "warning");
+            ok = false;
+        }
+        return ok;
     }
 
-    function bindGridView() {
-        $.ajax({
-            type: "POST",
-            url: "Auditoria.aspx/getServicios",
-            data: "{}",
-            contentType: "application/json",
-            dataType: "json",
-            success: function (data) {
-                for (var i = 0; i < data.d.length; i++) {
-                    $("#NamesGridView").append("<tr><td>" + data.d[i].FirstName +
-                                                "</td><td>" + data.d[i].Age + "</td></tr>");
-                }
-            }
-        })
+    function limpiarControles() {        
+        $("#txtBusqServ").val("");
+        $("#ddlServicio").val("0");
+        $("#lblConcepto").text("");
+        $("#txtAutorizacion").val("");
+        $("#ddlTipoAutoriz").val("");        
+        $("#lblServRips").text("");
+        $("#txtBusqServ").select();
     }
 </script>
 <table>                        
@@ -189,30 +221,31 @@
     </tr>
     <tr>
         <td colspan="3">
-            <asp:Label ID="lblConcepto" ClientIDMode="Static" runat="server" ValidationGroup="datos" Width="263px"></asp:Label>
+            <asp:Label ID="lblConcepto" ClientIDMode="Static" runat="server" Width="263px"></asp:Label>
         </td>
         <td>
-            <asp:TextBox ID="txtAutorizacion" runat="server" TabIndex="4" ValidationGroup="datos" Width="104px">0</asp:TextBox>
+            <asp:TextBox ID="txtAutorizacion" ClientIDMode="Static" runat="server" TabIndex="4" ValidationGroup="datos" Width="104px">0</asp:TextBox>
         </td>
         <td>
-            <asp:DropDownList ID="ddlTipoAutoriz" runat="server" TabIndex="5" >
+            <asp:DropDownList ID="ddlTipoAutoriz" runat="server" TabIndex="5" ClientIDMode="Static" >
                 <asp:ListItem Selected="True" Text=".::Seleccione::." Value="0"></asp:ListItem>
                 <asp:ListItem Text="Telefonica" Value="1"></asp:ListItem>
                 <asp:ListItem Text="Regional" Value="2"></asp:ListItem>
             </asp:DropDownList>                    
         </td>
         <td>
-            <asp:ImageButton ID="btnGuardarServ" runat="server" AccessKey="G" CommandName="guardarServ" TabIndex="9" ImageUrl="~/Images/icons/bi/guardar.png" ToolTip="Guardar Servicio ( Alt + G)" ValidationGroup="datos" Width="25px" /><%--OnClick="btnGuardarServ_Click"--%>
+            <img style="cursor: pointer" alt="Guardar Servicio ( Alt + G)" accesskey="g" tabindex="9" src="../../Images/icons/bi/guardar.png" onclick="addServiciosAtencion();" width="25" height="25" id="btnGuardarServ" />            
         </td>
     </tr>
 </table>
-<asp:Label ID="lblServRips" runat="server" Font-Bold="True" ForeColor="Blue"></asp:Label>        
+<asp:Label ID="lblServRips" runat="server" Font-Bold="True" ForeColor="Blue" ClientIDMode="Static"></asp:Label>        
 <br>
 <br>
-<asp:GridView ID="gvCustomers" runat="server" AutoGenerateColumns="false">
+<asp:GridView ID="gvServiciosAtencion" runat="server" ClientIDMode="Static" AutoGenerateColumns="false">
     <Columns>
         <asp:BoundField ItemStyle-Width="150px" DataField="codServ" HeaderText="Cod procedimiento" />
-        <asp:BoundField ItemStyle-Width="150px" DataField="Servicio" HeaderText="Nombre procedimiento" />
-        <asp:BoundField ItemStyle-Width="150px" DataField="autorizacion" HeaderText="No. Autorización" />
+        <asp:BoundField ItemStyle-Width="150px" DataField="descripServ" HeaderText="Nombre procedimiento" />
+        <asp:BoundField ItemStyle-Width="150px" DataField="noAutorizacion" HeaderText="No. Autorización" />
+        <asp:BoundField ItemStyle-Width="150px" DataField="concepto" HeaderText="Concepto" />
     </Columns>
 </asp:GridView>

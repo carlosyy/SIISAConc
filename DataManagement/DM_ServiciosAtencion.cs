@@ -21,8 +21,10 @@ namespace DataManagement
             sbServiciosAtencion.Append("SELECT");
             sbServiciosAtencion.Append(" sa.idServ");
             sbServiciosAtencion.Append(", sa.codserv");
+            sbServiciosAtencion.Append(", sa.codserv");
+            sbServiciosAtencion.Append(", sa.noAutorizacion");
             sbServiciosAtencion.Append(", ser.descripcion as servicio");
-            sbServiciosAtencion.Append(", co.nombreconcepto");            
+            sbServiciosAtencion.Append(", co.nombreconcepto");
             sbServiciosAtencion.Append(" FROM serviciosAtencion AS sa");
             sbServiciosAtencion.Append(" INNER JOIN servicios AS ser ON ser.codServ = sa.codServ");
             sbServiciosAtencion.Append(" INNER JOIN conceptos as co ON co.codConcepto = ser.codConcepto");
@@ -45,6 +47,7 @@ namespace DataManagement
                     OserviEntidad = new ServiciosAtencionEntidad();
                     OserviEntidad.idServ = Int32.Parse(reader["idServ"].ToString());                    
                     OserviEntidad.codServ = reader["codServ"].ToString();
+                    OserviEntidad.noAutorizacion = reader["noAutorizacion"].ToString();
                     OserviEntidad.descripServ = ((reader["servicio"].ToString().Length > 60) ? reader["servicio"].ToString().Substring(0, 60) : reader["servicio"].ToString());
                     OserviEntidad.concepto = reader["nombreconcepto"].ToString();                    
                     ServiFactUsu.Add(OserviEntidad);
