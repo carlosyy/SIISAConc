@@ -48,8 +48,7 @@
                                             
                                         </div>
                                         <div>
-                                            <%--<asp:DropDownList ID="ddlMesRad" runat="server" OnSelectedIndexChanged="ddlMesRad_SelectedIndexChanged" AutoCallBack="True">
-                                            </asp:DropDownList>--%>
+                                            
                                         </div>
                                     </div>
                                     <div style="width: 25%; float: left">

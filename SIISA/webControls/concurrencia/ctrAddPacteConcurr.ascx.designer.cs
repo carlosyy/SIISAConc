@@ -202,13 +202,13 @@ namespace SIISAConc.webControls.concurrencia {
         protected global::System.Web.UI.WebControls.TextBox txtMedico;
         
         /// <summary>
-        /// ddlContrato control.
+        /// ctrDdlProgramas1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlContrato;
+        protected global::SIISAConc.Controls.programas.ctrDdlProgramas ctrDdlProgramas1;
         
         /// <summary>
         /// ddlTipoContrato control.

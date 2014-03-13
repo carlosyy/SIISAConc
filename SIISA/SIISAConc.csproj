@@ -71,6 +71,7 @@
     <Content Include="CSS\anytime.css" />
     <Content Include="CSS\images\ui-anim_basic_16x16.gif" />
     <Content Include="CSS\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="CSS\images\ui-bg_glass_55_fbf9ee_1x400.png" />
     <Content Include="CSS\images\ui-bg_glass_75_dadada_1x400.png" />
     <Content Include="CSS\jquery-ui.css" />
     <Content Include="CSS\modal\modalCSS3.css" />
@@ -150,6 +151,7 @@
     <Content Include="js\buttonset.js" />
     <Content Include="js\jquery.quicksearch.js" />
     <Content Include="js\notify.js" />
+    <Content Include="js\timePicker.js" />
     <Content Include="js\Tooltip\jquery.tooltipster.js" />
     <Content Include="js\Tooltip\jquery.tooltipster.min.js" />
     <Content Include="Master\ctrMenuPpal.ascx" />

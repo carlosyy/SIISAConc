@@ -2,6 +2,8 @@
 <%@ Register Src="~/webControls/tiposDoc/ctrDdlTiposDoc.ascx" TagPrefix="uc1" TagName="ctrDdlTiposDoc" %>
 <%@ Register Src="~/webControls/especialidad/ctrDdlEspecialidad.ascx" TagPrefix="uc1" TagName="ctrDdlEspecialidad" %>
 
+<%@ Register src="../programas/ctrDdlProgramas.ascx" tagname="ctrDdlProgramas" tagprefix="uc2" %>
+
 <style>
     .textBoxCentrado {
         text-align: center;
@@ -46,17 +48,11 @@
     }
 
 </style>
-<script src="../../js/anytime.js"></script>
-<link rel="stylesheet" href="../../CSS/anytime.css" />
+<script src="../../js/timePicker.js"></script>
 <script>
     $(document).ready(function () {
-        $("#txtHoraIngreso").AnyTime_picker(
-        {
-            format: "%H:%i",
-            labelTitle: "Hora",
-            labelHour: "Hora",
-            labelMinute: "Minuto"
-        });
+        $('#txtHoraIngreso').timepicker();
+        $('#txtHoraIngreso').prop('readonly', true);
     });
 
     function editarDx(opcionEditar) {
@@ -282,7 +278,7 @@
             <asp:TextBox runat="server" ID="txtDiasEstancia" CssClass="textBoxCentrado" Enabled="False" Width="35px" />
         </div>
     </div>
-    <div class="fila" style="width: 25%;">
+    <div class="fila" style="width: 26%;">
         <div class="celda celdaTitulo" style="width: 100%;">
             Especialidad
         </div>
@@ -290,7 +286,7 @@
             <uc1:ctrDdlEspecialidad runat="server" ID="ctrDdlEspecialidad" />
         </div>
     </div>
-    <div class="fila" style="width: 22%;">
+    <div class="fila" style="width: 23%;">
         <div class="celda celdaTitulo" style="width: 100%;">
             Cod dx Cie
         </div>
@@ -350,12 +346,12 @@
             <asp:TextBox runat="server" ID="txtMedico" CssClass="textBoxCentrado" Width="250px" ClientIDMode="Static" />
         </div>
     </div>
-    <div class="fila" style="width: 40%;">
+    <div class="fila" style="width: 32%;">
         <div class="celda celdaTitulo" style="width: 100%;">
-            Nit
+            Contrato
         </div>
         <div class="celda celdaControl" style="width: 100%;">
-            <asp:DropDownList runat="server" ID="ddlContrato"/>
+            <uc2:ctrDdlProgramas ID="ctrDdlProgramas1" runat="server" />
         </div>
     </div>
     <div class="fila" style="width: 15%;">

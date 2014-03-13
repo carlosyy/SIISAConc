@@ -14,6 +14,8 @@ namespace SIISAConc.webControls.concurrencia
             if (!IsPostBack)
             {
                 setDdlTipoAtencion();
+                ctrDdlEspecialidad.setEspecialidad();
+                ctrDdlProgramas1.buscaProgramaxNombre("");
                 txtFechaIngreso_CalendarExtender.EndDate = DateTime.Now;
                 txtFecNacimiento_CalendarExtender.EndDate = DateTime.Now;
             }
@@ -43,7 +45,7 @@ namespace SIISAConc.webControls.concurrencia
             eAten.medico = txtMedico.Text;
             eAten.mesIngreso = txtFechaIngreso.Text;
             //eAten.motivoSalida = ddlMotivoSalida.SelectedValue;
-            eAten.nitClinica = ddlContrato.SelectedValue;
+            eAten.nitClinica = ((DropDownList)ctrDdlProgramas1.FindControl("ddlProgramas")).SelectedValue;
             //eAten.programa = Int32.Parse(txtContrato.Text == "" ? "0" : txtContrato.Text);
             eAten.idTipoAtencion = Int32.Parse(ddlTipoAtencion.SelectedValue);
             B_AtencClinicasXAfiliados oB_AtencClinicasXAfiliados = new B_AtencClinicasXAfiliados();
