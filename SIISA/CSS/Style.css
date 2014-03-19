@@ -1,6 +1,11 @@
+html {
+    /*height: 100%;*/
+}
+
 body {
-    height: 800px;
-    margin: 0;    
+    margin: 0;
+    padding-left: 1%;
+    padding-right: 1%;
     text-align: center;
     font-size: small;
     background-color: #eeeeee;
@@ -75,7 +80,7 @@ thead {
 
 tr {
     vertical-align: top;
-}    
+}
 
 tfoot tr td, tfoot tr th, tbody tr td {
     padding: 4px;
@@ -98,7 +103,7 @@ table tr:nth-child(odd) td {
     background-color: #ddd;
 }
 
-    /*table tr:nth-child(odd) td:hover {
+/*table tr:nth-child(odd) td:hover {
         color: blue;
     }*/
 
@@ -112,12 +117,14 @@ input:focus {
     -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
 }
-select:focus{
+
+select:focus {
     border-color: #66afe9;
     outline: 0;
     -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
 }
+
 #UsuarioLogueado tr, #UsuarioLogueado td {
     border: medium double #C0C0C0;
     background-color: #C0C0C0;
@@ -155,7 +162,7 @@ tr.estilo1, td.estilo1 {
 
 .button {
     background-color: #D3D5DF;
-    font-weight:bold;
+    font-weight: bold;
     background-image: -moz-linear-gradient(center top, #4D90FE, #4787ED);
     border: 1px solid #648CC9;
     -moz-border-radius: 3px;
@@ -165,7 +172,7 @@ tr.estilo1, td.estilo1 {
     -webkit-text-shadow: 0 1px rgba(0, 0, 0, 0.1);
     text-shadow: 0 1px rgba(0, 0, 0, 0.1);
     width: 200px;
-    cursor:pointer;
+    cursor: pointer;
 }
 
 
@@ -175,7 +182,7 @@ tr.estilo1, td.estilo1 {
 }
 
 #principal {
-    width: 1200px;
+    width: 100%;
     margin: 0 auto;
 }
 
@@ -257,8 +264,7 @@ td.Solocentro {
     background-color: #608199;
 }
 
-.footerOpciones
-{
+.footerOpciones {
     width: 100%;
     height: auto;
     bottom: 0px; /* El div se sitúa abajo */
@@ -272,7 +278,7 @@ td.Solocentro {
     border-top-width: 1px;
     border-bottom-width: 1px;
     margin-top: 42%;
-    background-color:#0072c6;
+    background-color: #0072c6;
 }
 
 .aFooter {
@@ -293,8 +299,8 @@ td.Solocentro {
     border-top-width: 1px;
     border-bottom-width: 1px;
     margin-top: 1%;
-    background-color:#A4C4DB;
-    color:white;
+    background-color: #A4C4DB;
+    color: white;
 }
 
 .DivGrid {
@@ -309,7 +315,7 @@ td.Solocentro {
     position: relative;
     margin-top: 3%;
     float: left;
-    overflow:scroll;
+    overflow: scroll;
 }
 
 .filaDivDr {
@@ -325,160 +331,207 @@ td.Solocentro {
 .Label {
     font-family: Helvetica, Arial, 'DejaVu Sans', 'Liberation Sans', Freesans, sans-serif;
     font-size: 14px;
-    color:white;
-}    
+    color: white;
+}
 
 .BotonesFalse {
     display: none;
 }
+
 .box {
     width: 100%;
     height: 100%;
     background: #ffffff;
 }
 
-.efecto2
-{
-  position: relative;
+.efecto2 {
+    position: relative;
 }
-.efecto2:before, .efecto2:after
-{
-/* Posiciona la sobora por detras del color de la caja*/
-	  z-index: -1; 
-	  position: absolute;
-	  /* no aplico ningun contenidos HTML */
-	  content: "";
-	  /* posiciona la sombra con respecto al borde inferior, izquierdo y superior */
-	  bottom: 15px;
-	  left: 10px;
-	  top: 80%;
-	  /* configura el ancho */
-	  width: 50%;
-/* color de fondo */
-	  background: #777;
-	  /* definicion de la sombra estandar para box-shadow */
-	  -webkit-box-shadow: 0 15px 10px #777;
-	  -moz-box-shadow: 0 15px 10px #777;
-	  box-shadow: 0 15px 10px #777;
-	  /* rotacion de la sombra */
-	  -webkit-transform: rotate(-3deg);
-	  -moz-transform: rotate(-3deg);
-	  -o-transform: rotate(-3deg);
-	  -ms-transform: rotate(-3deg);
-	  transform: rotate(-3deg);
-}
-.efecto2:after
-{
-	  /* rotacion de la sombra */
-	  -webkit-transform: rotate(3deg);
-	  -moz-transform: rotate(3deg);
-	  -o-transform: rotate(3deg);
-	  -ms-transform: rotate(3deg);
-	  transform: rotate(3deg);
-	  /* posiciona la sombra con respecto al borde izquierdo y derecho */
-	  right: 10px;
-	  left: auto;
-}
+
+    .efecto2:before, .efecto2:after {
+        /* Posiciona la sobora por detras del color de la caja*/
+        z-index: -1;
+        position: absolute;
+        /* no aplico ningun contenidos HTML */
+        content: "";
+        /* posiciona la sombra con respecto al borde inferior, izquierdo y superior */
+        bottom: 15px;
+        left: 10px;
+        top: 80%;
+        /* configura el ancho */
+        width: 50%;
+        /* color de fondo */
+        background: #777;
+        /* definicion de la sombra estandar para box-shadow */
+        -webkit-box-shadow: 0 15px 10px #777;
+        -moz-box-shadow: 0 15px 10px #777;
+        box-shadow: 0 15px 10px #777;
+        /* rotacion de la sombra */
+        -webkit-transform: rotate(-3deg);
+        -moz-transform: rotate(-3deg);
+        -o-transform: rotate(-3deg);
+        -ms-transform: rotate(-3deg);
+        transform: rotate(-3deg);
+    }
+
+    .efecto2:after {
+        /* rotacion de la sombra */
+        -webkit-transform: rotate(3deg);
+        -moz-transform: rotate(3deg);
+        -o-transform: rotate(3deg);
+        -ms-transform: rotate(3deg);
+        transform: rotate(3deg);
+        /* posiciona la sombra con respecto al borde izquierdo y derecho */
+        right: 10px;
+        left: auto;
+    }
 
 /* efecto 3 */
-.efecto3
-{
-	position:relative;       
-	-webkit-box-shadow:0 0px 4px #777, 0 0 20px #CCC inset;
-	-moz-box-shadow:0 0px 4px #777, 0 0 20px #CCC inset;
-	box-shadow:0 0px 4px #777, 0 0 20px #CCC inset;
+.efecto3 {
+    position: relative;
+    -webkit-box-shadow: 0 0px 4px #777, 0 0 20px #CCC inset;
+    -moz-box-shadow: 0 0px 4px #777, 0 0 20px #CCC inset;
+    box-shadow: 0 0px 4px #777, 0 0 20px #CCC inset;
 }
-.efecto3:before, .efecto3:after
-{
-	/* no aplica contenidos */
-	content:"";
-    position:absolute; 
-	/* posiciona la sombra por detras de la caja */
-    z-index:-1;
-	/* aplica una sombra centrada con un gris oscuro y 20px de difuminado */
-    -webkit-box-shadow:0 0 20px #777;
-    -moz-box-shadow:0 0 20px #777;
-    box-shadow:0 0 20px #777;
-	/* centra verticalmente y separa la sombra de los bordes izquierdo y derecho */
-    top:0;
-    bottom:0;
-    left:10px;
-    right:10px;
-	/* redondea las esquinas de la sombra */
-    -moz-border-radius:100px / 10px;
-    border-radius:100px / 10px;
-} 
+
+    .efecto3:before, .efecto3:after {
+        /* no aplica contenidos */
+        content: "";
+        position: absolute;
+        /* posiciona la sombra por detras de la caja */
+        z-index: -1;
+        /* aplica una sombra centrada con un gris oscuro y 20px de difuminado */
+        -webkit-box-shadow: 0 0 20px #777;
+        -moz-box-shadow: 0 0 20px #777;
+        box-shadow: 0 0 20px #777;
+        /* centra verticalmente y separa la sombra de los bordes izquierdo y derecho */
+        top: 0;
+        bottom: 0;
+        left: 10px;
+        right: 10px;
+        /* redondea las esquinas de la sombra */
+        -moz-border-radius: 100px / 10px;
+        border-radius: 100px / 10px;
+    }
 
 /* efecto 1 */
-.efecto1{
-	-webkit-box-shadow: 0 10px 6px -6px #777;
-	-moz-box-shadow: 0 10px 6px -6px #777;
-	box-shadow: 0 10px 6px -6px #777;
+.efecto1 {
+    -webkit-box-shadow: 0 10px 6px -6px #777;
+    -moz-box-shadow: 0 10px 6px -6px #777;
+    box-shadow: 0 10px 6px -6px #777;
 }
 
 /*Textbox Watermark*/
 .unwatermarked {
-	height:18px;
-	width:148px;
+    height: 18px;
+    width: 148px;
 }
 
 .watermarked {
-	height:20px;
-	width:150px;
-	padding:2px 0 0 2px;
-	border:1px solid #BEBEBE;
-	background-color:#F0F8FF;
-	color:gray;
+    height: 20px;
+    width: 150px;
+    padding: 2px 0 0 2px;
+    border: 1px solid #BEBEBE;
+    background-color: #F0F8FF;
+    color: gray;
 }
 
-.cal_Theme1 .ajax__calendar_container   {  
-    background-color: #e2e2e2;   
-    border:solid 1px #cccccc;  
-}  
-  
-.cal_Theme1 .ajax__calendar_header  {  
-    background-color: #ffffff;   
-    margin-bottom: 4px;  
-}  
-  
-.cal_Theme1 .ajax__calendar_title,  
-.cal_Theme1 .ajax__calendar_next,  
-.cal_Theme1 .ajax__calendar_prev    {  
-    color: #004080;   
-    padding-top: 3px;  
-}  
-  
-.cal_Theme1 .ajax__calendar_body    {  
-    background-color: #e9e9e9;   
-    border: solid 1px #cccccc;  
-}  
-  
-.cal_Theme1 .ajax__calendar_dayname {  
-    text-align:center;   
-    font-weight:bold;   
-    margin-bottom: 4px;   
-    margin-top: 2px;  
-}  
-  
-.cal_Theme1 .ajax__calendar_day {  
-    text-align:center;  
-}  
-  
-.cal_Theme1 .ajax__calendar_hover .ajax__calendar_day,  
-.cal_Theme1 .ajax__calendar_hover .ajax__calendar_month,  
-.cal_Theme1 .ajax__calendar_hover .ajax__calendar_year,  
-.cal_Theme1 .ajax__calendar_active  {  
-    color: #004080;   
-    font-weight: bold;   
-    background-color: #ffffff;  
-}  
-  
-.cal_Theme1 .ajax__calendar_today   {  
-    font-weight:bold;  
-}  
-  
-.cal_Theme1 .ajax__calendar_other,  
-.cal_Theme1 .ajax__calendar_hover .ajax__calendar_today,  
-.cal_Theme1 .ajax__calendar_hover .ajax__calendar_title {  
-    color: #bbbbbb;  
-} 
+.cal_Theme1 .ajax__calendar_container {
+    background-color: #e2e2e2;
+    border: solid 1px #cccccc;
+}
+
+.cal_Theme1 .ajax__calendar_header {
+    background-color: #ffffff;
+    margin-bottom: 4px;
+}
+
+.cal_Theme1 .ajax__calendar_title,
+.cal_Theme1 .ajax__calendar_next,
+.cal_Theme1 .ajax__calendar_prev {
+    color: #004080;
+    padding-top: 3px;
+}
+
+.cal_Theme1 .ajax__calendar_body {
+    background-color: #e9e9e9;
+    border: solid 1px #cccccc;
+}
+
+.cal_Theme1 .ajax__calendar_dayname {
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 4px;
+    margin-top: 2px;
+}
+
+.cal_Theme1 .ajax__calendar_day {
+    text-align: center;
+}
+
+.cal_Theme1 .ajax__calendar_hover .ajax__calendar_day,
+.cal_Theme1 .ajax__calendar_hover .ajax__calendar_month,
+.cal_Theme1 .ajax__calendar_hover .ajax__calendar_year,
+.cal_Theme1 .ajax__calendar_active {
+    color: #004080;
+    font-weight: bold;
+    background-color: #ffffff;
+}
+
+.cal_Theme1 .ajax__calendar_today {
+    font-weight: bold;
+}
+
+.cal_Theme1 .ajax__calendar_other,
+.cal_Theme1 .ajax__calendar_hover .ajax__calendar_today,
+.cal_Theme1 .ajax__calendar_hover .ajax__calendar_title {
+    color: #bbbbbb;
+}
+
+.textBoxCentrado {
+    text-align: center;
+    width: 95%;
+}
+
+.tabla {
+    border-style: none;
+    border-color: silver;
+}
+
+.fila {
+    float: left;
+    width: 100%;
+}
+
+.celda {
+    border-style: solid;
+    border-color: #399EC5;
+    border-right-width: 1px;
+    width: 10%;
+}
+
+.celdaTitulo {
+    background-color: #399EC5;
+    color: white;
+    height: 30px;
+}
+
+.celdaControl {
+    height: 25px;
+}
+
+.calendar {
+    position: absolute;
+    z-index: 9999;
+}
+
+.ui-autocomplete {
+    position: absolute;
+    cursor: default;
+    z-index: 999999 !important;
+}
+
+.dropDown {
+    position: absolute;
+    z-index: 9999 !important;
+}

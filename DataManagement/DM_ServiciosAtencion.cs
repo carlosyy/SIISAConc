@@ -69,27 +69,13 @@ namespace DataManagement
         // adiciona una nueva servicio de Atención
         public Int32 AddServiciosAtencion(ServiciosAtencionEntidad oServiciosAtencion)
         {
-            Int32 retorno = 0;            
-            StringBuilder sbServiciosAtencion = new StringBuilder();
-            sbServiciosAtencion.Append("INSERT INTO serviciosAtencion (");
-            sbServiciosAtencion.Append(" tipoAutorizacion");
-            sbServiciosAtencion.Append(", noAutorizacion");
-            sbServiciosAtencion.Append(", codServ");
-            sbServiciosAtencion.Append(", radicado");
-            sbServiciosAtencion.Append(", idUser");
-            sbServiciosAtencion.Append(" )");
-            sbServiciosAtencion.Append(" VALUES (");
-            sbServiciosAtencion.Append(" '" + oServiciosAtencion.tipoAutorizacion + "'");
-            sbServiciosAtencion.Append(", '" + oServiciosAtencion.noAutorizacion + "'");
-            sbServiciosAtencion.Append(", '" + oServiciosAtencion.codServ + "'");
-            sbServiciosAtencion.Append(", '" + oServiciosAtencion.radicado + "'");
-            sbServiciosAtencion.Append(", '" + oServiciosAtencion.idUser + "'");
-            sbServiciosAtencion.Append(" )");
+            Int32 retorno = 0;
+            String sQuery = String.Format("EXEC SPI_ServiciosAtencion @tipoAutorizacion={0}, @noAutorizacion='{1}', @codServ='{2}', @radicado='{3}', @idUser={4}, @indSeleccion={5}, @txtAutoCompletar='{6}'", oServiciosAtencion.tipoAutorizacion, oServiciosAtencion.noAutorizacion, oServiciosAtencion.codServ, oServiciosAtencion.radicado, oServiciosAtencion.idUser, oServiciosAtencion.indexSeleccion, oServiciosAtencion.txtBuscado);
 
             try
             {
                 oDataAccess.open();
-                retorno = oDataAccess.executeNonQuery(CommandType.Text, sbServiciosAtencion.ToString());
+                retorno = oDataAccess.executeNonQuery(CommandType.Text, sQuery);
                 
             }
             catch (DbException ex)

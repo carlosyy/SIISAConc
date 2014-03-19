@@ -68,6 +68,7 @@
     <Content Include="Concurrencia\Auditoria.aspx" />
     <Content Include="Concurrencia\CargueConcurrencia.aspx" />
     <Content Include="Concurrencia\concurrencia.aspx" />
+    <Content Include="Concurrencia\ListaAuditoria.aspx" />
     <Content Include="CSS\anytime.css" />
     <Content Include="CSS\images\ui-anim_basic_16x16.gif" />
     <Content Include="CSS\images\ui-bg_flat_75_ffffff_40x100.png" />
@@ -100,6 +101,7 @@
     <Content Include="Images\icons\bi\imprimir.png" />
     <Content Include="Images\icons\bi\imprimirCG.png" />
     <Content Include="Images\icons\bi\mas.png" />
+    <Content Include="Images\icons\bi\menos.png" />
     <Content Include="Images\icons\bi\nuevo.png" />
     <Content Include="Images\icons\bi\nuevoRips.png" />
     <Content Include="Images\icons\bi\ok.png" />
@@ -151,6 +153,7 @@
     </Content>
     <Content Include="webControls\areasAtencion\ctrAreasAtencion.ascx" />
     <Content Include="webControls\auditoria\ctrAuditoria.ascx" />
+    <Content Include="webControls\auditoria\ctrListaAuditoria.ascx" />
     <Content Include="webControls\concurrencia\ctrAddPacteConcurr.ascx" />
     <Content Include="webControls\concurrencia\ctrAtencEstablecidas.ascx" />
     <Content Include="webControls\concurrencia\ctrBusqueda.ascx" />
@@ -162,6 +165,7 @@
     <Content Include="webControls\dane\ctrDane.ascx" />
     <Content Include="webControls\dane\ctrDeptoMpio.ascx" />
     <Content Include="webControls\dx\ctrDdlDx.ascx" />
+    <Content Include="webControls\dx\CtrDxLista.ascx" />
     <Content Include="webControls\entidades\ctrDdlNitNombre.ascx" />
     <Content Include="webControls\entidades\ctrEntidad.ascx" />
     <Content Include="webControls\entidades\ctrlistaEntidad.ascx" />
@@ -169,6 +173,7 @@
     <Content Include="webControls\especialidad\ctrAddEspecialidad.ascx" />
     <Content Include="webControls\especialidad\ctrDdlEspecialidad.ascx" />
     <Content Include="webControls\especialidad\ctrListaEspecialidad.ascx" />
+    <Content Include="webControls\estadoAtenc\ctrEstadoAtenc.ascx" />
     <Content Include="webControls\eventosAdversos\ctrEventosAdversos.ascx" />
     <Content Include="webControls\inoportunidad\ctrInoportunidad.ascx" />
     <Content Include="webControls\login\ctrLogin.ascx" />
@@ -205,6 +210,13 @@
     </Compile>
     <Compile Include="Concurrencia\concurrencia.aspx.designer.cs">
       <DependentUpon>concurrencia.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Concurrencia\ListaAuditoria.aspx.cs">
+      <DependentUpon>ListaAuditoria.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Concurrencia\ListaAuditoria.aspx.designer.cs">
+      <DependentUpon>ListaAuditoria.aspx</DependentUpon>
     </Compile>
     <Compile Include="default.aspx.cs">
       <DependentUpon>default.aspx</DependentUpon>
@@ -264,6 +276,13 @@
     </Compile>
     <Compile Include="webControls\auditoria\ctrAuditoria.ascx.designer.cs">
       <DependentUpon>ctrAuditoria.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="webControls\auditoria\ctrListaAuditoria.ascx.cs">
+      <DependentUpon>ctrListaAuditoria.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="webControls\auditoria\ctrListaAuditoria.ascx.designer.cs">
+      <DependentUpon>ctrListaAuditoria.ascx</DependentUpon>
     </Compile>
     <Compile Include="webControls\concurrencia\ctrAddPacteConcurr.ascx.cs">
       <DependentUpon>ctrAddPacteConcurr.ascx</DependentUpon>
@@ -342,6 +361,13 @@
     <Compile Include="webControls\dx\ctrDdlDx.ascx.designer.cs">
       <DependentUpon>ctrDdlDx.ascx</DependentUpon>
     </Compile>
+    <Compile Include="webControls\dx\CtrDxLista.ascx.cs">
+      <DependentUpon>CtrDxLista.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="webControls\dx\CtrDxLista.ascx.designer.cs">
+      <DependentUpon>CtrDxLista.ascx</DependentUpon>
+    </Compile>
     <Compile Include="webControls\entidades\ctrDdlNitNombre.ascx.cs">
       <DependentUpon>ctrDdlNitNombre.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -390,6 +416,13 @@
     </Compile>
     <Compile Include="webControls\especialidad\ctrListaEspecialidad.ascx.designer.cs">
       <DependentUpon>ctrListaEspecialidad.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="webControls\estadoAtenc\ctrEstadoAtenc.ascx.cs">
+      <DependentUpon>ctrEstadoAtenc.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="webControls\estadoAtenc\ctrEstadoAtenc.ascx.designer.cs">
+      <DependentUpon>ctrEstadoAtenc.ascx</DependentUpon>
     </Compile>
     <Compile Include="webControls\eventosAdversos\ctrEventosAdversos.ascx.cs">
       <DependentUpon>ctrEventosAdversos.ascx</DependentUpon>

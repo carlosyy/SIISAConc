@@ -355,7 +355,7 @@
                                         <asp:Label runat="server" ID="lblPuntaje" Text='<%# DataBinder.Eval(Container.DataItem, "puntaje") %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:BoundField HeaderText="Estado" DataField="estadoRad" />
+                                <asp:BoundField HeaderText="Estado" DataField="estadoAtenc" />
                                 <asp:TemplateField>
                                     <ItemTemplate>
                                         <asp:Label runat="server" ID="lblBtnEstablecer"></asp:Label>

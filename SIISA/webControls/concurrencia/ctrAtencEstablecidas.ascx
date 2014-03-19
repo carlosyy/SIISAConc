@@ -13,9 +13,9 @@
         return false;
     }
 </script>
-<asp:UpdatePanel runat="server" ID="uppAtencEstab">
+<asp:UpdatePanel runat="server" ID="uupAtenciones">
     <ContentTemplate>
-        <asp:Button runat="server" ClientIDMode="Static" ID="btnGetAtencEstab" OnClick="btnGetAtencEstab_OnClick" Style="display: none;" />
+        <asp:Button runat="server" ID="btnGetAtencEstab" Style="display:none" OnClick="btnGetAtencEstab_Click" ClientIDMode="Static" />
         <asp:GridView ID="gvAuditorias" runat="server" AutoGenerateColumns="False" EmptyDataText="Sin registros" Width="100%" DataKeyNames="idAtencion">
             <Columns>
                 <asp:BoundField HeaderText="Radicado" DataField="radicado" />
@@ -26,7 +26,7 @@
                 <asp:BoundField HeaderText="Cama" DataField="cama" />
                 <asp:BoundField HeaderText="Tipo de <br />Estancia" DataField="tipoEstancia" HtmlEncode="False" />
                 <asp:BoundField HeaderText="Dias <br />Estancia" DataField="diasEstancia" HtmlEncode="False" />
-                <asp:BoundField HeaderText="Estado" DataField="estadoRad" />
+                <asp:BoundField HeaderText="Estado" DataField="estadoAtenc" />
                 <asp:TemplateField>
                     <ItemTemplate>
                         <img id="btnAuditar" src="../../Images/icons/bi/agregarenc.png" style="cursor: pointer" onclick="auditar(this);" />
@@ -36,6 +36,6 @@
         </asp:GridView>
     </ContentTemplate>
     <Triggers>
-        <asp:AsyncPostBackTrigger ControlID="btnGetAtencEstab" EventName="Click"/>
+        <ajax:AsyncPostBackTrigger ControlID="btnGetAtencEstab" EventName="Click" />
     </Triggers>
 </asp:UpdatePanel>

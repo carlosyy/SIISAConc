@@ -27,7 +27,7 @@ namespace Entities
         public String motivoSalida { get; set; }
         public String tipoEstancia { get; set; }
         public Int32 puntaje { get; set; }
-        public String estadoRad { get; set; }
+        public String estadoAtenc { get; set; }
         public Int32 idAtencion { get; set; }
         public String radicado { get; set; }
         public String nombreCompleto { get; set; }

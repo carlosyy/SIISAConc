@@ -15,7 +15,7 @@ namespace SIISAConc.Master
                 {
                     pnlMenu.Visible = false;
                     pnlUsuarioLogueado.Visible = false;
-                    Session.Timeout = 15;
+                    Session.Timeout = 60;
                 }
                 else
                 {

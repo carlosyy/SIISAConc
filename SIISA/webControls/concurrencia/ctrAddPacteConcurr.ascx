@@ -4,50 +4,6 @@
 
 <%@ Register src="../programas/ctrDdlProgramas.ascx" tagname="ctrDdlProgramas" tagprefix="uc2" %>
 
-<style>
-    .textBoxCentrado {
-        text-align: center;
-    }
-
-     .tabla {
-         border-style: none;
-         border-color: silver;
-     }
-
-    .fila {
-        float: left;
-        width: 10%;
-    }
-
-    .celda {
-        border-style: solid;
-        border-color: silver;
-        border-right-width: 1px;
-        width: 10%;
-    }
-
-    .celdaTitulo {
-        background-color: #608199;
-        color: white;
-        height: 30px;
-    }
-
-    .celdaControl {
-        height: 25px;
-    }
-
-    .calendar {
-        position: absolute;
-        z-index: 9999;
-    }
-
-    .ui-autocomplete {
-        position: absolute;
-        cursor: default;
-        z-index: 999999 !important;        
-    }
-
-</style>
 <script src="../../js/timePicker.js"></script>
 
 <script>
@@ -439,7 +395,7 @@
         </div>
     </div>
     <button type="button" style="width: 135px; height: 60px; cursor: pointer" onclick="guardar();">
-        <img src="../../Images/icons/bi/guardar.png" width="24" height="24" style="vertical-align: middle; horizontal-align: left;" alt="Guardar" />Guardar 
+        <img src="../../Images/icons/bi/guardar.png" width="24" height="24" style="vertical-align: middle; text-align: left;" alt="Guardar" />Guardar 
     </button>
     <asp:Button ID="btnGuardar" OnClick="btnGuardar_OnClick" ClientIDMode="Static" runat="server" style="display: none;" />
 </div>

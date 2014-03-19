@@ -21,11 +21,21 @@
 </head>
 <body>
     <script type="text/javascript">
+        $(document).ready(function () {
+            setWindowHeight();
+        });
         function salirApp() {
             if (confirm('¿Esta seguro de salir de la aplicacion?.')) {
                 __doPostBack("cerrar", "");
             }
         }
+
+        function setWindowHeight() {
+            var windowHeight = window.innerHeight;
+            document.body.style.height = windowHeight + "px";
+            $("#aspnetForm").height(windowHeight-70);            
+        }
+        window.addEventListener("resize", setWindowHeight, false);
     </script>
     <form id="form1" runat="server">
         <asp:ScriptManager ID="ScriptManager1" EnablePageMethods="true" runat="server">
@@ -33,7 +43,7 @@
                 <asp:ServiceReference Path="~/wbsSIISA.asmx" />
             </Services>
         </asp:ScriptManager>
-        <div id="principal" style="height: 620px">
+        <div id="principal" style="height: 100%">
             <div id="header" style="height: 60px">
                 <table width="100%">
                     <tr>
@@ -80,7 +90,7 @@
                     </tr>
                 </table>
             </div>
-            <div id="content" style="height: 560px">
+            <div id="content" style="height: 100%">
                 <asp:ContentPlaceHolder ID="cphContenido" runat="server">
                 </asp:ContentPlaceHolder>
             </div>

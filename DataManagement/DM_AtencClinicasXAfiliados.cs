@@ -13,11 +13,11 @@ namespace DataManagement
     {
         readonly SQLConn oDataAccess = new SQLConn();
 
-        public AtencClinicasXAfiliado buscar(String docIden = "", Int32 programa = 0, String nit = "", String codDx = "", String fecDesde = "", String fecHasta = "", String filtroNombre = "", Int32 limitInf = 0, Int32 limitSup = 0, Int32 orden = 0, Int32 idEstadoRev = 0)
+        public AtencClinicasXAfiliado buscar(String docIden = "", Int32 programa = 0, String nit = "", String codDx = "", String fecDesde = "", String fecHasta = "", String filtroNombre = "", Int32 limitInf = 0, Int32 limitSup = 0, Int32 orden = 0, Int32 idEstadoAtenc = 0)
         {
             IDataReader reader;
             AtencClinicasXAfiliado lista = new AtencClinicasXAfiliado();
-            String sQuery = String.Format("EXEC SP_BuscarAtencClinicas @docIden='{0}', @programa={1}, @nit='{2}', @codDx='{3}', @fecDesde='{4}', @fecHasta='{5}', @filtroNombre='{6}', @limitInf={7}, @limitSup={8}, @orden={9}, @idEstadoRev={10}", docIden, programa, nit, codDx, fecDesde, fecHasta, filtroNombre, limitInf, limitSup, orden, idEstadoRev);
+            String sQuery = String.Format("EXEC SP_BuscarAtencClinicas @docIden='{0}', @programa={1}, @nit='{2}', @codDx='{3}', @fecDesde='{4}', @fecHasta='{5}', @filtroNombre='{6}', @limitInf={7}, @limitSup={8}, @orden={9}, @idEstadoAtenc={10}", docIden, programa, nit, codDx, fecDesde, fecHasta, filtroNombre, limitInf, limitSup, orden, idEstadoAtenc);
 
             try
             {
@@ -47,7 +47,7 @@ namespace DataManagement
                     ac.tipoEstancia = reader["abrevTipoEstancia"] != DBNull.Value ? (String)reader["abrevTipoEstancia"] : String.Empty;
                     ac.puntaje = reader["puntaje"].ToString() != "" ? Int32.Parse(reader["puntaje"].ToString()) : 0;
                     ac.diasEstancia = reader["diasEstancia"].ToString() != "" ? Int32.Parse(reader["diasEstancia"].ToString()) : 0;
-                    ac.estadoRad = reader["estadoRad"].ToString();
+                    ac.estadoAtenc = reader["estadoAtenc"].ToString();
                     ac.idAtencion = Int32.Parse(reader["idAtencion"].ToString());
                     lista.Add(ac);
                 }
@@ -86,7 +86,7 @@ namespace DataManagement
                     ac.fecIngreso = reader["fecIngreso"].ToString();
                     ac.idAtencion = Int32.Parse(reader["idAtencion"].ToString());
                     ac.radicado = reader["radicado"].ToString();
-                    ac.estadoRad = reader["estadoRad"].ToString();
+                    ac.estadoAtenc = reader["estadoAtenc"].ToString();
                     ac.nombreCompleto = reader["apellido_a"] + " " + reader["apellido_b"] + " " + reader["nombre_a"] + " " + reader["nombre_b"];
                     ac.tipoEstancia = reader["abrevTipoEstancia"].ToString();
                     lista.Add(ac);
@@ -218,7 +218,7 @@ namespace DataManagement
                     ac.tipoEstancia = reader["abrevTipoEstancia"] != DBNull.Value ? (String)reader["abrevTipoEstancia"] : String.Empty;
                     //ac.puntaje = reader["puntaje"].ToString() != "" ? Int32.Parse(reader["puntaje"].ToString()) : 0;
                     ac.diasEstancia = reader["diasEstancia"].ToString() != "" ? Int32.Parse(reader["diasEstancia"].ToString()) : 0;
-                    ac.estadoRad = reader["estadoRad"].ToString();
+                    ac.estadoAtenc = reader["estadoAtenc"].ToString();
                     ac.idAtencion = Int32.Parse(reader["idAtencion"].ToString());
                     ac.sexo = reader["sexo"].ToString();
                     lista.Add(ac);

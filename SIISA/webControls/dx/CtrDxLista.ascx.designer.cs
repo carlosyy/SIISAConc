@@ -7,36 +7,27 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SIISAConc.webControls.concurrencia {
+namespace SIISAConc.webControls.dx {
     
     
-    public partial class CtrAtencEstablecidas {
+    public partial class CtrDxLista {
         
         /// <summary>
-        /// uupAtenciones control.
+        /// txtBusqDx control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel uupAtenciones;
+        protected global::System.Web.UI.WebControls.TextBox txtBusqDx;
         
         /// <summary>
-        /// btnGetAtencEstab control.
+        /// ddlDx control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnGetAtencEstab;
-        
-        /// <summary>
-        /// gvAuditorias control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvAuditorias;
+        protected global::System.Web.UI.WebControls.DropDownList ddlDx;
     }
 }

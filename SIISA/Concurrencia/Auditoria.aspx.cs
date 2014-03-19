@@ -48,29 +48,28 @@ namespace SIISAConc.Concurrencia
         public static ServiciosAtencionEntidad[] getServiciosAtencionxRadicado(String radicado)
         {
             B_ServiciosAtencion oBServiciosAtencion = new B_ServiciosAtencion();
-            var query = from item in oBServiciosAtencion.getServiciosAtencionxRadicado(radicado).AsEnumerable()
-                        select new ServiciosAtencionEntidad
-                        {
-                            idServ = item.idServ,
-                            codServ = item.codServ,
-                            descripServ = item.descripServ,
-                            concepto = item.concepto,
-                            noAutorizacion = item.noAutorizacion
-                        };
-            IEnumerable query1 = query.ToList<ServiciosAtencionEntidad>();
-            ServiciosAtencionEntidad[] array = query1.Cast<ServiciosAtencionEntidad>().ToArray();
-            return array;
-            //return oBServiciosAtencion.getServiciosAtencionxRadicado(radicado).ToArray();
+            IEnumerable query = from item in oBServiciosAtencion.getServiciosAtencionxRadicado(radicado).AsEnumerable()
+                                select new ServiciosAtencionEntidad
+                                {
+                                    idServ = item.idServ,
+                                    codServ = item.codServ,
+                                    descripServ = item.descripServ,
+                                    concepto = item.concepto,
+                                    noAutorizacion = item.noAutorizacion
+                                };            
+            return query.Cast<ServiciosAtencionEntidad>().ToArray();
         }
 
         [WebMethod]
-        public static Int32 AddServiciosAtencion(Int32 tipoAutorizacion, String noAutorizacion, String codServ, Int32 idUser, String radicado)
+        public static Int32 AddServiciosAtencion(Int32 tipoAutorizacion, String noAutorizacion, String codServ, Int32 idUser, String radicado, Int32 indice, String txtBuscado)
         {
             ServiciosAtencionEntidad oServiciosAtencion = new ServiciosAtencionEntidad();
             oServiciosAtencion.tipoAutorizacion = tipoAutorizacion;
             oServiciosAtencion.noAutorizacion = noAutorizacion;
             oServiciosAtencion.codServ = codServ;
             oServiciosAtencion.radicado = radicado;
+            oServiciosAtencion.indexSeleccion = indice;
+            oServiciosAtencion.txtBuscado = txtBuscado;
             oServiciosAtencion.idUser = Int32.Parse(HttpContext.Current.Session["idUser"].ToString());
             B_ServiciosAtencion oB_ServiciosAtencion = new B_ServiciosAtencion();
             return oB_ServiciosAtencion.AddServiciosAtencion(oServiciosAtencion);

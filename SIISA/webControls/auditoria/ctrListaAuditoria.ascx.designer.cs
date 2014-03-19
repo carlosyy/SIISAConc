@@ -7,63 +7,45 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SIISAConc.Concurrencia {
+namespace SIISAConc.webControls.auditoria {
     
     
-    public partial class Auditoria {
+    public partial class ctrListaAuditoria {
         
         /// <summary>
-        /// ctrAuditoria control.
+        /// txtFechaAtencion control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::SIISAConc.webControls.auditoria.ctrAuditoria ctrAuditoria;
+        protected global::System.Web.UI.WebControls.TextBox txtFechaAtencion;
         
         /// <summary>
-        /// ctrProcedimientos control.
+        /// ctrEstadoAtenc control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::SIISAConc.webControls.procedimientos.ctrProcedimientos ctrProcedimientos;
+        protected global::SIISA.Controls.estadoAtenc.ctrEstadoAtenc ctrEstadoAtenc;
         
         /// <summary>
-        /// CtrDxLista control.
+        /// btnBuscarAtencEstab control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::SIISAConc.webControls.dx.CtrDxLista CtrDxLista;
+        protected global::System.Web.UI.WebControls.Button btnBuscarAtencEstab;
         
         /// <summary>
-        /// ctrHallazgos control.
+        /// ctrAtencEstablecidas control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::SIISAConc.webControls.concurrencia.ctrNotas ctrHallazgos;
-        
-        /// <summary>
-        /// ctrNotas control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::SIISAConc.webControls.concurrencia.ctrNotas1 ctrNotas;
-        
-        /// <summary>
-        /// ctrPtesConcur control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::SIISAConc.webControls.concurrencia.CtrPtesConcur ctrPtesConcur;
+        protected global::SIISAConc.webControls.concurrencia.CtrAtencEstablecidas ctrAtencEstablecidas;
     }
 }

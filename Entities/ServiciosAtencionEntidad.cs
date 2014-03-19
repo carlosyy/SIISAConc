@@ -11,7 +11,8 @@ namespace Entities
         public Int32 tipoAutorizacion { get; set; }
         public Int32 idUser { get; set; }
         public String concepto { get; set; }
-
         public String descripServ { get; set; }
+        public String txtBuscado { get; set; }
+        public Int32 indexSeleccion { get; set; }
     }
 }

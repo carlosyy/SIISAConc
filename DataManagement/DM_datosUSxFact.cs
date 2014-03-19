@@ -952,7 +952,7 @@ namespace DataManagement
 			sbdatosUSxFact.Append(" ON E.idDatosUS = A.idDatosUS INNER JOIN");
 			sbdatosUSxFact.Append(" entidad AS D INNER JOIN");
 			sbdatosUSxFact.Append(" radicacion AS C ON D.nit = C.nit ON E.radicado = C.radicado");
-			sbdatosUSxFact.Append(" WHERE C.radicado = '" + radicado + "' and idestadorad='6'");
+			sbdatosUSxFact.Append(" WHERE C.radicado = '" + radicado + "' and idestadoAtenc='6'");
 			sbdatosUSxFact.Append(" ORDER BY A.idDatosUs, B.apellido_a, B.nombre_a ");
 
 			try

@@ -156,7 +156,7 @@ namespace SIISAConc.webControls.concurrencia
                     }
 
                     lblFiltrado.Text = " de " + _numPages.ToString();
-                    eCenso = oB_AtencClinicasXAfiliados.buscar(docIden: txtBusqDoc.Text, programa: Int32.Parse(hfPrograma.Value == "" ? "0" : hfPrograma.Value), nit: hfNit.Value, codDx: hfCodDx.Value, fecDesde: txtFecDesde.Text, fecHasta: txtFecHasta.Text, filtroNombre: txtBusqNombre.Text, limitInf: _limitInf, limitSup: _limitSup, orden: orden, idEstadoRev: 1);
+                    eCenso = oB_AtencClinicasXAfiliados.buscar(docIden: txtBusqDoc.Text, programa: Int32.Parse(hfPrograma.Value == "" ? "0" : hfPrograma.Value), nit: hfNit.Value, codDx: hfCodDx.Value, fecDesde: txtFecDesde.Text, fecHasta: txtFecHasta.Text, filtroNombre: txtBusqNombre.Text, limitInf: _limitInf, limitSup: _limitSup, orden: orden, idEstadoAtenc: 1);
                 }
                 else if (cantRegs == 0)
                 {
@@ -182,7 +182,7 @@ namespace SIISAConc.webControls.concurrencia
                     eCenso = oB_AtencClinicasXAfiliados.buscar(docIden: txtBusqDoc.Text,
                         programa: Int32.Parse(hfPrograma.Value == "" ? "0" : hfPrograma.Value), nit: hfNit.Value,
                         codDx: hfCodDx.Value, fecDesde: txtFecDesde.Text, fecHasta: txtFecHasta.Text,
-                        filtroNombre: txtBusqNombre.Text, limitInf: 0, limitSup: 0, orden: orden, idEstadoRev: 1);
+                        filtroNombre: txtBusqNombre.Text, limitInf: 0, limitSup: 0, orden: orden, idEstadoAtenc: 1);
                 }
             }
             catch (Exception ex)

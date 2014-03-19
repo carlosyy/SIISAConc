@@ -44,7 +44,7 @@
 </style>
 
 <asp:HiddenField runat="server" ID="hfRadicado" ClientIDMode="Static"/>
-<div class="tabla" style="height: 500px; width: 100%;">
+<div class="tabla" style="height:100%; width: 100%;">
     <div class="fila" style="width: 17%;">
         <div class="celda celdaTitulo" style="width: 100%;">
             Documento

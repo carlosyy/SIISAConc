@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="DM_Afiliados.cs" />
     <Compile Include="DM_AutoCompletar.cs" />
+    <Compile Include="DM_EstadoAtenc.cs" />
     <Compile Include="DM_Medicos.cs" />
     <Compile Include="DM_AreasAtencion.cs" />
     <Compile Include="DM_AtencClinicasXAfiliados.cs" />

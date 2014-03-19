@@ -53,6 +53,7 @@
   <ItemGroup>
     <Compile Include="B_Afiliados.cs" />
     <Compile Include="B_AutoCompletar.cs" />
+    <Compile Include="B_EstadoAtenc.cs" />
     <Compile Include="B_Medicos.cs" />
     <Compile Include="B_AreasAtencion.cs" />
     <Compile Include="B_AtencClinicasXAfiliados.cs" />

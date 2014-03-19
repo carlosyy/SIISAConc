@@ -46,6 +46,8 @@
   <ItemGroup>
     <Compile Include="Afiliado.cs" />
     <Compile Include="AfiliadosEntidad.cs" />
+    <Compile Include="estadoAtenc.cs" />
+    <Compile Include="estadoAtencEntidad.cs" />
     <Compile Include="ServiciosAtencion.cs" />
     <Compile Include="ServiciosAtencionEntidad.cs" />
     <Compile Include="AutoCompletar.cs" />

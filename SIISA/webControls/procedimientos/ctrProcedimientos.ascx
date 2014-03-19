@@ -1,12 +1,13 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="ctrProcedimientos.ascx.cs" Inherits="SIISAConc.webControls.procedimientos.ctrProcedimientos" %>
 <script>
     $(document).ready(function () {
+        $('#divGrillaProc').height($('#divGrillaProc').parent().height() * 0.7);
         getServiciosAtencion();
         $("#txtBusqServ").change(function () {
             if ($("#txtBusqServ").val().length > 5) {
                 getServicios();
             } else {
-                $(this).notify('Debe establecer un criterio de búsqueda más largo.');
+                $(this).notify('Debe establecer un criterio de búsqueda más largo.', { position: "top" });
                 $(this).select();
             }
             return false;
@@ -60,14 +61,19 @@
                 });
             },
 
-            select: function (event, ui) {
+            focus: function (event, ui) {                
+                $("#txtBusqServ").val(ui.item.value);
+            },
+
+            select: function (event, ui) {                
                 window.sessionStorage.setItem("indexSeleccion", ui.item.indexSeleccion);
-                $("#txtBusqServ").change();
+                $("#txtBusqServ").change();                
                 return false;
             },
+
             minLength: 2
         });
-    });
+    });    
 
     function getIndexBusqueda(indexSeleccion) {
         $("#ddlServicio").get(0).selectedIndex = indexSeleccion;
@@ -97,7 +103,7 @@
         limpiarControles();
         var params = new Object();
         params.radicado = $("#hfRadicado").val();
-        params = JSON.stringify(params);        
+        params = JSON.stringify(params);
         $.ajax({
             type: "POST",
             url: "Auditoria.aspx/getServiciosAtencionxRadicado",
@@ -109,7 +115,8 @@
                 $("[id*=gvServiciosAtencion] tr").not($("[id*=gvServiciosAtencion] tr:first-child")).remove();
                 for (var i = 0; i < msg.d.length; i++) {                    
                     $("#gvServiciosAtencion").append("<tr><td>" + msg.d[i].codServ + "</td><td>" + msg.d[i].descripServ + "</td><td>" + msg.d[i].noAutorizacion + "</td><td>" + msg.d[i].concepto + "</td></tr>");
-                }                
+                }
+                $('#gvServiciosAtencion').height($('#gvServiciosAtencion').parent().height());
             },
             error: function (msg) {
                 alert("error " + msg.responseText);
@@ -126,6 +133,8 @@
             params.codServ = $("#ddlServicio").val();            
             params.idUser = '<%= Session["idUser"].ToString()%> ';
             params.radicado = $("#hfRadicado").val();
+            params.indice = $("#ddlServicio").get(0).selectedIndex;
+            params.txtBuscado = $("#txtBusqServ").val();
             params = JSON.stringify(params);
 
             $.ajax({
@@ -172,80 +181,97 @@
         return ok;
     }
 
-    function limpiarControles() {        
+    function limpiarControles() {
         $("#txtBusqServ").val("");
         $("#ddlServicio").val("0");
         $("#lblConcepto").text("");
         $("#txtAutorizacion").val("");
-        $("#ddlTipoAutoriz").val("");        
+        $("#ddlTipoAutoriz").val("0");
         $("#lblServRips").text("");
         $("#txtBusqServ").select();
     }
+
+    function pressKeyGuardar(event) {
+        var keyPress = event.keyCode;
+        switch (keyPress) {
+            case 13:
+            case 32:
+                event.preventDefault();
+                addServiciosAtencion();
+                break;
+        }
+    }
+
+    
 </script>
-<table>                        
-    <tr>                
-        <td colspan="8" style="background-color: #DADADA; text-align: center; color: #0000FF;">
-            <div style="width:100%">
-                Datos del Servicio
-            </div>                    
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <div style="float:left;width:59%">
-                Busq Servicio
-            </div>
-        </td>                
-        <td colspan="7">
-            Cod/Descrip Servicio
-        </td>
-    </tr>
-    <tr>
-        <td>
+<div class="tabla" style="width: 100%;">
+    <div class="fila" style="width: 100%;">
+        <div class="celda celdaTitulo" style="text-align:center; width: 100%;">
+            Datos del Servicio
+        </div>
+    </div>
+    <div class="fila" style="width: 25%;">
+        <div class="celda celdaTitulo" style="width: 100%;">
+            Busq Servicio
+        </div>
+        <div class="celda celdaControl" style="width: 100%;">
             <asp:TextBox ID="txtBusqServ" AutoCompleteType="Search" TabIndex="1" runat="server" ClientIDMode="Static"></asp:TextBox>
-        </td>
-        <td colspan="7">
-            <asp:DropDownList ID="ddlServicio" TabIndex="2" runat="server" Width="650px" ClientIDMode="Static"></asp:DropDownList>
-        </td>
-    </tr>
-    <tr>
-        <td colspan="3">
+        </div>
+    </div>
+    <div class="fila" style="width: 75%;">
+        <div class="celda celdaTitulo" style="width: 100%;">
+            Cod/Descrip Servicio
+        </div>
+        <div class="celda celdaControl" style="width: 100%; z-index:9999 !important">
+            <asp:DropDownList ID="ddlServicio" TabIndex="2" CssClass="dropDown" runat="server" Width="650px" ClientIDMode="Static"></asp:DropDownList>
+        </div>
+    </div>
+    <div class="fila" style="width: 30%;">
+        <div class="celda celdaTitulo" style="width: 100%;">        
             Concepto
-        </td>
-        <td>
+        </div>
+        <div class="celda celdaControl" style="width: 100%;">
+            <asp:Label ID="lblConcepto" ClientIDMode="Static" runat="server"></asp:Label>
+        </div>
+    </div>
+    <div class="fila" style="width: 30%;">
+        <div class="celda celdaTitulo" style="width: 100%;"> 
             #Autorización
-        </td>
-        <td>
-            Tipo Autoriz
-        </td>
-    </tr>
-    <tr>
-        <td colspan="3">
-            <asp:Label ID="lblConcepto" ClientIDMode="Static" runat="server" Width="263px"></asp:Label>
-        </td>
-        <td>
+        </div>
+        <div class="celda celdaControl" style="width: 100%;">
             <asp:TextBox ID="txtAutorizacion" ClientIDMode="Static" runat="server" TabIndex="4" ValidationGroup="datos" Width="104px">0</asp:TextBox>
-        </td>
-        <td>
+        </div>
+    </div>
+    <div class="fila" style="width: 30%;">
+        <div class="celda celdaTitulo" style="width: 100%;"> 
+            Tipo Autoriz
+        </div>
+        <div class="celda celdaControl" style="width: 100%;">
             <asp:DropDownList ID="ddlTipoAutoriz" runat="server" TabIndex="5" ClientIDMode="Static" >
                 <asp:ListItem Selected="True" Text=".::Seleccione::." Value="0"></asp:ListItem>
                 <asp:ListItem Text="Telefonica" Value="1"></asp:ListItem>
                 <asp:ListItem Text="Regional" Value="2"></asp:ListItem>
-            </asp:DropDownList>                    
-        </td>
-        <td>
-            <img style="cursor: pointer" alt="Guardar Servicio ( Alt + G)" accesskey="g" tabindex="9" src="../../Images/icons/bi/guardar.png" onclick="addServiciosAtencion();" width="25" height="25" id="btnGuardarServ" />            
-        </td>
-    </tr>
-</table>
+            </asp:DropDownList>
+        </div>
+    </div>
+    <div class="fila" style="height:61px; width: 10%;">        
+        <div class="celda celdaControl" style="height:100%; text-align:center; width: 100%;">
+            Guardar
+            <img style="cursor: pointer; vertical-align: middle;" onkeypress="pressKeyGuardar(event);" alt="Guardar Servicio ( Alt + G)" accesskey="g" tabindex="9" src="../../Images/icons/bi/guardar.png" onclick="addServiciosAtencion();" width="35" height="35" id="btnGuardarServ" />            
+        </div>    
+    </div>
+</div>
 <asp:Label ID="lblServRips" runat="server" Font-Bold="True" ForeColor="Blue" ClientIDMode="Static"></asp:Label>        
 <br>
 <br>
-<asp:GridView ID="gvServiciosAtencion" runat="server" ClientIDMode="Static" AutoGenerateColumns="false">
-    <Columns>
-        <asp:BoundField ItemStyle-Width="150px" DataField="codServ" HeaderText="Cod procedimiento" />
-        <asp:BoundField ItemStyle-Width="150px" DataField="descripServ" HeaderText="Nombre procedimiento" />
-        <asp:BoundField ItemStyle-Width="150px" DataField="noAutorizacion" HeaderText="No. Autorización" />
-        <asp:BoundField ItemStyle-Width="150px" DataField="concepto" HeaderText="Concepto" />
-    </Columns>
-</asp:GridView>
+<h3 style="text-align:center">Procedimientos agregados</h3> 
+<div id="divGrillaProc" style="float:left; width:100%; overflow: auto;">
+    <asp:GridView ID="gvServiciosAtencion" runat="server" ClientIDMode="Static" AutoGenerateColumns="false">
+        <Columns>
+            <asp:BoundField ItemStyle-Width="150px" DataField="codServ" HeaderText="Cod procedimiento" />
+            <asp:BoundField ItemStyle-Width="150px" DataField="descripServ" HeaderText="Nombre procedimiento" />
+            <asp:BoundField ItemStyle-Width="150px" DataField="noAutorizacion" HeaderText="No. Autorización" />
+            <asp:BoundField ItemStyle-Width="150px" DataField="concepto" HeaderText="Concepto" />
+        </Columns>
+    </asp:GridView>
+</div>
