@@ -111,6 +111,7 @@
     <Content Include="Images\icons\bi\onebit_50.png" />
     <Content Include="Images\icons\bi\pdf.png" />
     <Content Include="Images\icons\bi\print.png" />
+    <Content Include="Images\icons\bi\radioButton.png" />
     <Content Include="Images\icons\bi\refrescar.png" />
     <Content Include="Images\icons\cancelar_opt_opt.png" />
     <Content Include="Images\icons\Close.png" />
@@ -119,6 +120,8 @@
     <Content Include="Images\INVERJCJM.png" />
     <Content Include="Images\masa.png" />
     <Content Include="js\anytime.js" />
+    <Content Include="js\icheck\icheck.js" />
+    <Content Include="js\icheck\skins\square\icheck.js" />
     <Content Include="js\jquery-1.10.2.min.js" />
     <Content Include="js\jquery-ui-1.10.4.custom.js" />
     <Content Include="default.aspx" />

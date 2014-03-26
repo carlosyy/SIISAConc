@@ -66,22 +66,23 @@ namespace DataManagement
             }
         }
 
-        public Dx GetCodDesc(String codDesc = "")
+        public Dx GetCodDesc(String codDesc = "", Int32 top = 0)
         {
             StringBuilder sbDx = new StringBuilder();
             IDataReader reader;
             Dx lista = new Dx();
             DxEntidad oDx = new DxEntidad();
 
-            sbDx.Append("SELECT");
+            sbDx.Append("SELECT ");
+            if (top > 0) { sbDx.Append(" TOP (" + top + ")"); }
             sbDx.Append(" codDx + N' / ' + dx AS codDesc");
             sbDx.Append(", codDx");
             sbDx.Append(" FROM dx");
-            
+
             if (codDesc != "")
             {
                 sbDx.Append(" WHERE codDx + N' / ' + dx LIKE '%" + codDesc + "%'");
-            }            
+            }
 
             try
             {
@@ -93,7 +94,7 @@ namespace DataManagement
                     oDx = new DxEntidad();
                     oDx.codDx = reader["codDx"].ToString();
                     oDx.codYDx = reader["codDesc"].ToString();
-                    
+
 
                     lista.Add(oDx);
                 }
@@ -109,6 +110,6 @@ namespace DataManagement
             {
                 oDataAccess.close();
             }
-        }  
+        }
     }
 }

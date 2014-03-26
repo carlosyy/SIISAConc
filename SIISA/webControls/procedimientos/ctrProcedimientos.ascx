@@ -4,7 +4,7 @@
         $('#divGrillaProc').height($('#divGrillaProc').parent().height() * 0.7);
         getServiciosAtencion();
         $("#txtBusqServ").change(function () {
-            if ($("#txtBusqServ").val().length > 5) {
+            if ($(this).val().length > 5) {
                 getServicios();
             } else {
                 $(this).notify('Debe establecer un criterio de búsqueda más largo.', { position: "top" });
@@ -131,7 +131,7 @@
             params.tipoAutorizacion = $("#ddlTipoAutoriz").val();
             params.noAutorizacion = $("#txtAutorizacion").val();
             params.codServ = $("#ddlServicio").val();            
-            params.idUser = '<%= Session["idUser"].ToString()%> ';
+            params.idUser = 3;//'< % = Session["idUser"].ToString()%> '; //TODO: Cambiar
             params.radicado = $("#hfRadicado").val();
             params.indice = $("#ddlServicio").get(0).selectedIndex;
             params.txtBuscado = $("#txtBusqServ").val();
@@ -175,7 +175,7 @@
     function validarGuardar() {
         var ok = true;
         if ($("#ddlServicio").val() == "0") {
-            $("#ddlServicio").notify("Establezca el procedimiento a agregar.", "warning");
+            $("#ddlServicio").notify("Establezca el procedimiento a agregar.", "warn");
             ok = false;
         }
         return ok;
@@ -262,11 +262,12 @@
     </div>
 </div>
 <asp:Label ID="lblServRips" runat="server" Font-Bold="True" ForeColor="Blue" ClientIDMode="Static"></asp:Label>        
-<br>
-<br>
-<h3 style="text-align:center">Procedimientos agregados</h3> 
+<div style="float:left; height:15px; width: 100%;"></div>
+<div class="celda celdaTitulo" style="float:left; width: 100%; text-align:center"> 
+    Procedimientos agregados
+</div>
 <div id="divGrillaProc" style="float:left; width:100%; overflow: auto;">
-    <asp:GridView ID="gvServiciosAtencion" runat="server" ClientIDMode="Static" AutoGenerateColumns="false">
+    <asp:GridView ID="gvServiciosAtencion" runat="server" ClientIDMode="Static" AutoGenerateColumns="false" Width="100%">
         <Columns>
             <asp:BoundField ItemStyle-Width="150px" DataField="codServ" HeaderText="Cod procedimiento" />
             <asp:BoundField ItemStyle-Width="150px" DataField="descripServ" HeaderText="Nombre procedimiento" />

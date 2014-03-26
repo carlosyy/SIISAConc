@@ -58,10 +58,10 @@ namespace SIISAConc.Concurrencia
         }
 
         [WebMethod]
-        public static List<DxEntidad> getDx(String busqDx)
+        public static List<DxEntidad> getDx(String busqDx, Int32 top)
         {
             B_Dx oBDx = new B_Dx();
-            var query = from item in oBDx.GetCodDesc(busqDx).AsEnumerable()
+            var query = from item in oBDx.getBusqDx(busqDx, top).AsEnumerable()
                 select new DxEntidad
                 {
                     codDx = item.codDx,

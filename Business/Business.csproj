@@ -75,6 +75,7 @@
     <Compile Include="B_PertinenciaAtencion.cs" />
     <Compile Include="B_Programas.cs" />
     <Compile Include="B_Rips.cs" />
+    <Compile Include="B_DxAtencion.cs" />
     <Compile Include="B_ServiciosAtencion.cs" />
     <Compile Include="B_Servicios.cs" />
     <Compile Include="B_TipoAtenc.cs" />

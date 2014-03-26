@@ -6,42 +6,6 @@
     });
     
 </script>
-<style>
-    .tabla {
-         border-style: none;
-         border-color: silver;
-     }
-
-    .fila {
-        float: left;
-        width: 10%;
-    }
-
-    .celda {
-        border-style: solid;
-        border-color: silver;
-        border-right-width: 1px;
-        width: 10%;
-    }
-
-    .celdaTitulo {
-        background-color: #608199;
-        color: white;
-        height: 30px;
-    }
-
-    .celdaControl {
-        height: 25px;
-    }
-
-    .textBoxCentrado {
-        margin: 1%;
-        text-align: center;
-        position: relative;
-        width: 94%;
-    }
-     
-</style>
 
 <asp:HiddenField runat="server" ID="hfRadicado" ClientIDMode="Static"/>
 <div class="tabla" style="height:100%; width: 100%;">

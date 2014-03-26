@@ -26,6 +26,11 @@ namespace Business
         public Dx GetCodDesc(String codDesc)
         {
             return oDMDx.GetCodDesc(codDesc: codDesc);
-        }        
+        }
+
+        public Dx getBusqDx(String codDesc, Int32 top)
+        {
+            return oDMDx.GetCodDesc(codDesc: codDesc, top: top);
+        }
     }
 }

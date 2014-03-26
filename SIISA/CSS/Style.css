@@ -505,7 +505,7 @@ td.Solocentro {
 
 .celda {
     border-style: solid;
-    border-color: #399EC5;
+    border-color: silver;
     border-right-width: 1px;
     width: 10%;
 }
@@ -533,5 +533,36 @@ td.Solocentro {
 
 .dropDown {
     position: absolute;
-    z-index: 9999 !important;
+    z-index: 9999 !important;    
+}
+
+
+input[type=radio].css-checkbox {
+    display: none;
+}
+
+    input[type=radio].css-checkbox + label.css-label {
+        padding-left: 20px;
+        height: 15px;
+        display: inline-block;
+        line-height: 15px;
+        background-repeat: no-repeat;
+        background-position: 0 0;
+        font-size: 15px;
+        vertical-align: middle;
+        cursor: pointer;        
+    }
+
+    input[type=radio].css-checkbox:checked + label.css-label {
+        background-position: 0 -15px;
+    }
+label.css-label {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAeCAYAAADzXER0AAACzElEQVQ4jcWTS0gbURSG/8ykiTPCVJK0dkQkERfdKEWSWLMqCO0im1ZoEcUHlOJKKIFSGhelCwOlEISuxE1EbKVFuwqUgtvEPCg+Nl2IGUFMbJOgs5hkYibpYu7UJDpBaKEHBv7LnO+cyz3nN1RxHgNBgQLwBMAYgLsAbACyADYBrAD4FPPZK1q+oXoOdgP4DKAf+vEdwOOYz77/ByZgFMDNW5wRky5u3uNgFq0svZeTlJ5IqvBsKSE+z4hlAPgJYDDms+8b3OpVYwCcg3amFPDa2lkzfdLYUpKVNn84exwVCiYASQADFIARAE6eM2JOBwQA1kyfBLy2dp4zAoATwAgFYBwAptzXg606YG2BCRc3T47jFKmCQXvLQjNQC4+DWSTyDgV1HLCwtHAV2MrSe0RaKKhzRF5S7FeBc5LSQ2SegvpyiArF6avAm0LxKZFbFIBlAAjFT32SrLQ1AyVZaQvFT33kuEwBWAWQTItl+MPZY70C2pzT6qIkAaxeumFTLi7ocTALFpYW8pJij6QK06GE6LuwYX+921o0uKof6hjz5JofAazWuopq0sVEPiM5VxoT/rklK5Mu7qXHwaxbWfowJymdkVRheCkhvs2IZQpNLJkMeG1DrJkWG1tKssL5w9mNqFBw4hJLluZ0QABgzbQY8NqGeM5YwiWWfNVKwIx41j2zltm+9/6gOrOW2c6IZ91agQkXN0vq1VlyXesy9y33JX5Q7CucVRE/KPa9+ZoLa/88DkbLq7PkkZawm5b7aq+8m5Zva9rK0odE1lmyQ0vo5c07tXAvb/6h6ZykdBJZZ8lhLWH2vvWRu6tlh7lmgLurZef1A6tX+7cpFB8SuWVwB4VRACs8Zyx9GOdv6L02oI5rdDn9Ky2WTQDGai1p8oezG5KscHqgP5zdIKCuJStTLu6Fx8GsW1j6KC8pHZFUYTiUEN9d2LD/Zsnf67Ne0ezzzZoAAAAASUVORK5CYII=') /*../Images/icons/bi/radioButton.png*/;
+    *background-image: url(../Images/icons/bi/radioButton.png); /* For IE 6 and 7 */
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }

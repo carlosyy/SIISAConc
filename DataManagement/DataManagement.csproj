@@ -67,6 +67,7 @@
     <Compile Include="DM_Programas.cs" />
     <Compile Include="DM_Rips.cs" />
     <Compile Include="DM_Servicios.cs" />
+    <Compile Include="DM_DxAtencion.cs" />
     <Compile Include="DM_ServiciosAtencion.cs" />
     <Compile Include="DM_TipoAtenc.cs" />
     <Compile Include="DM_TiposDoc.cs" />

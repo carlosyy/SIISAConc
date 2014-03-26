@@ -56,7 +56,7 @@ namespace SIISAConc.Concurrencia
                                     descripServ = item.descripServ,
                                     concepto = item.concepto,
                                     noAutorizacion = item.noAutorizacion
-                                };            
+                                };
             return query.Cast<ServiciosAtencionEntidad>().ToArray();
         }
 
@@ -70,10 +70,48 @@ namespace SIISAConc.Concurrencia
             oServiciosAtencion.radicado = radicado;
             oServiciosAtencion.indexSeleccion = indice;
             oServiciosAtencion.txtBuscado = txtBuscado;
-            oServiciosAtencion.idUser = Int32.Parse(HttpContext.Current.Session["idUser"].ToString());
+            oServiciosAtencion.idUser = idUser;
             B_ServiciosAtencion oB_ServiciosAtencion = new B_ServiciosAtencion();
-            return oB_ServiciosAtencion.AddServiciosAtencion(oServiciosAtencion);
-            
+            return oB_ServiciosAtencion.AddServiciosAtencion(oServiciosAtencion);            
+        }
+
+
+        [WebMethod]
+        public static DxAtencionEntidad[] getDxAtencionxRadicado(String radicado)
+        {
+            B_DxAtencion oBDxAtencion = new B_DxAtencion();
+            IEnumerable query = from item in oBDxAtencion.getDxAtencionxRadicado(radicado).AsEnumerable()
+                                select new DxAtencionEntidad
+                                {
+                                    idDx = item.idDx,
+                                    codDx = item.codDx,
+                                    descripDx = item.descripDx,
+                                    dxPpal = item.dxPpal
+                                };
+            return query.Cast<DxAtencionEntidad>().ToArray();
+        }
+
+        [WebMethod]
+        public static Int32 AddDxAtencion(String codDx, Int32 idUser, String radicado, Boolean dxPpal)
+        {
+            DxAtencionEntidad oDxAtencion = new DxAtencionEntidad();            
+            oDxAtencion.codDx = codDx;
+            oDxAtencion.idUser = idUser;
+            oDxAtencion.radicado = radicado;
+            oDxAtencion.dxPpal = dxPpal;            
+            B_DxAtencion oB_DxAtencion = new B_DxAtencion();
+            return oB_DxAtencion.addDxAtencion(oDxAtencion);        
+        }
+
+        [WebMethod]
+        public static Int32 setDxPpal(String radicado, Int32 idDx)
+        {
+            DxAtencionEntidad oDxAtencion = new DxAtencionEntidad();
+            oDxAtencion.radicado = radicado;
+            oDxAtencion.idDx = idDx;
+            B_DxAtencion oB_DxAtencion = new B_DxAtencion();
+            return oB_DxAtencion.setDxPpal(oDxAtencion);
+
         }
     }
 }

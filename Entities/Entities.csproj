@@ -48,7 +48,9 @@
     <Compile Include="AfiliadosEntidad.cs" />
     <Compile Include="estadoAtenc.cs" />
     <Compile Include="estadoAtencEntidad.cs" />
+    <Compile Include="DxAtencion.cs" />
     <Compile Include="ServiciosAtencion.cs" />
+    <Compile Include="DxAtencionEntidad.cs" />
     <Compile Include="ServiciosAtencionEntidad.cs" />
     <Compile Include="AutoCompletar.cs" />
     <Compile Include="AreasAtencion.cs" />

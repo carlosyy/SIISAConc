@@ -56,6 +56,7 @@
         $("#<%=txtBusqDx.ClientID%>").change(function() {
             var params = new Object();
             params.busqDx = $("#<%=txtBusqDx.ClientID%>").val();
+            params.top = 100;
             params = JSON.stringify(params);
 
             $.ajax({
