@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master/SIISAConc.Master" AutoEventWireup="true" CodeBehind="Auditoria.aspx.cs" Inherits="SIISAConc.Concurrencia.Auditoria" %>
 
 <%@ Register Src="~/webControls/auditoria/ctrAuditoria.ascx" TagPrefix="uc1" TagName="ctrAuditoria" %>
-<%@ Register Src="~/webControls/concurrencia/ctrHallazgos.ascx" TagPrefix="uc1" TagName="ctrHallazgos" %>
+<%@ Register Src="~/webControls/Hallazgos/ctrHallazgos.ascx" TagPrefix="uc1" TagName="ctrHallazgos" %>
 <%@ Register Src="~/webControls/concurrencia/ctrNotas.ascx" TagPrefix="uc1" TagName="ctrNotas" %>
 <%@ Register Src="~/webControls/concurrencia/ctrPtesConcur.ascx" TagPrefix="uc1" TagName="ctrPtesConcur" %>
 <%@ Register Src="~/webControls/procedimientos/ctrProcedimientos.ascx" TagPrefix="uc1" TagName="ctrProcedimientos" %>

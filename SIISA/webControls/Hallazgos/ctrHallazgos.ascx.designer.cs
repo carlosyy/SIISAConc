@@ -7,99 +7,90 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SIISAConc.webControls.procedimientos {
+namespace SIISAConc.webControls.Hallazgos {
     
     
-    public partial class ctrProcedimientos {
+    public partial class ctrHallazgos {
         
         /// <summary>
-        /// txtBusqServ control.
+        /// ddlTipoHallazgo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtBusqServ;
+        protected global::System.Web.UI.WebControls.DropDownList ddlTipoHallazgo;
         
         /// <summary>
-        /// ddlServicio control.
+        /// ctrAreasAtencion control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlServicio;
+        protected global::SIISAConc.webControls.areasAtencion.ctrAreasAtencion ctrAreasAtencion;
         
         /// <summary>
-        /// lblConcepto control.
+        /// ctrPertinencia control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblConcepto;
+        protected global::SIISAConc.webControls.pertinencia.ctrPertinencia ctrPertinencia;
         
         /// <summary>
-        /// txtAutorizacion control.
+        /// ctrInoportunidad control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtAutorizacion;
+        protected global::SIISAConc.webControls.inoportunidad.ctrInoportunidad ctrInoportunidad;
         
         /// <summary>
-        /// ddlTipoAutoriz control.
+        /// ctrNoCalidad control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlTipoAutoriz;
+        protected global::SIISAConc.webControls.noCalidad.ctrNoCalidad ctrNoCalidad;
         
         /// <summary>
-        /// txtCantServ control.
+        /// ctrEventosAdversos control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCantServ;
+        protected global::SIISAConc.webControls.eventosAdversos.ctrEventosAdversos ctrEventosAdversos;
         
         /// <summary>
-        /// txtVrUnit control.
+        /// txtHallazgo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtVrUnit;
+        protected global::System.Web.UI.WebControls.TextBox txtHallazgo;
         
         /// <summary>
-        /// txtVrTotal control.
+        /// btnGuardar control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtVrTotal;
+        protected global::System.Web.UI.WebControls.ImageButton btnGuardar;
         
         /// <summary>
-        /// lblServRips control.
+        /// gvServAtencConcur control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblServRips;
-        
-        /// <summary>
-        /// gvServiciosAtencion control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvServiciosAtencion;
+        protected global::System.Web.UI.WebControls.GridView gvServAtencConcur;
     }
 }

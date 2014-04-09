@@ -4,23 +4,33 @@ using Business;
 using Entities;
 using System.Web.UI.WebControls;
 
-namespace SIISAConc.webControls.concurrencia
+namespace SIISAConc.webControls.Hallazgos
 {
-    public partial class ctrNotas : System.Web.UI.UserControl
+    public partial class ctrHallazgos : UserControl
     {
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                llenarGrid();
+                //llenarGrid();
+                llenarDdlTipoHallazgo();
             }
         }
 
-        private void llenarGrid()
+        public void llenarGrid()
         {
             B_HallazgosAtencion oBHallazgosAtencion = new B_HallazgosAtencion();
-            gvServAtencConcur.DataSource = oBHallazgosAtencion.GetHallazgoAtencionXidDatosUS(Int32.Parse(Session["idDatosUS"] == null ? "0" : Session["idDatosUS"].ToString()));
+            gvServAtencConcur.DataSource = oBHallazgosAtencion.GetHallazgoAtencionXRadicado(Session["idDatosUS"] == null ? "0" : Session["idDatosUS"].ToString());
             gvServAtencConcur.DataBind();
+        }
+
+        private void llenarDdlTipoHallazgo()
+        {
+            B_TipoHallazgo oB_TipoHallazgo = new B_TipoHallazgo();
+            ddlTipoHallazgo.DataSource = oB_TipoHallazgo.getTipoHallazgo();
+            ddlTipoHallazgo.DataTextField = "tipoHallazgo";
+            ddlTipoHallazgo.DataValueField = "idTipoHallazgo";
+            ddlTipoHallazgo.DataBind();
         }
 
         protected void btnGuardar_Click(object sender, ImageClickEventArgs e)

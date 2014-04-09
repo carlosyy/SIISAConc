@@ -52,7 +52,7 @@ namespace DataAccess
         /// </summary>
 				public SQLConn()
 				{
-					strConnection = @"SERVER=.\SQLEXPRESS; Database=BDSIISAConc; User Id=sa; Password=123456";
+					strConnection = @"SERVER=.\SQLEXPRESS; Database=BDSIISAConc; User Id=sa; Password=123456";                    
 					commando = new SqlCommand();
 					conexion = new SqlConnection();
 					password = String.Empty;

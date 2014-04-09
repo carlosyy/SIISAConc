@@ -13,9 +13,9 @@ namespace Business
             return oDMHallazgosAtencion.GetHallazgoAtencion();
         }
 
-        public HallazgoAtencion GetHallazgoAtencionXidDatosUS(Int32 idDatosUS)
+        public HallazgoAtencion GetHallazgoAtencionXRadicado(String radicado)
         {
-            return oDMHallazgosAtencion.GetHallazgoAtencionXidDatosUS(idDatosUS: idDatosUS);
+            return oDMHallazgosAtencion.GetHallazgoAtencionXRadicado(radicado: radicado);
         }
 
         public Int32 AddHallazgosAtencion(HallazgoAtencionEntidad oHallazgosAtencion)

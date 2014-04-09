@@ -22,5 +22,6 @@ namespace Entities
         public String nNoCalidadAtencion { get; set; }
         public Int32 idEventosAdversosAtencion { get; set; }
         public String nEventosAdversosAtencion { get; set; }
+        public String radicado { get; set; }
     }
 }

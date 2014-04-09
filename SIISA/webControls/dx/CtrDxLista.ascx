@@ -128,8 +128,8 @@
 
     function limpiarControlesDx() {
         $("#txtBusqDx").val("");
-        $("#ddlDx").val("0");
-        $("#chkDxPpal").val("0");
+        $("#ddlDx").val("0");        
+        $("#chkDxPpal").prop('checked', false);
         $("#txtBusqDx").select();
     }
 
@@ -214,30 +214,3 @@
         </asp:GridView>
     </div>
 </div>
-
-<%--<div style="background: #444; color: #fafafa; padding: 10px;">
-    <h3>Dark Background</h3>
-    <table>
-        <tr>
-            <td>
-                <input type="radio" name="radiog_lite" id="radio1" class="css-checkbox" /><label for="radio1" class="css-label">Option 1</label></td>
-            <td>
-                <input type="radio" name="radiog_lite" id="radio2" class="css-checkbox" checked="checked" /><label for="radio2" class="css-label">Option 2</label></td>
-            <td>
-                <input type="radio" name="radiog_lite" id="radio3" class="css-checkbox" /><label for="radio3" class="css-label">Option 1</label></td>
-        </tr>
-    </table>
-</div>
-<div style="background: #fafafa; color: #222; padding: 10px;">
-    <h3>Light Background</h3>
-    <table>
-        <tr>
-            <td>
-                <input type="radio" name="radiog_dark" id="radio4" class="css-checkbox" /><label for="radio4" class="css-label">Option 1</label></td>
-            <td>
-                <input type="radio" name="radiog_dark" id="radio5" class="css-checkbox" checked="checked" /><label for="radio5" class="css-label">Option 2</label></td>
-            <td>
-                <input type="radio" name="radiog_dark" id="radio6" class="css-checkbox" /><label for="radio6" class="css-label">Option 1</label></td>
-        </tr>
-    </table>
-</div>--%>

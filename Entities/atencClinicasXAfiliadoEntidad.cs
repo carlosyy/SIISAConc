@@ -33,5 +33,7 @@ namespace Entities
         public String nombreCompleto { get; set; }
         public String sexo { get; set; }
         public String tipoDoc { get; set; }
+
+        public String fecRadicado { get; set; }
     }
 }

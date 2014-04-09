@@ -70,11 +70,14 @@
     <Content Include="Concurrencia\concurrencia.aspx" />
     <Content Include="Concurrencia\ListaAuditoria.aspx" />
     <Content Include="CSS\anytime.css" />
+    <Content Include="CSS\images\buttons.gif" />
+    <Content Include="CSS\images\toolbar.gif" />
     <Content Include="CSS\images\ui-anim_basic_16x16.gif" />
     <Content Include="CSS\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="CSS\images\ui-bg_glass_55_fbf9ee_1x400.png" />
     <Content Include="CSS\images\ui-bg_glass_75_dadada_1x400.png" />
     <Content Include="CSS\jquery-ui.css" />
+    <Content Include="CSS\jquery.cleditor.css" />
     <Content Include="CSS\modal\modalCSS3.css" />
     <Content Include="CSS\StyleJquery\jquery-ui-1.9.2.custom.css" />
     <Content Include="CSS\StyleJquery\jquery-ui.css" />
@@ -120,9 +123,10 @@
     <Content Include="Images\INVERJCJM.png" />
     <Content Include="Images\masa.png" />
     <Content Include="js\anytime.js" />
-    <Content Include="js\icheck\icheck.js" />
-    <Content Include="js\icheck\skins\square\icheck.js" />
+    <Content Include="CSS\fullcalendar.css" />
+    <Content Include="js\fullcalendar.min.js" />
     <Content Include="js\jquery-1.10.2.min.js" />
+    <Content Include="js\jquery-2.0.1.min.js" />
     <Content Include="js\jquery-ui-1.10.4.custom.js" />
     <Content Include="default.aspx" />
     <Content Include="error.aspx" />
@@ -146,8 +150,10 @@
     <Content Include="Images\Login\wrapper_middle.png" />
     <Content Include="Images\Login\wrapper_top.png" />
     <Content Include="CSS\Style.css" />
+    <Content Include="js\jquery-ui.js" />
+    <Content Include="js\jquery.cleditor.min.js" />
+    <Content Include="js\jquery.qtip.js" />
     <Content Include="js\notify.js" />
-    <Content Include="js\socket.io.js" />
     <Content Include="js\timePicker.js" />
     <Content Include="Master\ctrMenuPpal.ascx" />
     <Content Include="wbsSIISA.asmx" />
@@ -161,7 +167,7 @@
     <Content Include="webControls\concurrencia\ctrAtencEstablecidas.ascx" />
     <Content Include="webControls\concurrencia\ctrBusqueda.ascx" />
     <Content Include="webControls\concurrencia\ctrCargueListPacie.ascx" />
-    <Content Include="webControls\concurrencia\ctrHallazgos.ascx" />
+    <Content Include="webControls\Hallazgos\ctrHallazgos.ascx" />
     <Content Include="webControls\concurrencia\ctrNotas.ascx" />
     <Content Include="webControls\concurrencia\ctrPtesConcur.ascx" />
     <Content Include="webControls\concurrencia\ctrSetAtencion.ascx" />
@@ -315,11 +321,11 @@
     <Compile Include="webControls\concurrencia\ctrCargueListPacie.ascx.designer.cs">
       <DependentUpon>ctrCargueListPacie.ascx</DependentUpon>
     </Compile>
-    <Compile Include="webControls\concurrencia\ctrHallazgos.ascx.cs">
+    <Compile Include="webControls\Hallazgos\ctrHallazgos.ascx.cs">
       <DependentUpon>ctrHallazgos.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="webControls\concurrencia\ctrHallazgos.ascx.designer.cs">
+    <Compile Include="webControls\Hallazgos\ctrHallazgos.ascx.designer.cs">
       <DependentUpon>ctrHallazgos.ascx</DependentUpon>
     </Compile>
     <Compile Include="webControls\concurrencia\ctrNotas.ascx.cs">

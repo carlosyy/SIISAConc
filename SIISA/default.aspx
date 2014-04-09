@@ -8,14 +8,6 @@
         <asp:Panel ID="pnlLogin" runat="server">
             <uc1:ctrLogin ID="ctrLogin1" runat="server" />            
         </asp:Panel>
-    </div>
-
-    <%--<table style="margin-right:0">
-            <tr>                  
-                <td id="tdLoginDer">
-                    
-                </td>
-            </tr>
-        </table>--%>
+    </div>    
 </asp:Content>
 

@@ -15,7 +15,7 @@ namespace SIISAConc.webControls.auditoria
 
         protected void btnBuscarAtencEstab_Click(object sender, EventArgs e)
         {
-            ctrAtencEstablecidas.llenarGrilla(DateTime.Parse(txtFechaAtencion.Text == "" ? DateTime.Now.ToShortDateString() : txtFechaAtencion.Text));
+            //ctrAtencEstablecidas.llenarGrilla(DateTime.Parse(txtFechaAtencion.Text == "" ? DateTime.Now.ToShortDateString() : txtFechaAtencion.Text));
         }
         
     }

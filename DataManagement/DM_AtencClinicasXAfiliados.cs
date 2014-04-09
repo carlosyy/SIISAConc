@@ -64,11 +64,11 @@ namespace DataManagement
             }
         }
 
-        public AtencClinicasXAfiliado getAuditorias(Int32 idUserEstablece, String fecAuditoria)
+        public AtencClinicasXAfiliado getAuditorias(Int32 idUserEstablece, String fecAuditoria = "", String mesAuditoria = "")
         {
             IDataReader reader;
             AtencClinicasXAfiliado lista = new AtencClinicasXAfiliado();
-            String sQuery = String.Format("EXEC SPS_Auditorias @idUserEstablece={0}, @fecAuditoria='{1}'", idUserEstablece, fecAuditoria);
+            String sQuery = String.Format("EXEC SPS_Auditorias @idUserEstablece={0}, @fecAuditoria='{1}', @mesAuditoria='{2}'", idUserEstablece, fecAuditoria, mesAuditoria);
 
             try
             {
@@ -78,6 +78,7 @@ namespace DataManagement
                 while (reader.Read())
                 {
                     AtencClinicasXAfiliadoEntidad ac = new AtencClinicasXAfiliadoEntidad();
+                    ac.fecRadicado = reader["fecRadicado"].ToString();
                     ac.cama = reader["cama"] != DBNull.Value ? (String)reader["cama"] : String.Empty;
                     ac.codDx = reader["codDx"] != DBNull.Value ? (String)reader["codDx"] : String.Empty;
                     ac.diasEstancia = reader["diasEstancia"] != DBNull.Value ? Convert.ToInt32(reader["diasEstancia"].ToString()) : 0;
@@ -102,7 +103,6 @@ namespace DataManagement
             {
                 oDataAccess.close();
             }
-
         }
 
         public Int32 contarAtenciones(String docIden = "", Int32 programa = 0, String nit = "", String codDx = "", String fecDesc = "", String fecHasta = "", String filtroNombre = "")
@@ -211,13 +211,13 @@ namespace DataManagement
                     ac.apellidoB = reader["apellido_b"].ToString();
                     ac.nombreA = reader["nombre_a"].ToString();
                     ac.nombreB = reader["nombre_b"].ToString();
+                    ac.nombreCompleto = (reader["apellido_a"].ToString() + " " + reader["apellido_b"].ToString() + " " + reader["nombre_a"].ToString() + " " + reader["nombre_b"].ToString()).Replace(@"\s+", " ");
                     ac.medico = reader["medico"] != DBNull.Value ? (String)reader["medico"] : String.Empty;
                     ac.cama = reader["cama"] != DBNull.Value ? (String)reader["cama"] : String.Empty;
                     ac.tipoAtencion = reader["tipoAtencion"] != DBNull.Value ? (String)reader["tipoAtencion"] : String.Empty;
                     ac.motivoSalida = reader["motivoSalida"] != DBNull.Value ? (String)reader["motivoSalida"] : String.Empty;
                     ac.tipoEstancia = reader["abrevTipoEstancia"] != DBNull.Value ? (String)reader["abrevTipoEstancia"] : String.Empty;
-                    //ac.puntaje = reader["puntaje"].ToString() != "" ? Int32.Parse(reader["puntaje"].ToString()) : 0;
-                    ac.diasEstancia = reader["diasEstancia"].ToString() != "" ? Int32.Parse(reader["diasEstancia"].ToString()) : 0;
+                    //ac.puntaje = reader["puntaje"].ToString() != "" ? Int32.Parse(reader["puntaje"].ToString()) : 0;                    
                     ac.estadoAtenc = reader["estadoAtenc"].ToString();
                     ac.idAtencion = Int32.Parse(reader["idAtencion"].ToString());
                     ac.sexo = reader["sexo"].ToString();

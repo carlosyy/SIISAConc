@@ -46,7 +46,7 @@ namespace SIISAConc.Concurrencia {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::SIISAConc.webControls.concurrencia.ctrNotas ctrHallazgos;
+        protected global::SIISAConc.webControls.Hallazgos.ctrHallazgos ctrHallazgos;
         
         /// <summary>
         /// ctrNotas control.

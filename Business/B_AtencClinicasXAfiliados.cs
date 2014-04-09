@@ -21,6 +21,11 @@ namespace Business
             return _oDmAtencClinicas.getAuditorias(idUserEstablece: idUserEstablece, fecAuditoria: fecAuditoria);
         }
 
+        public AtencClinicasXAfiliado getAuditoriasXMesRadicado(Int32 idUserEstablece, String mesAuditoria)
+        {
+            return _oDmAtencClinicas.getAuditorias(idUserEstablece: idUserEstablece, mesAuditoria: mesAuditoria);
+        }
+
         public Int32 contarAtenciones(String docIden, Int32 programa, String nit, String codDx, String fecDesc,
             String fecHasta, String filtroNombre)
         {

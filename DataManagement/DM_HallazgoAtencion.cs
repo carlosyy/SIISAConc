@@ -76,16 +76,31 @@ namespace DataManagement
         }
 
 
-        public HallazgoAtencion GetHallazgoAtencionXidDatosUS(Int32 idDatosUS)
+        public HallazgoAtencion GetHallazgoAtencionXRadicado(String radicado)
         {
             StringBuilder sbHallazgoAtencion = new StringBuilder();
             IDataReader reader;
             HallazgoAtencion lista = new HallazgoAtencion();
             HallazgoAtencionEntidad oHallazgoAtencion = new HallazgoAtencionEntidad();
 
-            sbHallazgoAtencion.Append("SELECT     ha.idHallazgoAtencion, ha.hallazgoAtencion, ha.idDatosUS, ha.idAuditor, ha.idArea, ha.idPertinenciaAtencion, ha.idInoportunidadAtencion, ha.idNoCalidadAtencion,");
-            sbHallazgoAtencion.Append(" ha.idEventosAdversosAtencion, ea.eventosAdversosAtencion, pa.pertinenciaAtencion, aa.areasAtencion, us.nombreUsuario, noca.noCalidadAtencion,");
-            sbHallazgoAtencion.Append(" ia.inoportunidadAtencion");
+            sbHallazgoAtencion.Append("SELECT ha.idHallazgoAtencion");            
+            sbHallazgoAtencion.Append(", ha.radicado");
+            sbHallazgoAtencion.Append(", ha.fechaRegistro");
+            sbHallazgoAtencion.Append(", ha.idTipoHallazgo");
+            sbHallazgoAtencion.Append(", ha.hallazgoAtencion");
+            sbHallazgoAtencion.Append(", ha.idAuditor");
+            sbHallazgoAtencion.Append(", ha.idArea");
+            sbHallazgoAtencion.Append(", ha.idPertinenciaAtencion");
+            sbHallazgoAtencion.Append(", ha.idInoportunidadAtencion");
+            sbHallazgoAtencion.Append(", ha.idNoCalidadAtencion");
+            sbHallazgoAtencion.Append(", ha.idEventosAdversosAtencion");
+
+            sbHallazgoAtencion.Append(", ea.eventosAdversosAtencion");
+            sbHallazgoAtencion.Append(", pa.pertinenciaAtencion");
+            sbHallazgoAtencion.Append(", aa.areasAtencion");
+            sbHallazgoAtencion.Append(", us.nombreUsuario");
+            sbHallazgoAtencion.Append(", noca.noCalidadAtencion");
+            sbHallazgoAtencion.Append(", ia.inoportunidadAtencion");
             sbHallazgoAtencion.Append(" FROM hallazgoAtencion AS ha LEFT OUTER JOIN");
             sbHallazgoAtencion.Append(" pertinenciaAtencion AS pa ON ha.idPertinenciaAtencion = pa.idPertinenciaAtencion LEFT OUTER JOIN");
             sbHallazgoAtencion.Append(" eventosAdversosAtencion AS ea ON ha.idEventosAdversosAtencion = ea.idEventosAdversosAtencion LEFT OUTER JOIN");
@@ -94,8 +109,7 @@ namespace DataManagement
             sbHallazgoAtencion.Append(" areasAtencion AS aa ON ha.idArea = aa.idAreasAtencion LEFT OUTER JOIN");
             sbHallazgoAtencion.Append(" usuarios AS us ON ha.idAuditor = us.idUser");
 
-
-            sbHallazgoAtencion.Append(" WHERE idDatosUS='" + idDatosUS + "'");
+            sbHallazgoAtencion.Append(" WHERE ha.radicado='" + radicado + "'");
 
 
 
@@ -109,7 +123,7 @@ namespace DataManagement
                     oHallazgoAtencion = new HallazgoAtencionEntidad();
                     oHallazgoAtencion.idhallazgoAtencion = Int32.Parse(reader["idhallazgoAtencion"].ToString());
                     oHallazgoAtencion.hallazgoAtencion = reader["hallazgoAtencion"].ToString();
-                    oHallazgoAtencion.idDatosUS = Int32.Parse(reader["idDatosUS"].ToString());
+                    oHallazgoAtencion.radicado = reader["radicado"].ToString();
                     oHallazgoAtencion.idAuditor = Int32.Parse(reader["idAuditor"].ToString());
                     oHallazgoAtencion.nAuditor = reader["nombreUsuario"].ToString();
                     oHallazgoAtencion.idArea = Int32.Parse(reader["idArea"].ToString());
@@ -139,7 +153,7 @@ namespace DataManagement
             }
         }
 
-        // adiciona una nueva accion
+        // adiciona una nuevo hallazgo
         public Int32 AddHallazgoAtencion(HallazgoAtencionEntidad oHallazgoAtencion)
         {
             Int32 retorno = 0;

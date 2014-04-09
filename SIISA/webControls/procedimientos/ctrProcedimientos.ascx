@@ -15,6 +15,26 @@
 
         $("#ddlServicio").change(function() {
             $("#lblConcepto").text(this.options[this.selectedIndex].getAttribute("cpto"));
+            var concepto = $("#lblConcepto").text().substr(0, 10);            
+            if (concepto == "MEDICAMENT" || concepto == "MATERIALES") {                
+                $('div#divConcepto').width('22%');
+                $('div#divAutorizacion').width('22%');
+                $('div#divTipoAutorizacion').width('22%');
+                $('div#divCantProc').width('8%');
+                $('div#divVrUnitProc').width('8%');
+                $('div#divVrTotProc').width('8%');
+            }
+            else {
+                $('div#divConcepto').width('30%');
+                $('div#divAutorizacion').width('30%');
+                $('div#divTipoAutorizacion').width('30%');
+                $('div#divConcepto').width('0');
+                $('div#divAutorizacion').width('0');
+                $('div#divTipoAutorizacion').width('0');
+                //$('div#divCantProc').css("display", "none");
+                //$('div#divVrUnitProc').css("display", "none");
+                //$('div#divVrTotProc').css("display", "none");
+            }
             return false;
         });
 
@@ -146,7 +166,13 @@
                 async: true,
                 success: function (msg) {
                     $("#btnGuardarServ").notify("Se ha agregado el procedimiento satisfactoriamente.", { className: "success", position: "left bottom" });                    
-                    getServiciosAtencion();                    
+                    getServiciosAtencion();
+                    $("div#divCantProc").animate({ width: "0" }, 300);
+                    $("div#divVrUnitProc").animate({ width: "0" }, 300);
+                    $("div#divVrTotProc").animate({ width: "0" }, 300);
+                    $('div#divConcepto').animate({ width: '30%' }, 1000);
+                    $('div#divAutorizacion').animate({ width: '30%' }, 1000);
+                    $('div#divTipoAutorizacion').animate({ width: '30%' }, 1000);                    
                 },
                 error: function (xmlHttpRequest, textStatus, errorThrown) {
                     alert(textStatus + ": " + xmlHttpRequest.responseText);
@@ -226,7 +252,7 @@
             <asp:DropDownList ID="ddlServicio" TabIndex="2" CssClass="dropDown" runat="server" Width="650px" ClientIDMode="Static"></asp:DropDownList>
         </div>
     </div>
-    <div class="fila" style="width: 30%;">
+    <div id="divConcepto" class="fila" style="width: 30%;">
         <div class="celda celdaTitulo" style="width: 100%;">        
             Concepto
         </div>
@@ -234,7 +260,7 @@
             <asp:Label ID="lblConcepto" ClientIDMode="Static" runat="server"></asp:Label>
         </div>
     </div>
-    <div class="fila" style="width: 30%;">
+    <div id="divAutorizacion" class="fila" style="width: 30%;">
         <div class="celda celdaTitulo" style="width: 100%;"> 
             #Autorización
         </div>
@@ -242,7 +268,7 @@
             <asp:TextBox ID="txtAutorizacion" ClientIDMode="Static" runat="server" TabIndex="4" ValidationGroup="datos" Width="104px">0</asp:TextBox>
         </div>
     </div>
-    <div class="fila" style="width: 30%;">
+    <div id="divTipoAutorizacion" class="fila" style="width: 30%;">
         <div class="celda celdaTitulo" style="width: 100%;"> 
             Tipo Autoriz
         </div>
@@ -252,6 +278,30 @@
                 <asp:ListItem Text="Telefonica" Value="1"></asp:ListItem>
                 <asp:ListItem Text="Regional" Value="2"></asp:ListItem>
             </asp:DropDownList>
+        </div>
+    </div>
+    <div id="divCantProc" class="fila" style="display:none; width:0;">
+        <div class="celda celdaTitulo" style="width: 100%;"> 
+            Cant Med
+        </div>
+        <div class="celda celdaControl" style="width: 100%;">
+            <asp:TextBox ID="txtCantServ" CssClass="textboxCentrado" ClientIDMode="Static" runat="server" TabIndex="6">0</asp:TextBox>
+        </div>
+    </div>
+    <div id="divVrUnitProc" class="fila" style="display:none; width:0;">
+        <div class="celda celdaTitulo" style="width: 100%;"> 
+            Vr Unit
+        </div>
+        <div class="celda celdaControl" style="width: 100%;">
+            <asp:TextBox ID="txtVrUnit" CssClass="textboxCentrado" ClientIDMode="Static" runat="server" TabIndex="7">0</asp:TextBox>
+        </div>
+    </div>
+    <div id="divVrTotProc" class="fila" style="display:none; width:0;">
+        <div class="celda celdaTitulo" style="width: 100%;"> 
+            Vr total
+        </div>
+        <div class="celda celdaControl" style="width: 100%;">
+            <asp:TextBox ID="txtVrTotal" CssClass="textboxCentrado" ClientIDMode="Static" runat="server" TabIndex="8">0</asp:TextBox>
         </div>
     </div>
     <div class="fila" style="height:61px; width: 10%;">        

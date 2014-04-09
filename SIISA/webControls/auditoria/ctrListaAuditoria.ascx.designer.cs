@@ -11,41 +11,5 @@ namespace SIISAConc.webControls.auditoria {
     
     
     public partial class ctrListaAuditoria {
-        
-        /// <summary>
-        /// txtFechaAtencion control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtFechaAtencion;
-        
-        /// <summary>
-        /// ctrEstadoAtenc control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::SIISA.Controls.estadoAtenc.ctrEstadoAtenc ctrEstadoAtenc;
-        
-        /// <summary>
-        /// btnBuscarAtencEstab control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnBuscarAtencEstab;
-        
-        /// <summary>
-        /// ctrAtencEstablecidas control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::SIISAConc.webControls.concurrencia.CtrAtencEstablecidas ctrAtencEstablecidas;
     }
 }

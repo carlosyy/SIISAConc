@@ -78,6 +78,7 @@
     <Compile Include="B_DxAtencion.cs" />
     <Compile Include="B_ServiciosAtencion.cs" />
     <Compile Include="B_Servicios.cs" />
+    <Compile Include="B_TipoHallazgo.cs" />
     <Compile Include="B_TipoAtenc.cs" />
     <Compile Include="B_TiposDoc.cs" />
     <Compile Include="B_Usuarios.cs" />
