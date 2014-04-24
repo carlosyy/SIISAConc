@@ -1,8 +1,13 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="ctrProcedimientos.ascx.cs" Inherits="SIISAConc.webControls.procedimientos.ctrProcedimientos" %>
 <script>
     $(document).ready(function () {
-        $('#divGrillaProc').height($('#divGrillaProc').parent().height() * 0.7);
+        $('#divGrillaProc').height($('#divGrillaProc').parent().height() * 0.7);        
+        $("#txtCantServ").addClass("textBoxCentrado");
+        $("#txtVrUnit").addClass("textBoxCentrado");
+        $("#txtVrTotal").addClass("textBoxCentrado");
+
         getServiciosAtencion();
+
         $("#txtBusqServ").change(function () {
             if ($(this).val().length > 5) {
                 getServicios();
@@ -13,6 +18,44 @@
             return false;
         });
 
+        $(".textBoxCentrado").change(function (event) {            
+            $("#divProcs").find(".textBoxCentrado").each(function () {                
+                $(this).val() == "" ? $(this).val("0") : $(this).val();
+            });
+            switch (event.target.id) {
+                case "txtCantServ":
+                    var txtVrUnit = $("#txtVrUnit");
+                    var txtVrTotal = $("#txtVrTotal");
+                    if (txtVrUnit.val() > 0) {
+                        txtVrTotal.val($(this).val() * txtVrUnit.val());
+                    }
+                    else {
+                        txtVrUnit.val($(this).val() * txtVrTotal.val());
+                    }
+                    break;
+                case "txtVrUnit":
+                    var txtCantServ = $("#txtCantServ");
+                    var txtVrTotal = $("#txtVrTotal");
+                    if (txtCantServ.val() > 0) {
+                        txtVrTotal.val($(this).val() * txtCantServ.val());
+                    }
+                    else {
+                        txtCantServ.val(txtVrTotal.val() / $(this).val());
+                    }
+                    break;
+                case "txtVrTotal":
+                    var txtVrUnit = $("#txtVrUnit");
+                    var txtCantServ = $("#txtCantServ");
+                    if (txtCantServ.val() > 0) {
+                        txtVrUnit.val($(this).val() / txtCantServ.val());
+                    }
+                    else {
+                        txtCantServ.val($(this).val() / txtVrUnit.val());
+                    }
+                    break;
+            }
+        });
+
         $("#ddlServicio").change(function() {
             $("#lblConcepto").text(this.options[this.selectedIndex].getAttribute("cpto"));
             var concepto = $("#lblConcepto").text().substr(0, 10);            
@@ -20,20 +63,23 @@
                 $('div#divConcepto').width('22%');
                 $('div#divAutorizacion').width('22%');
                 $('div#divTipoAutorizacion').width('22%');
+                $('div#divCantProc').css("display", "block");
+                $('div#divVrUnitProc').css("display", "block");
+                $('div#divVrTotProc').css("display", "block");
                 $('div#divCantProc').width('8%');
                 $('div#divVrUnitProc').width('8%');
-                $('div#divVrTotProc').width('8%');
+                $('div#divVrTotProc').width('8%');                
             }
             else {
                 $('div#divConcepto').width('30%');
                 $('div#divAutorizacion').width('30%');
                 $('div#divTipoAutorizacion').width('30%');
-                $('div#divConcepto').width('0');
-                $('div#divAutorizacion').width('0');
-                $('div#divTipoAutorizacion').width('0');
-                //$('div#divCantProc').css("display", "none");
-                //$('div#divVrUnitProc').css("display", "none");
-                //$('div#divVrTotProc').css("display", "none");
+                $('div#divCantProc').css("display", "none");
+                $('div#divVrUnitProc').css("display", "none");
+                $('div#divVrTotProc').css("display", "none");
+                $('div#divCantProc').width('0');
+                $('div#divVrUnitProc').width('0');
+                $('div#divVrTotProc').width('0');                
             }
             return false;
         });
@@ -115,7 +161,7 @@
             error: function (xmlHttpRequest, textStatus, errorThrown) {
                 alert(textStatus + ": " + xmlHttpRequest.responseText);
             }
-        });
+        });        
         return false;
     }
 
@@ -155,6 +201,9 @@
             params.radicado = $("#hfRadicado").val();
             params.indice = $("#ddlServicio").get(0).selectedIndex;
             params.txtBuscado = $("#txtBusqServ").val();
+            params.cantServ = $("#txtCantServ").val();
+            params.vrTotal = $("#txtVrTotal").val();            
+
             params = JSON.stringify(params);
 
             $.ajax({
@@ -167,9 +216,9 @@
                 success: function (msg) {
                     $("#btnGuardarServ").notify("Se ha agregado el procedimiento satisfactoriamente.", { className: "success", position: "left bottom" });                    
                     getServiciosAtencion();
-                    $("div#divCantProc").animate({ width: "0" }, 300);
-                    $("div#divVrUnitProc").animate({ width: "0" }, 300);
-                    $("div#divVrTotProc").animate({ width: "0" }, 300);
+                    $('div#divCantProc').css("display", "none");
+                    $('div#divVrUnitProc').css("display", "none");
+                    $('div#divVrTotProc').css("display", "none");
                     $('div#divConcepto').animate({ width: '30%' }, 1000);
                     $('div#divAutorizacion').animate({ width: '30%' }, 1000);
                     $('div#divTipoAutorizacion').animate({ width: '30%' }, 1000);                    
@@ -194,7 +243,9 @@
         } else {
             getIndexBusqueda(1);
         }
-        $("#ddlServicio").focus();        
+        $("#ddlServicio").focus();
+        $("#ddlServicio").change();
+        $("#divProcs").find(".textBoxCentrado").val("0");
         return false;
     }    
 
@@ -230,7 +281,7 @@
 
     
 </script>
-<div class="tabla" style="width: 100%;">
+<div class="tabla" id="divProcs" style="width: 100%;">
     <div class="fila" style="width: 100%;">
         <div class="celda celdaTitulo" style="text-align:center; width: 100%;">
             Datos del Servicio
@@ -288,7 +339,7 @@
             <asp:TextBox ID="txtCantServ" CssClass="textboxCentrado" ClientIDMode="Static" runat="server" TabIndex="6">0</asp:TextBox>
         </div>
     </div>
-    <div id="divVrUnitProc" class="fila" style="display:none; width:0;">
+    <div id="divVrUnitProc" class="fila" style="display:none;  width:0;">
         <div class="celda celdaTitulo" style="width: 100%;"> 
             Vr Unit
         </div>
@@ -307,7 +358,7 @@
     <div class="fila" style="height:61px; width: 10%;">        
         <div class="celda celdaControl" style="height:100%; text-align:center; width: 100%;">
             Guardar
-            <img style="cursor: pointer; vertical-align: middle;" onkeypress="pressKeyGuardar(event);" alt="Guardar Servicio ( Alt + G)" accesskey="g" tabindex="9" src="../../Images/icons/bi/guardar.png" onclick="addServiciosAtencion();" width="35" height="35" id="btnGuardarServ" />            
+            <img style="cursor: pointer; vertical-align: middle;" onkeypress="pressKeyGuardar(event);" alt="Guardar Servicio ( Alt + G)" accesskey="g" tabindex="9" src="../../Images/icons/bi/guardar.png" onclick="addServiciosAtencion();" width="35" height="35" id="btnGuardarServ" />
         </div>    
     </div>
 </div>

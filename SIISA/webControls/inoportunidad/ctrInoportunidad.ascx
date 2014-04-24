@@ -1,2 +1,2 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="ctrInoportunidad.ascx.cs" Inherits="SIISAConc.webControls.inoportunidad.ctrInoportunidad" %>
-<asp:DropDownList runat="server" ID="ddlInoportunidad" OnDataBound="ddlInoportunidad_DataBound"></asp:DropDownList>
+<asp:DropDownList runat="server" ID="ddlInoportunidad" ClientIDMode="Static" OnDataBound="ddlInoportunidad_DataBound"></asp:DropDownList>

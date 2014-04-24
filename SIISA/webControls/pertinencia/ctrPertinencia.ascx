@@ -1,2 +1,2 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="ctrPertinencia.ascx.cs" Inherits="SIISAConc.webControls.pertinencia.ctrPertinencia" %>
-<asp:DropDownList runat="server" ID="ddlPertinencia" OnDataBound="ddlPertinencia_DataBound"></asp:DropDownList>
+<asp:DropDownList runat="server" ID="ddlPertinencia" ClientIDMode="Static" OnDataBound="ddlPertinencia_DataBound"></asp:DropDownList>

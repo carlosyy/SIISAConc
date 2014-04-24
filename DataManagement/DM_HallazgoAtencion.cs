@@ -94,21 +94,21 @@ namespace DataManagement
             sbHallazgoAtencion.Append(", ha.idInoportunidadAtencion");
             sbHallazgoAtencion.Append(", ha.idNoCalidadAtencion");
             sbHallazgoAtencion.Append(", ha.idEventosAdversosAtencion");
-
             sbHallazgoAtencion.Append(", ea.eventosAdversosAtencion");
             sbHallazgoAtencion.Append(", pa.pertinenciaAtencion");
             sbHallazgoAtencion.Append(", aa.areasAtencion");
             sbHallazgoAtencion.Append(", us.nombreUsuario");
             sbHallazgoAtencion.Append(", noca.noCalidadAtencion");
             sbHallazgoAtencion.Append(", ia.inoportunidadAtencion");
+            sbHallazgoAtencion.Append(", th.tipoHallazgo");
             sbHallazgoAtencion.Append(" FROM hallazgoAtencion AS ha LEFT OUTER JOIN");
             sbHallazgoAtencion.Append(" pertinenciaAtencion AS pa ON ha.idPertinenciaAtencion = pa.idPertinenciaAtencion LEFT OUTER JOIN");
             sbHallazgoAtencion.Append(" eventosAdversosAtencion AS ea ON ha.idEventosAdversosAtencion = ea.idEventosAdversosAtencion LEFT OUTER JOIN");
             sbHallazgoAtencion.Append(" inoportunidadAtencion AS ia ON ha.idInoportunidadAtencion = ia.idInoportunidadAtencion LEFT OUTER JOIN");
             sbHallazgoAtencion.Append(" noCalidadAtencion AS noca ON ha.idNoCalidadAtencion = noca.idNoCalidadAtencion LEFT OUTER JOIN");
             sbHallazgoAtencion.Append(" areasAtencion AS aa ON ha.idArea = aa.idAreasAtencion LEFT OUTER JOIN");
-            sbHallazgoAtencion.Append(" usuarios AS us ON ha.idAuditor = us.idUser");
-
+            sbHallazgoAtencion.Append(" usuarios AS us ON ha.idAuditor = us.idUser LEFT OUTER JOIN");
+            sbHallazgoAtencion.Append(" tipoHallazgo AS th ON th.idTipoHallazgo = ha.idTipoHallazgo");
             sbHallazgoAtencion.Append(" WHERE ha.radicado='" + radicado + "'");
 
 
@@ -123,6 +123,7 @@ namespace DataManagement
                     oHallazgoAtencion = new HallazgoAtencionEntidad();
                     oHallazgoAtencion.idhallazgoAtencion = Int32.Parse(reader["idhallazgoAtencion"].ToString());
                     oHallazgoAtencion.hallazgoAtencion = reader["hallazgoAtencion"].ToString();
+                    oHallazgoAtencion.nTipoHallazgo = reader["tipoHallazgo"].ToString();
                     oHallazgoAtencion.radicado = reader["radicado"].ToString();
                     oHallazgoAtencion.idAuditor = Int32.Parse(reader["idAuditor"].ToString());
                     oHallazgoAtencion.nAuditor = reader["nombreUsuario"].ToString();
@@ -161,23 +162,27 @@ namespace DataManagement
             {
                 sbHallazgoAtencion.Append("INSERT INTO hallazgoAtencion(");
                 sbHallazgoAtencion.Append(" hallazgoAtencion");
-                sbHallazgoAtencion.Append(", idDatosUS");
+                sbHallazgoAtencion.Append(", fecHallazgo");
+                sbHallazgoAtencion.Append(", radicado");                
                 sbHallazgoAtencion.Append(", idAuditor");
                 sbHallazgoAtencion.Append(", idArea");
                 sbHallazgoAtencion.Append(", idPertinenciaAtencion");
                 sbHallazgoAtencion.Append(", idInoportunidadAtencion");
                 sbHallazgoAtencion.Append(", idNoCalidadAtencion");
                 sbHallazgoAtencion.Append(", idEventosAdversosAtencion");
+                sbHallazgoAtencion.Append(", idTipoHallazgo");
                 sbHallazgoAtencion.Append(")");
                 sbHallazgoAtencion.Append(" VALUES(");
                 sbHallazgoAtencion.Append(" '" + oHallazgoAtencion.hallazgoAtencion + "'");
-                sbHallazgoAtencion.Append(", '" + oHallazgoAtencion.idDatosUS + "'");
+                sbHallazgoAtencion.Append(", '" + oHallazgoAtencion.fecHallazgo + "'");
+                sbHallazgoAtencion.Append(", '" + oHallazgoAtencion.radicado + "'");                
                 sbHallazgoAtencion.Append(", '" + oHallazgoAtencion.idAuditor + "'");
                 sbHallazgoAtencion.Append(", '" + oHallazgoAtencion.idArea + "'");
                 sbHallazgoAtencion.Append(", '" + oHallazgoAtencion.idPertinenciaAtencion + "'");
                 sbHallazgoAtencion.Append(", '" + oHallazgoAtencion.idInoportunidadAtencion + "'");
                 sbHallazgoAtencion.Append(", '" + oHallazgoAtencion.idNoCalidadAtencion + "'");
                 sbHallazgoAtencion.Append(", '" + oHallazgoAtencion.idEventosAdversosAtencion + "'");
+                sbHallazgoAtencion.Append(", '" + oHallazgoAtencion.idTipoHallazgo + "'");
                 sbHallazgoAtencion.Append(")");
 
                 try

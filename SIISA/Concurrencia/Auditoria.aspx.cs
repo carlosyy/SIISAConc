@@ -61,7 +61,7 @@ namespace SIISAConc.Concurrencia
         }
 
         [WebMethod]
-        public static Int32 AddServiciosAtencion(Int32 tipoAutorizacion, String noAutorizacion, String codServ, Int32 idUser, String radicado, Int32 indice, String txtBuscado)
+        public static Int32 AddServiciosAtencion(Int32 tipoAutorizacion, String noAutorizacion, String codServ, Int32 idUser, String radicado, Int32 indice, String txtBuscado, Int32 cantServ, Int32 vrTotal)
         {
             ServiciosAtencionEntidad oServiciosAtencion = new ServiciosAtencionEntidad();
             oServiciosAtencion.tipoAutorizacion = tipoAutorizacion;
@@ -71,6 +71,8 @@ namespace SIISAConc.Concurrencia
             oServiciosAtencion.indexSeleccion = indice;
             oServiciosAtencion.txtBuscado = txtBuscado;
             oServiciosAtencion.idUser = idUser;
+            oServiciosAtencion.cantServ = cantServ;
+            oServiciosAtencion.vrTotal = vrTotal;
             B_ServiciosAtencion oB_ServiciosAtencion = new B_ServiciosAtencion();
             return oB_ServiciosAtencion.AddServiciosAtencion(oServiciosAtencion);            
         }
@@ -112,6 +114,55 @@ namespace SIISAConc.Concurrencia
             B_DxAtencion oB_DxAtencion = new B_DxAtencion();
             return oB_DxAtencion.setDxPpal(oDxAtencion);
 
+        }
+
+        [WebMethod]
+        public static Int32 AddHallazgoAtencion(Int32 tipoHallazgo, DateTime fecHallazgo, String hallazgoAtencion, String radicado, Int32 idArea, Int32 idDatoHallazgo, Int32 idUser)
+        {
+            HallazgoAtencionEntidad oHallazgoAtencion = new HallazgoAtencionEntidad();
+            oHallazgoAtencion.idTipoHallazgo = tipoHallazgo;
+            oHallazgoAtencion.fecHallazgo = fecHallazgo;
+            oHallazgoAtencion.hallazgoAtencion = hallazgoAtencion.Replace("'", "\"");
+            oHallazgoAtencion.radicado = radicado;
+            oHallazgoAtencion.idArea = idArea;
+            switch (tipoHallazgo)
+            {
+                case 1:
+                    oHallazgoAtencion.idPertinenciaAtencion = idDatoHallazgo;
+                    break;
+                case 2:
+                    oHallazgoAtencion.idInoportunidadAtencion = idDatoHallazgo;
+                    break;
+                case 3:
+                    oHallazgoAtencion.idNoCalidadAtencion = idDatoHallazgo;
+                    break;
+                case 4:
+                    oHallazgoAtencion.idEventosAdversosAtencion = idDatoHallazgo;
+                    break;
+            }
+            
+            oHallazgoAtencion.idAuditor = idUser;
+            B_HallazgosAtencion oB_HallazgosAtencion = new B_HallazgosAtencion();
+            return oB_HallazgosAtencion.AddHallazgosAtencion(oHallazgoAtencion);
+        }
+
+        [WebMethod]
+        public static HallazgoAtencionEntidad[] getHallazgoAtencionxRadicado(String radicado)
+        {
+            B_HallazgosAtencion oB_HallazgosAtencion = new B_HallazgosAtencion();
+            IEnumerable query = from item in oB_HallazgosAtencion.GetHallazgoAtencionXRadicado(radicado).AsEnumerable()
+                                select new HallazgoAtencionEntidad
+                                {                                    
+                                    nTipoHallazgo = item.nTipoHallazgo,
+                                    hallazgoAtencion = item.hallazgoAtencion,                                    
+                                    nArea = item.nArea,
+                                    nPertinenciaAtencion = item.nPertinenciaAtencion,
+                                    nInoportunidadAtencion = item.nInoportunidadAtencion,
+                                    nNoCalidadAtencion = item.nNoCalidadAtencion,
+                                    nEventosAdversosAtencion = item.nEventosAdversosAtencion,
+                                    
+                                };
+            return query.Cast<HallazgoAtencionEntidad>().ToArray();
         }
     }
 }

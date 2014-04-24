@@ -1,2 +1,2 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="ctrNoCalidad.ascx.cs" Inherits="SIISAConc.webControls.noCalidad.ctrNoCalidad" %>
-<asp:DropDownList runat="server" ID="ddlNoCalidad" OnDataBound="ddlNoCalidad_DataBound"></asp:DropDownList>
+<asp:DropDownList runat="server" ID="ddlNoCalidad" ClientIDMode="Static" OnDataBound="ddlNoCalidad_DataBound"></asp:DropDownList>

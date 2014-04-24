@@ -14,5 +14,7 @@ namespace Entities
         public String descripServ { get; set; }
         public String txtBuscado { get; set; }
         public Int32 indexSeleccion { get; set; }
+        public Int32 cantServ { get; set; }
+        public Int32 vrTotal { get; set; }
     }
 }

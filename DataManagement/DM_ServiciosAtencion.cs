@@ -69,8 +69,9 @@ namespace DataManagement
         // adiciona una nueva servicio de Atención
         public Int32 AddServiciosAtencion(ServiciosAtencionEntidad oServiciosAtencion)
         {
-            Int32 retorno = 0;
-            String sQuery = String.Format("EXEC SPI_ServiciosAtencion @tipoAutorizacion={0}, @noAutorizacion='{1}', @codServ='{2}', @radicado='{3}', @idUser={4}, @indSeleccion={5}, @txtAutoCompletar='{6}'", oServiciosAtencion.tipoAutorizacion, oServiciosAtencion.noAutorizacion, oServiciosAtencion.codServ, oServiciosAtencion.radicado, oServiciosAtencion.idUser, oServiciosAtencion.indexSeleccion, oServiciosAtencion.txtBuscado);
+            Int32 retorno = 0;           
+
+            String sQuery = String.Format("EXEC SPI_ServiciosAtencion @tipoAutorizacion={0}, @noAutorizacion='{1}', @codServ='{2}', @radicado='{3}', @idUser={4}, @indSeleccion={5}, @txtAutoCompletar='{6}', @cantServ={7}, @vrTotal={8}", oServiciosAtencion.tipoAutorizacion, oServiciosAtencion.noAutorizacion, oServiciosAtencion.codServ, oServiciosAtencion.radicado, oServiciosAtencion.idUser, oServiciosAtencion.indexSeleccion, oServiciosAtencion.txtBuscado, oServiciosAtencion.cantServ, oServiciosAtencion.vrTotal);
 
             try
             {

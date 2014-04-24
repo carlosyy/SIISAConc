@@ -8,6 +8,7 @@ namespace Entities
     public class HallazgoAtencionEntidad
     {
         public Int32 idhallazgoAtencion { get; set; }
+        public DateTime fecHallazgo { get; set; }
         public String hallazgoAtencion { get; set; }
         public Int32 idDatosUS { get; set; }
         public Int32 idAuditor { get; set; }
@@ -23,5 +24,9 @@ namespace Entities
         public Int32 idEventosAdversosAtencion { get; set; }
         public String nEventosAdversosAtencion { get; set; }
         public String radicado { get; set; }
+        public Int32 idTipoHallazgo { get; set; }        
+        public Int32 idUser { get; set; }
+
+        public String nTipoHallazgo { get; set; }
     }
 }

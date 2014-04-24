@@ -76,21 +76,12 @@ namespace SIISAConc.webControls.Hallazgos {
         protected global::System.Web.UI.WebControls.TextBox txtHallazgo;
         
         /// <summary>
-        /// btnGuardar control.
+        /// gvHallAtencion control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton btnGuardar;
-        
-        /// <summary>
-        /// gvServAtencConcur control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvServAtencConcur;
+        protected global::System.Web.UI.WebControls.GridView gvHallAtencion;
     }
 }

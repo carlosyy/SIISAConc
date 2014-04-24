@@ -13,7 +13,7 @@
     var efecto = "blind";
 
     $(document).ready(function () {
-        $("#txtHallazgo").cleditor({
+        var optionsCleditor = {
             width: 900,// width not including margins, borders or padding
             height: 120, // height not including margins, borders or padding
             controls:     // controls to add to the toolbar
@@ -45,16 +45,25 @@
               "",
             bodyStyle:    // style to assign to document body contained within the editor
               "margin:4px; font:10pt Arial,Verdana; cursor:text"
-        });
+        };
+
+        var clEditor = $("#txtHallazgo").cleditor(optionsCleditor)[0];
+
+        
+
+        $("#txtFecHallazgo").datepicker({ dateFormat: 'dd/mm/yy' });
+        $("#divGuardar").css("display", "none");        
 
         hideDivs(0);
 
         $("#ddlTipoHallazgo").change(function () {
+            $("#btnGuardarHall").css("display", "block");
             hideDivs($(this).val());
-            
+            $("#divGuardar").css("display", "block");
             switch ($(this).val()) {
                 case "0":
                     $("#divLblHallazgo").text("Hallazgo:");
+                    $("#btnGuardarHall").css("display", "none");
                     break;
                 case "1":
                     $("#divLblHallazgo").text("Hallazgo por no pertinencia:");
@@ -82,27 +91,189 @@
                     break;
             }
         });
-    });
 
-    function hideDivs(tipoHide) {
-        var activo = false;
-
-        if (tipoHide == 0) {
-            activo = true;
-            //$("#txtHallazgo").clear();
+        function limpiarControlesHall() {
+            clEditor.clear();
+            $("#ddlTipoHallazgo").val("0");
+            $("#ddlPertinencia").val("0");
+            $("#ddlInoportunidad").val("0");
+            $("#ddlNoCalidad").val("0");
+            $("#ddlEventosAdversos").val("0");
+            $("#txtFecHallazgo").val("");
+            $("#ddlTipoHallazgo").focus();
+            $("#ddlAreaAtencion").val("0");
         }
 
-        $("#divArea").find('*').prop('disabled', activo);
-        $("#divHallazgo").find('*').prop('disabled', activo);        
 
-        $("#divNoPertinencia").hide(efecto, 800).animate({ opacity: 1 }, { duration: 800, queue: false });
-        $("#divEventosAdversos").hide(efecto, 800).animate({ opacity: 1 }, { duration: 800, queue: false });
-        $("#divNoCalidad").hide(efecto, 800).animate({ opacity: 1 }, { duration: 800, queue: false });        
-        $("#divInoportunidad").hide(efecto, 800).animate({ opacity: 1 }, { duration: 800, queue: false });
-    }
+        function hideDivs(tipoHide) {
+            var activo = false;
+
+            if (tipoHide == 0) {
+                activo = true;                
+            }
+
+            $("#divArea").find('*').prop('disabled', activo);
+            $("#divHallazgo").find('*').prop('disabled', activo);
+
+            $("#divNoPertinencia").hide(efecto, 800).animate({ opacity: 1 }, { duration: 800, queue: false });
+            $("#divEventosAdversos").hide(efecto, 800).animate({ opacity: 1 }, { duration: 800, queue: false });
+            $("#divNoCalidad").hide(efecto, 800).animate({ opacity: 1 }, { duration: 800, queue: false });
+            $("#divInoportunidad").hide(efecto, 800).animate({ opacity: 1 }, { duration: 800, queue: false });
+        }
+
+        function addHallazgoAtencion() {
+            if (!validarHall()) {
+
+                var params = new Object();
+
+                var sResult = clEditor.$area.val();
+
+                params.hallazgoAtencion = sResult;
+
+                params.tipoHallazgo = $("#ddlTipoHallazgo").val();
+                var fecHall = $("#txtFecHallazgo").val().split("/");
+                params.fecHallazgo = new Date(fecHall[2], parseFloat(fecHall[1]) - 1, parseFloat(fecHall[0]));
+                params.radicado = $("#hfRadicado").val();
+                params.idArea = $("#ddlAreaAtencion").val();
+                switch (parseInt(params.tipoHallazgo)) {
+                    case 1:
+                        params.idDatoHallazgo = $("#ddlPertinencia").val();
+                        break;
+                    case 2:
+                        params.idDatoHallazgo = $("#ddlInoportunidad").val();
+                        break;
+                    case 3:
+                        params.idDatoHallazgo = $("#ddlNoCalidad").val();
+                        break;
+                    case 4:
+                        params.idDatoHallazgo = $("#ddlEventosAdversos").val();
+                        break;
+                }
+
+                params.idUser = 3;//'< % = Session["idUser"].ToString()%> '; //TODO: Cambiar
+
+
+                params = JSON.stringify(params);
+
+
+                $.ajax({
+                    type: "POST",
+                    url: "Auditoria.aspx/AddHallazgoAtencion",
+                    data: params,
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    async: true,
+                    success: function (msg) {
+                        $("#btnGuardarHall").notify("Se ha agregado el hallazgo satisfactoriamente.", { className: "success", position: "left bottom" });
+                        getHallazgosAtencion();
+                    },
+                    error: function (xmlHttpRequest, textStatus, errorThrown) {
+                        alert(textStatus + ": " + xmlHttpRequest.responseText);
+                    }
+                });
+            }
+        }
+
+        function validarHall() {
+            var noValido = false;
+
+            if ($("#ddlTipoHallazgo").val() == "0") {
+                $("#ddlTipoHallazgo").notify("Determine el tipo de hallazgo.");
+                noValido = true;
+            }
+            if ($("#txtFecHallazgo").val() == "") {
+                $("#txtFecHallazgo").notify("Determine la fecha del hallazgo.");
+                noValido = true;
+            }
+            if ($("#ddlAreaAtencion").val() == "0") {
+                $("#ddlAreaAtencion").notify("Determine la area de atención del hallazgo.");
+                noValido = true;
+            }
+            var textoEditor = clEditor.$area.val();
+            if (get_content(textoEditor) == "") {
+                $(".cleditorMain").notify("Determine el hallazgo encontrado.");
+                noValido = true;
+            }
+            switch (parseInt($("#ddlTipoHallazgo").val())) {
+                case 1:
+                    if ($("#ddlPertinencia").val() == "0") {
+                        $("#ddlPertinencia").notify("Determine el tipo de pertinencia del hallazgo.");
+                        noValido = true;
+                    }
+                    break;
+                case 2:
+                    if ($("#ddlInoportunidad").val() == "0") {
+                        $("#ddlInoportunidad").notify("Determine el tipo de inoportunidad del hallazgo.");
+                        noValido = true;
+                    }
+                    break;
+                case 3:
+                    if ($("#ddlNoCalidad").val() == "0") {
+                        $("#ddlNoCalidad").notify("Determine el tipo de no calidad del hallazgo.");
+                        noValido = true;
+                    }
+                    break;
+                case 4:
+                    if ($("#ddlEventosAdversos").val() == "0") {
+                        $("#ddlEventosAdversos").notify("Determine el tipo de evento adverso del hallazgo.");
+                        noValido = true;
+                    }
+                    break;
+            }
+            return noValido;
+        }
+
+        function get_content(texto) {            
+            return texto.replace(/<[^>]*>/g, "");
+        }
+
+        function getHallazgosAtencion() {
+            limpiarControlesHall();
+            var params = new Object();
+            params.radicado = $("#hfRadicado").val();
+            params = JSON.stringify(params);
+            $.ajax({
+                type: "POST",
+                url: "Auditoria.aspx/getHallazgoAtencionxRadicado",
+                data: params,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                async: true,
+                success: function (msg) {
+                    $("[id*=gvHallAtencion] tr").not($("[id*=gvHallAtencion] tr:first-child")).remove();
+                    for (var i = 0; i < msg.d.length; i++) {
+                        $("#gvHallAtencion").append("<tr><td>" + msg.d[i].nTipoHallazgo + "</td><td>" + msg.d[i].nArea + "</td><td>" + msg.d[i].hallazgoAtencion + "</td><td>" + msg.d[i].nPertinenciaAtencion + "</td><td>" + msg.d[i].nInoportunidadAtencion + "</td></tr>");
+                    }
+                    //$('#gvHallAtencion').height($('#gvHallAtencion').parent().height());
+                },
+                error: function (msg) {
+                    alert("error " + msg.responseText);
+                }
+            });
+            return false;
+        }
+
+        getHallazgosAtencion();
+
+        $("#btnGuardarHall").click(function () {
+            addHallazgoAtencion();
+        });
+
+        $("#btnGuardarHall").keypress(function (event) {
+            var keyPress = event.keyCode;
+            switch (keyPress) {
+                case 13:
+                case 32:
+                    event.preventDefault();
+                    addHallazgoAtencion();
+                    break;
+            }
+        });
+    });
+
 </script>
 
-<div class="tabla" style="height: 500px; width: 100%;">
+<div class="tabla" style="width: 100%;">
     <div class="fila" style="width: 100%;">
         Hallazgo encontrado en:
         <asp:DropDownList runat="server" ID="ddlTipoHallazgo" ClientIDMode="Static" AppendDataBoundItems="true">
@@ -110,79 +281,80 @@
         </asp:DropDownList>
     </div>
     <div class="fila" id="divArea" style="width: 100%;">
-        <div class="celda celdaTitulo" style="float:left; width: 20%;">
+        <div class="celda celdaTitulo" style="float: left; width: 20%;">
             Area
         </div>
-        <div class="celda celdaControl" style="float:left; width: 79%;">
+        <div class="celda celdaControl" style="float: left; width: 29%;">
             <uc1:ctrAreasAtencion runat="server" ID="ctrAreasAtencion" />
         </div>
+        <div class="celda celdaTitulo" style="float: left; width: 20%;">
+            Fecha Hallazgo
+        </div>
+        <div class="celda celdaControl" style="float: left; width: 29%;">
+            <input type="text" id="txtFecHallazgo" readonly />
+        </div>
     </div>
-    <div class="fila" id="divNoPertinencia" style="width: 100%;">
-        <div class="celda celdaTitulo" style="float:left; width: 20%;">
+    <div class="fila" id="divNoPertinencia" style="width: 97%;">
+        <div class="celda celdaTitulo" style="float: left; width: 20%;">
             No Pertinencia
         </div>
-        <div class="celda celdaControl" style="float:left; width: 79%;">
+        <div class="celda celdaControl" style="float: left; width: 79%;">
             <uc1:ctrPertinencia runat="server" ID="ctrPertinencia" />
         </div>
     </div>
-    <div class="fila" id="divInoportunidad" style="width: 100%;">
-        <div class="celda celdaTitulo" style="float:left; width: 20%;">
+    <div class="fila" id="divInoportunidad" style="width: 97%;">
+        <div class="celda celdaTitulo" style="float: left; width: 20%;">
             Inoportunidad
         </div>
-        <div class="celda celdaControl" style="float:left; width: 79%;">
+        <div class="celda celdaControl" style="float: left; width: 79%;">
             <uc1:ctrInoportunidad runat="server" ID="ctrInoportunidad" />
         </div>
     </div>
-    <div class="fila" id="divNoCalidad" style="width: 100%;">
-        <div class="celda celdaTitulo" style="float:left; width: 20%;">
+    <div class="fila" id="divNoCalidad" style="width: 97%;">
+        <div class="celda celdaTitulo" style="float: left; width: 20%;">
             No Calidad
         </div>
-        <div class="celda celdaControl" style="float:left; width: 79%;">
+        <div class="celda celdaControl" style="float: left; width: 79%;">
             <uc1:ctrNoCalidad runat="server" ID="ctrNoCalidad" />
         </div>
     </div>
-    <div class="fila" id="divEventosAdversos" style="width: 100%;">
-        <div class="celda celdaTitulo" style="float:left; width: 20%;">
+    <div class="fila" id="divEventosAdversos" style="width: 97%;">
+        <div class="celda celdaTitulo" style="float: left; width: 20%;">
             Eventos Adversos
         </div>
-        <div class="celda celdaControl" style="float:left; width: 79%;">
+        <div class="celda celdaControl" style="float: left; width: 79%;">
             <uc1:ctrEventosAdversos runat="server" ID="ctrEventosAdversos" />
         </div>
     </div>
+    <div class="fila" id="divGuardar" style="width: 3%;">
+        Guardar
+        <img style="cursor: pointer; vertical-align: middle;" alt="Guardar Hallazgo ( Alt + h)" accesskey="h" src="../../Images/icons/bi/guardar.png" width="35" height="35" id="btnGuardarHall" />
+    </div>
     <div class="fila" id="divHallazgo" style="width: 100%;">
-        <div id="divLblHallazgo" class="celda celdaTitulo" style="float:left; height:120px; width: 20%;">
+        <div id="divLblHallazgo" class="celda celdaTitulo" style="float: left; height: 120px; width: 20%;">
             Hallazgo:
         </div>
-        <div class="celda celdaControl" style="float:left; height:120px; width: 79%;">
+        <div class="celda celdaControl" style="float: left; height: 120px; width: 79%;">
             <asp:TextBox runat="server" ClientIDMode="Static" ID="txtHallazgo" CssClass="textBoxCentrado" TextMode="MultiLine" Height="69px"></asp:TextBox>
-            
         </div>
     </div>
 </div>
-
-<table style="width: 100%">
-    <tr>
-        <td colspan="3">            
-            <asp:ImageButton ID="btnGuardar" runat="server" ImageUrl="" OnClick="btnGuardar_Click" Width="40px" AccessKey="G" ToolTip="Guardar Hallazgo ( Alt + G)" Height="40px" />
-        </td>
-    </tr>
-    <tr>
-        <td colspan="3">            
-            <asp:GridView ID="gvServAtencConcur" runat="server" AutoGenerateColumns="False" GridLines="Vertical" OnRowCommand="gvServAtencConcur_RowCommand">
-                <AlternatingRowStyle BackColor="White" />
-                <Columns>
-                    <asp:BoundField HeaderText="Area" DataField="nArea" />
-                    <asp:BoundField HeaderText="No Pertinencia" DataField="nPertinenciaAtencion" />
-                    <asp:BoundField HeaderText="Inoportunidad" DataField="nInoportunidadAtencion" />
-                    <asp:BoundField HeaderText="No Calidad" DataField="nNoCalidadAtencion" />
-                    <asp:BoundField HeaderText="Eventos Adversos" DataField="nEventosAdversosAtencion" />
-                    <asp:TemplateField HeaderText="">
-                        <ItemTemplate>
-                            <asp:ImageButton ID="btnEditar" runat="server" CausesValidation="False" CommandName="Editar" ImageUrl="~/Images/EnviarCorreo.png" AlternateText="Editar" />
-                        </ItemTemplate>
-                    </asp:TemplateField>
-                </Columns>
-            </asp:GridView>
-        </td>
-    </tr>
-</table>
+<div class="fila" style="height: 15px; width: 100%;">
+</div>
+<div class="fila" style="overflow:auto; height:300px; width: 100%;">
+    <asp:GridView ID="gvHallAtencion" runat="server" AutoGenerateColumns="False" GridLines="Vertical" Style="width: 100%" ClientIDMode="Static">
+        <AlternatingRowStyle BackColor="White" />
+        <Columns>
+            <asp:BoundField HeaderText="Tipo Hallazgo" DataField="" />
+            <asp:BoundField HeaderText="Area" DataField="nArea" />
+            <asp:BoundField HeaderText="Hallazgo" DataField="hallazgoAtencion" />
+            <asp:BoundField HeaderText="Pertinencia" DataField="nPertinenciaAtencion" />
+            <asp:BoundField HeaderText="Inoportunidad" DataField="nInoportunidadAtencion" />
+            <%--<asp:TemplateField HeaderText="">
+            <ItemTemplate>
+                <asp:ImageButton ID="btnEditar" runat="server" CausesValidation="False" CommandName="Editar" ImageUrl="~/Images/EnviarCorreo.png" AlternateText="Editar" />
+            </ItemTemplate>
+        </asp:TemplateField>--%>
+        </Columns>
+    </asp:GridView>
+</div>
