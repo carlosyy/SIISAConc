@@ -12,6 +12,11 @@ namespace Business
         {
             return oDMDx.getDxAtencion();
         }
+        public DxAtencion getDxAtencionInic(String radicado)
+        {
+            return oDMDx.getDxAtencionInic(radicado: radicado);
+        }
+
         public DxAtencion getDxAtencionxRadicado(String radicado)
         {
             return oDMDx.getDxAtencion(radicado: radicado);

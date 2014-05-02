@@ -65,5 +65,14 @@ namespace SIISAConc.Concurrencia {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::SIISAConc.webControls.concurrencia.CtrPtesConcur ctrPtesConcur;
+        
+        /// <summary>
+        /// ctrFugas control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::SIISAConc.webControls.fugas.ctrFugas ctrFugas;
     }
 }

@@ -16,5 +16,6 @@ namespace Entities
         public Int32 indexSeleccion { get; set; }
         public Int32 cantServ { get; set; }
         public Int32 vrTotal { get; set; }
+        public Boolean servPpal { get; set; }
     }
 }

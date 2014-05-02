@@ -252,6 +252,7 @@ namespace DataManagement
                     radicado = "0" + radicado;
                 }
                 oDataAccess.commando.Parameters.Clear();
+                oDataAccess.close();
                 return radicado;
             }
             catch (Exception)
@@ -294,6 +295,7 @@ namespace DataManagement
                     radicado = "0" + radicado;
                 }
                 oDataAccess.commando.Parameters.Clear();
+                oDataAccess.close();
                 return radicado;
             }
             catch (Exception)

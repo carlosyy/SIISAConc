@@ -8,6 +8,64 @@
 <link rel="stylesheet" type="text/css" href="../../CSS/jquery.cleditor.css" />
 <script type="text/javascript" src="../../js/jquery.cleditor.min.js"></script>
 
+<style type="text/css">
+    .modalDialogActual {
+        /*position: fixed;*/
+        font-family: Arial, Helvetica, sans-serif;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background: rgba(0,0,0,0.8);
+        z-index: 99999;
+        display: none;
+        -webkit-transition: opacity 400ms ease-in;
+        -moz-transition: opacity 400ms ease-in;
+        transition: opacity 400ms ease-in;
+        pointer-events: none;
+    }
+
+        .modalDialogActual:target {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modalDialogActual > div {
+            width: 400px;
+            position: relative;
+            margin: 10% auto;
+            padding: 5px 20px 13px 20px;
+            border-radius: 10px;
+            background: #fff;
+            background: -moz-linear-gradient(#fff, #999);
+            background: -webkit-linear-gradient(#fff, #999);
+            background: -o-linear-gradient(#fff, #999);
+        }
+
+    .close {
+        background: #606061;
+        color: #FFFFFF;
+        line-height: 25px;
+        position: absolute;
+        right: -12px;
+        text-align: center;
+        top: -10px;
+        width: 24px;
+        text-decoration: none;
+        font-weight: bold;
+        -webkit-border-radius: 12px;
+        -moz-border-radius: 12px;
+        border-radius: 12px;
+        -moz-box-shadow: 1px 1px 3px #000;
+        -webkit-box-shadow: 1px 1px 3px #000;
+        box-shadow: 1px 1px 3px #000;
+    }
+
+        .close:hover {
+            background: #00d9ff;
+        }
+</style>
+
 <script type="text/javascript">
 
     var efecto = "blind";
@@ -49,21 +107,21 @@
 
         var clEditor = $("#txtHallazgo").cleditor(optionsCleditor)[0];
 
-        
+
 
         $("#txtFecHallazgo").datepicker({ dateFormat: 'dd/mm/yy' });
-        $("#divGuardar").css("display", "none");        
+        //$("#divGuardar").css("display", "none");
 
         hideDivs(0);
 
         $("#ddlTipoHallazgo").change(function () {
             $("#btnGuardarHall").css("display", "block");
             hideDivs($(this).val());
-            $("#divGuardar").css("display", "block");
+            //$("#divGuardar").css("display", "block");
             switch ($(this).val()) {
                 case "0":
                     $("#divLblHallazgo").text("Hallazgo:");
-                    $("#btnGuardarHall").css("display", "none");
+                    //$("#btnGuardarHall").css("display", "none");
                     break;
                 case "1":
                     $("#divLblHallazgo").text("Hallazgo por no pertinencia:");
@@ -109,10 +167,10 @@
             var activo = false;
 
             if (tipoHide == 0) {
-                activo = true;                
+                activo = true;
             }
 
-            $("#divArea").find('*').prop('disabled', activo);
+            //$("#divArea").find('*').prop('disabled', activo);
             $("#divHallazgo").find('*').prop('disabled', activo);
 
             $("#divNoPertinencia").hide(efecto, 800).animate({ opacity: 1 }, { duration: 800, queue: false });
@@ -223,7 +281,7 @@
             return noValido;
         }
 
-        function get_content(texto) {            
+        function get_content(texto) {
             return texto.replace(/<[^>]*>/g, "");
         }
 
@@ -242,7 +300,7 @@
                 success: function (msg) {
                     $("[id*=gvHallAtencion] tr").not($("[id*=gvHallAtencion] tr:first-child")).remove();
                     for (var i = 0; i < msg.d.length; i++) {
-                        $("#gvHallAtencion").append("<tr><td>" + msg.d[i].nTipoHallazgo + "</td><td>" + msg.d[i].nArea + "</td><td>" + msg.d[i].hallazgoAtencion + "</td><td>" + msg.d[i].nPertinenciaAtencion + "</td><td>" + msg.d[i].nInoportunidadAtencion + "</td></tr>");
+                        $("#gvHallAtencion").append("<tr><td>" + msg.d[i].nTipoHallazgo + "</td><td>" + msg.d[i].nArea + "</td><td>" + msg.d[i].hallazgoAtencion + "</td><td>" + msg.d[i].nPertinenciaAtencion + "</td><td>" + msg.d[i].nInoportunidadAtencion + "</td><td><img class='generarNotif' onclick='generarNotifHall(this)' style='cursor: pointer; vertical-align: middle;' src='../../Images/icons/bi/refrescar.png' width='20' height='20' id='" + msg.d[i].idhallazgoAtencion +"' /></td></tr>");
                     }
                     //$('#gvHallAtencion').height($('#gvHallAtencion').parent().height());
                 },
@@ -259,6 +317,13 @@
             addHallazgoAtencion();
         });
 
+        
+
+        $("#btnGenerarNotifHall").click(function () {
+            generarNotifHall();
+        });
+
+
         $("#btnGuardarHall").keypress(function (event) {
             var keyPress = event.keyCode;
             switch (keyPress) {
@@ -269,68 +334,132 @@
                     break;
             }
         });
+
+        //$(".generarNotif").click(function () {
+        //    $(this).closest("tr").fadeOut(10000, function () {
+        //        $(this).remove();
+        //    });
+        //});        
     });
 
+    function generarNotifHall(control) {
+        if (confirm('Está seguro de generar una notificación con este hallazgo?.')) {
+            ModalMail.style.display = 'block';
+            ModalMail.style.opacity = '1';
+            ModalMail.style.position = 'absolute';
+            ModalMail.style.pointerEvents = 'auto';
+            //var idServ = control.id;
+            $("#TxtAsunto").val("Hallazgo de " + $(control).parent().closest('tr').find('td:eq(0)').text() + " en " + $(control).parent().closest('tr').find('td:eq(3)').text() + " en area " + $(control).parent().closest('tr').find('td:eq(1)').text());
+            $("#TxtMsj").val("En el radicado " + $("#hfRadicado").val() + " se encontro el siguiente hallazgo: " + get_content($(control).parent().closest('tr').find('td:eq(2)').text()));
+
+            var params = new Object();
+            params.area = $(control).parent().closest('tr').find('td:eq(1)').text();
+            params.radicado = $("#hfRadicado").val();
+            params = JSON.stringify(params);
+            $.ajax({
+                type: "POST",
+                url: "Auditoria.aspx/getCorreoNotifHallazgo",
+                data: params,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                async: false,
+                success: function (msg) {                    
+                    $("#TxtPara").val(msg.d);
+                },
+                error: function (msg) {
+                    alert("error " + msg.responseText);
+                }
+            });
+        } 
+    }
+
+    function get_content(texto) {
+        return texto.replace(/<[^>]*>/g, "");
+    }
+
+    function cerrar() {
+        ModalMail.style.display = 'none';
+    }
+
+    function enviarNotificacion() {
+        var okTxts = true;
+        if ($("#TxtMsj").val() == "") {
+            $("#TxtMsj").notify("Determine el texto del mensaje.")
+            okTxts = false;
+        }
+        if ($("#TxtPara").val() == "") {
+            $("#TxtPara").notify("Determine el correo del remitente.")
+            okTxts = false;
+        }
+        if ($("#TxtAsunto").val() == "") {
+            $("#TxtAsunto").notify("Determine el asunto del mensaje.")
+            okTxts = false;
+        }
+        if (okTxts) {
+            var BtnEnviarMail = document.getElementById("BtnEnviarMail");
+            BtnEnviarMail.click();
+            //$().notify("Correo enviado.", "sucess");
+            //cerrar();
+        }
+    }
 </script>
 
-<div class="tabla" style="width: 100%;">
-    <div class="fila" style="width: 100%;">
-        Hallazgo encontrado en:
+<div class="tabla">
+    <div class="celda celdaTitulo" style="float: left; width: 20%;">
+        Tipo Hallazgo encontrado:
+    </div>
+    <div class="celda celdaControl" style="float: left; width: 15%;">
         <asp:DropDownList runat="server" ID="ddlTipoHallazgo" ClientIDMode="Static" AppendDataBoundItems="true">
             <asp:ListItem Text=".::Seleccione::." Value="0"></asp:ListItem>
         </asp:DropDownList>
     </div>
-    <div class="fila" id="divArea" style="width: 100%;">
-        <div class="celda celdaTitulo" style="float: left; width: 20%;">
-            Area
+    <div class="celda celdaTitulo" style="float: left; width: 8%;">
+        Area
+    </div>
+    <div class="celda celdaControl" style="float: left; width: 27%;">
+        <uc1:ctrAreasAtencion runat="server" ID="ctrAreasAtencion" />
+    </div>
+    <div class="celda celdaTitulo" style="float: left; width: 14%;">
+        Fecha Hallazgo
+    </div>
+    <div class="celda celdaControl" style="float: left; width: 13%;">
+        <input type="text" id="txtFecHallazgo" readonly class="textBoxCentrado" />
+    </div>
+    <div class="fila" style="width: 100%;">
+        <div id="divNoPertinencia" style="float: left; width: 100%;">
+            <div class="celda celdaTitulo" style="float: left; width: 20%;">
+                No Pertinencia
+            </div>
+            <div class="celda celdaControl" style="float: left; width: 79%;">
+                <uc1:ctrPertinencia runat="server" ID="ctrPertinencia" />
+            </div>
         </div>
-        <div class="celda celdaControl" style="float: left; width: 29%;">
-            <uc1:ctrAreasAtencion runat="server" ID="ctrAreasAtencion" />
+        <div id="divInoportunidad" style="float: left; width: 100%;">
+            <div class="celda celdaTitulo" style="float: left; width: 20%;">
+                Inoportunidad
+            </div>
+            <div class="celda celdaControl" style="float: left; width: 79%;">
+                <uc1:ctrInoportunidad runat="server" ID="ctrInoportunidad" />
+            </div>
         </div>
-        <div class="celda celdaTitulo" style="float: left; width: 20%;">
-            Fecha Hallazgo
+        <div id="divNoCalidad" style="float: left; width: 100%;">
+            <div class="celda celdaTitulo" style="float: left; width: 20%;">
+                No Calidad
+            </div>
+            <div class="celda celdaControl" style="float: left; width: 79%;">
+                <uc1:ctrNoCalidad runat="server" ID="ctrNoCalidad" />
+            </div>
         </div>
-        <div class="celda celdaControl" style="float: left; width: 29%;">
-            <input type="text" id="txtFecHallazgo" readonly />
+        <div id="divEventosAdversos" style="float: left; width: 100%;">
+            <div class="celda celdaTitulo" style="float: left; width: 20%;">
+                Eventos Adversos
+            </div>
+            <div class="celda celdaControl" style="float: left; width: 79%;">
+                <uc1:ctrEventosAdversos runat="server" ID="ctrEventosAdversos" />
+            </div>
         </div>
     </div>
-    <div class="fila" id="divNoPertinencia" style="width: 97%;">
-        <div class="celda celdaTitulo" style="float: left; width: 20%;">
-            No Pertinencia
-        </div>
-        <div class="celda celdaControl" style="float: left; width: 79%;">
-            <uc1:ctrPertinencia runat="server" ID="ctrPertinencia" />
-        </div>
-    </div>
-    <div class="fila" id="divInoportunidad" style="width: 97%;">
-        <div class="celda celdaTitulo" style="float: left; width: 20%;">
-            Inoportunidad
-        </div>
-        <div class="celda celdaControl" style="float: left; width: 79%;">
-            <uc1:ctrInoportunidad runat="server" ID="ctrInoportunidad" />
-        </div>
-    </div>
-    <div class="fila" id="divNoCalidad" style="width: 97%;">
-        <div class="celda celdaTitulo" style="float: left; width: 20%;">
-            No Calidad
-        </div>
-        <div class="celda celdaControl" style="float: left; width: 79%;">
-            <uc1:ctrNoCalidad runat="server" ID="ctrNoCalidad" />
-        </div>
-    </div>
-    <div class="fila" id="divEventosAdversos" style="width: 97%;">
-        <div class="celda celdaTitulo" style="float: left; width: 20%;">
-            Eventos Adversos
-        </div>
-        <div class="celda celdaControl" style="float: left; width: 79%;">
-            <uc1:ctrEventosAdversos runat="server" ID="ctrEventosAdversos" />
-        </div>
-    </div>
-    <div class="fila" id="divGuardar" style="width: 3%;">
-        Guardar
-        <img style="cursor: pointer; vertical-align: middle;" alt="Guardar Hallazgo ( Alt + h)" accesskey="h" src="../../Images/icons/bi/guardar.png" width="35" height="35" id="btnGuardarHall" />
-    </div>
-    <div class="fila" id="divHallazgo" style="width: 100%;">
+    <div class="fila" id="divHallazgo">
         <div id="divLblHallazgo" class="celda celdaTitulo" style="float: left; height: 120px; width: 20%;">
             Hallazgo:
         </div>
@@ -339,9 +468,19 @@
         </div>
     </div>
 </div>
-<div class="fila" style="height: 15px; width: 100%;">
+<div class="fila">
+    <div class="celda celdaControl" style="float: left; height: 50px; width: 100%;">
+        <div style="float: left">
+            Generar notificación  
+            
+        </div>
+        <div style="float: right">
+            Guardar
+            <img style="cursor: pointer; vertical-align: middle;" alt="Guardar Hallazgo ( Alt + h)" accesskey="h" src="../../Images/icons/bi/guardar.png" width="25" height="25" id="btnGuardarHall" />
+        </div>
+    </div>
 </div>
-<div class="fila" style="overflow:auto; height:300px; width: 100%;">
+<div class="fila" style="overflow: auto; height: 300px;">
     <asp:GridView ID="gvHallAtencion" runat="server" AutoGenerateColumns="False" GridLines="Vertical" Style="width: 100%" ClientIDMode="Static">
         <AlternatingRowStyle BackColor="White" />
         <Columns>
@@ -350,11 +489,47 @@
             <asp:BoundField HeaderText="Hallazgo" DataField="hallazgoAtencion" />
             <asp:BoundField HeaderText="Pertinencia" DataField="nPertinenciaAtencion" />
             <asp:BoundField HeaderText="Inoportunidad" DataField="nInoportunidadAtencion" />
-            <%--<asp:TemplateField HeaderText="">
-            <ItemTemplate>
-                <asp:ImageButton ID="btnEditar" runat="server" CausesValidation="False" CommandName="Editar" ImageUrl="~/Images/EnviarCorreo.png" AlternateText="Editar" />
-            </ItemTemplate>
-        </asp:TemplateField>--%>
+            <asp:BoundField HeaderText="Notif" />
         </Columns>
     </asp:GridView>
+</div>
+<div id="ModalMail" class="modalDialogActual">
+    <div>
+        <a href="#close" onclick="cerrar();" id="Close" title="Close" class="close">X</a>
+        <%--<p>
+            <a class="labelform" id="Aviso">Tenga en cuenta que el archivo adjunto contiene un PDF con los detalles de la carta glosa.</a>
+            <br />
+            <a>Adjuntos:</a>
+            <br />
+            <asp:TextBox ID="LblNombreArchivoAdjunto" ClientIDMode="Static" Style="display: block; width: 90%;" Enabled="false" runat="server"></asp:TextBox>
+        </p>--%>
+        <div id="wrapper">
+            <div class="FilaDiv">
+                <a>De: </a>
+                <asp:TextBox ID="TxtDe" Text="infoinvers.jcjm@gmail.com" Style="display: block; width: 90%;" Enabled="false" runat="server"></asp:TextBox>
+            </div>
+            <div class="FilaDiv">
+                <a>Para : </a>
+                <asp:TextBox ID="TxtPara" ClientIDMode="Static" Style="width: 90%;" runat="server"></asp:TextBox>
+            </div>
+            <div class="FilaDiv">
+                <a>Asunto : </a>
+                <asp:TextBox ID="TxtAsunto" ClientIDMode="Static" Style="width: 90%;" runat="server"></asp:TextBox>
+            </div>
+            <div class="FilaDiv">
+                <a>Mensaje : </a>
+                <asp:TextBox ID="TxtMsj" ClientIDMode="Static" Style="height: 150px; text-align: start; -webkit-writing-mode: horizontal-tb; width: 90%;" TextMode="MultiLine" runat="server"></asp:TextBox>
+            </div>
+            <div class="FilaDiv" style="text-align:right;">                    
+                <button type="button" style="cursor: pointer; height: 30px; margin-right: 30px;" onclick="enviarNotificacion();">
+                    &nbsp;Enviar&nbsp;
+                    <img src="../../Images/icons/bi/email.png" width="24" height="24" style="vertical-align: middle; text-align: left;" alt="Enviar" /> 
+                </button>
+                <asp:Button ID="BtnEnviarMail" ClientIDMode="Static" runat="server" Text="Enviar" Style="display: none;" OnClick="BtnEnviarMail_Click" />                
+                <%--<label id="LblMsjResult" style="color: #cc0000; display: block"></label>--%>
+                
+            </div>
+            <br />
+        </div>
+    </div>
 </div>

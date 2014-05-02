@@ -18,6 +18,11 @@ namespace Business
             return oDMHallazgosAtencion.GetHallazgoAtencionXRadicado(radicado: radicado);
         }
 
+        public String getCorreoNotifHallazgo(String area, String radicado)
+        {
+            return oDMHallazgosAtencion.getCorreoNotifHallazgo(area: area, radicado: radicado);
+        }
+
         public Int32 AddHallazgosAtencion(HallazgoAtencionEntidad oHallazgosAtencion)
         {
             return oDMHallazgosAtencion.AddHallazgoAtencion(oHallazgosAtencion);

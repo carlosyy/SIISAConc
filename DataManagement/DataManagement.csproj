@@ -69,6 +69,7 @@
     <Compile Include="DM_Servicios.cs" />
     <Compile Include="DM_DxAtencion.cs" />
     <Compile Include="DM_ServiciosAtencion.cs" />
+    <Compile Include="DM_TipoFuga.cs" />
     <Compile Include="DM_TipoHallazgo.cs" />
     <Compile Include="DM_TipoAtenc.cs" />
     <Compile Include="DM_TiposDoc.cs" />

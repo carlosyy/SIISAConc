@@ -496,6 +496,7 @@ td.Solocentro {
 .tabla {
     border-style: none;
     border-color: silver;
+    width: 100%;
 }
 
 .fila {
@@ -514,10 +515,12 @@ td.Solocentro {
     background-color: #399EC5;
     color: white;
     height: 25px;
+    width: 100%;
 }
 
 .celdaControl {
     height: 25px;
+    width: 100%;
 }
 
 .calendar {

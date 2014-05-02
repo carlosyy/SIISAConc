@@ -29,5 +29,10 @@ namespace Business
             return oDMServicios.UpdateServiciosAtencion(oServicios);
         }
 
+        public Int32 setServPpal(ServiciosAtencionEntidad oServAtencion)
+        {
+            return oDMServicios.setServPpal(oServAtencion: oServAtencion);
+        }
+
     }
 }

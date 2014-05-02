@@ -46,6 +46,8 @@
   <ItemGroup>
     <Compile Include="Afiliado.cs" />
     <Compile Include="AfiliadosEntidad.cs" />
+    <Compile Include="CorreoNotifHallazgo.cs" />
+    <Compile Include="CorreoNotifHallazgoEntidad.cs" />
     <Compile Include="estadoAtenc.cs" />
     <Compile Include="estadoAtencEntidad.cs" />
     <Compile Include="DxAtencion.cs" />
@@ -103,8 +105,10 @@
     <Compile Include="RipsEntidad.cs" />
     <Compile Include="Servicios.cs" />
     <Compile Include="ServiciosEntidad.cs" />
+    <Compile Include="TipoFuga.cs" />
     <Compile Include="TipoHallazgo.cs" />
     <Compile Include="TipoAtenc.cs" />
+    <Compile Include="TipoFugaEntidad.cs" />
     <Compile Include="TipoHallazgoEntidad.cs" />
     <Compile Include="TipoAtencEntidad.cs" />
     <Compile Include="TiposDoc.cs" />

@@ -23,6 +23,7 @@ namespace DataManagement
             sbServiciosAtencion.Append(", sa.codserv");
             sbServiciosAtencion.Append(", sa.codserv");
             sbServiciosAtencion.Append(", sa.noAutorizacion");
+            sbServiciosAtencion.Append(", sa.servPpal");            
             sbServiciosAtencion.Append(", ser.descripcion as servicio");
             sbServiciosAtencion.Append(", co.nombreconcepto");
             sbServiciosAtencion.Append(" FROM serviciosAtencion AS sa");
@@ -49,7 +50,8 @@ namespace DataManagement
                     OserviEntidad.codServ = reader["codServ"].ToString();
                     OserviEntidad.noAutorizacion = reader["noAutorizacion"].ToString();
                     OserviEntidad.descripServ = ((reader["servicio"].ToString().Length > 60) ? reader["servicio"].ToString().Substring(0, 60) : reader["servicio"].ToString());
-                    OserviEntidad.concepto = reader["nombreconcepto"].ToString();                    
+                    OserviEntidad.concepto = reader["nombreconcepto"].ToString();
+                    OserviEntidad.servPpal = Boolean.Parse(reader["servPpal"].ToString());
                     ServiFactUsu.Add(OserviEntidad);
                 }
                 reader.Close();
@@ -98,15 +100,15 @@ namespace DataManagement
             StringBuilder sbServiciosAtencion = new StringBuilder();
             {
                 sbServiciosAtencion.Append("UPDATE ServiciosAtencion SET");
-                sbServiciosAtencion.Append(" autorizacion='" + oServiciosAtencion.noAutorizacion + "'");
-                //sbServiciosAtencion.Append(", cantServ ='" + oServiciosAtencion.cantServ + "'");
+                sbServiciosAtencion.Append(" autorizacion='" + oServiciosAtencion.noAutorizacion + "'");                
                 sbServiciosAtencion.Append(", codServ='" + oServiciosAtencion.codServ + "'");
+                sbServiciosAtencion.Append(", tipoAutoriz='" + oServiciosAtencion.tipoAutorizacion + "'");
+                sbServiciosAtencion.Append(" WHERE idServ='" + oServiciosAtencion.idServ + "'");
+                //sbServiciosAtencion.Append(", cantServ ='" + oServiciosAtencion.cantServ + "'");
                 //sbServiciosAtencion.Append(", nvoServ='" + oServiciosAtencion.nvoServ + "'");
                 //sbServiciosAtencion.Append(", observServ='" + oServiciosAtencion.observServ + "'");
-                sbServiciosAtencion.Append(", tipoAutoriz='" + oServiciosAtencion.tipoAutorizacion + "'");
                 //sbServiciosAtencion.Append(", vrProd='" + oServiciosAtencion.vrProd + "'");
-                //sbServiciosAtencion.Append(", vrTotal='" + oServiciosAtencion.vrTotal + "'");
-                sbServiciosAtencion.Append(" WHERE idServ='" + oServiciosAtencion.idServ + "'");
+                //sbServiciosAtencion.Append(", vrTotal='" + oServiciosAtencion.vrTotal + "'");                
 
                 try
                 {
@@ -124,6 +126,28 @@ namespace DataManagement
                     oDataAccess.close();
                 }
             }
+        }
+
+        public Int32 setServPpal(ServiciosAtencionEntidad oServAtencion)
+        {
+            Int32 retorno = 0;
+            String sQuery = String.Format("EXEC SPU_ServPpalAtencion @radicado='{0}', @idServ={1}", oServAtencion.radicado, oServAtencion.idServ);
+
+            try
+            {
+                oDataAccess.open();
+                retorno = oDataAccess.executeNonQuery(CommandType.Text, sQuery);
+
+            }
+            catch (DbException ex)
+            {
+                throw new Exception("Se ha generado el siguiente error : " + ex.Message);
+            }
+            finally
+            {
+                oDataAccess.close();
+            }
+            return (retorno);
         }
     }
 }

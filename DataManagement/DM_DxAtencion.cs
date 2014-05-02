@@ -62,17 +62,63 @@ namespace DataManagement
             }
         }
 
+        public DxAtencion getDxAtencionInic(String radicado = "")
+        {
+            StringBuilder sbDxAtencion = new StringBuilder();
+            IDataReader reader;
+            DxAtencion eDxAtencion = new DxAtencion();
+            DxAtencionEntidad ODxEntidad = null;
+
+            sbDxAtencion.Append("SELECT");
+            sbDxAtencion.Append(" ac.codDx");
+            sbDxAtencion.Append(", dx.dx");
+            sbDxAtencion.Append(" FROM auditoria AS au");
+            sbDxAtencion.Append(" INNER JOIN atencClinicas ac ON ac.idAtencion=au.idAtencion");
+            sbDxAtencion.Append(" INNER JOIN dx ON dx.codDx = ac.codDx");
+            sbDxAtencion.Append(" WHERE au.radicado='" + radicado + "'");
+
+            try
+            {
+                oDataAccess.open();
+                reader = oDataAccess.executeReader(CommandType.Text, sbDxAtencion.ToString());
+
+                while (reader.Read())
+                {
+                    ODxEntidad = new DxAtencionEntidad();                    
+                    ODxEntidad.codDx = reader["codDx"].ToString();
+                    ODxEntidad.descripDx = ((reader["dx"].ToString().Length > 60) ? reader["dx"].ToString().Substring(0, 60) : reader["dx"].ToString());                    
+                    eDxAtencion.Add(ODxEntidad);
+                }
+                reader.Close();
+
+                return eDxAtencion;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                oDataAccess.close();
+            }
+        }
+
+
         // adiciona una nuevo dx de Atención
         public Int32 addDxAtencion(DxAtencionEntidad oDxAtencion)
         {
             Int32 retorno = 0;
             String sQuery = String.Format("EXEC SPI_DxAtencion @codDx='{0}', @radicado='{1}', @idUser={2}, @dxPpal={3}", oDxAtencion.codDx, oDxAtencion.radicado, oDxAtencion.idUser, oDxAtencion.dxPpal);
-
+            IDataReader reader;
             try
             {
                 oDataAccess.open();
-                retorno = oDataAccess.executeNonQuery(CommandType.Text, sQuery);
-                
+                reader = oDataAccess.executeReader(CommandType.Text, sQuery);
+                while (reader.Read())
+                {
+                    retorno = Int32.Parse(reader["rpta"].ToString());
+                }
+                reader.Close();
             }
             catch (DbException ex)
             {

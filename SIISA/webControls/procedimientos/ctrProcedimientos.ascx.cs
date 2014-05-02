@@ -23,6 +23,7 @@ namespace SIISAConc.webControls.procedimientos
                 dt.Columns.Add("descripServ");
                 dt.Columns.Add("noAutorizacion");
                 dt.Columns.Add("concepto");
+                dt.Columns.Add("pxPpal");
                 dt.Rows.Add();
                 gvServiciosAtencion.DataSource = dt;
                 gvServiciosAtencion.DataBind();

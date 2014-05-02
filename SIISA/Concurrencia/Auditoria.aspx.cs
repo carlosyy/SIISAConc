@@ -55,7 +55,8 @@ namespace SIISAConc.Concurrencia
                                     codServ = item.codServ,
                                     descripServ = item.descripServ,
                                     concepto = item.concepto,
-                                    noAutorizacion = item.noAutorizacion
+                                    noAutorizacion = item.noAutorizacion,
+                                    servPpal = item.servPpal
                                 };
             return query.Cast<ServiciosAtencionEntidad>().ToArray();
         }
@@ -77,6 +78,28 @@ namespace SIISAConc.Concurrencia
             return oB_ServiciosAtencion.AddServiciosAtencion(oServiciosAtencion);            
         }
 
+        [WebMethod]
+        public static Int32 setServPpal(String radicado, Int32 idServ)
+        {
+            ServiciosAtencionEntidad oServAtencion = new ServiciosAtencionEntidad();
+            oServAtencion.radicado = radicado;
+            oServAtencion.idServ = idServ;
+            B_ServiciosAtencion oB_ServiciosAtencion = new B_ServiciosAtencion();
+            return oB_ServiciosAtencion.setServPpal(oServAtencion);
+        }
+
+        [WebMethod]
+        public static DxAtencionEntidad[] getDxAtencionInic(String radicado)
+        {
+            B_DxAtencion oBDxAtencion = new B_DxAtencion();
+            IEnumerable query = from item in oBDxAtencion.getDxAtencionInic(radicado).AsEnumerable()
+                                select new DxAtencionEntidad
+                                {                                    
+                                    codDx = item.codDx,
+                                    descripDx = item.descripDx                                    
+                                };
+            return query.Cast<DxAtencionEntidad>().ToArray();
+        }
 
         [WebMethod]
         public static DxAtencionEntidad[] getDxAtencionxRadicado(String radicado)
@@ -152,17 +175,24 @@ namespace SIISAConc.Concurrencia
             B_HallazgosAtencion oB_HallazgosAtencion = new B_HallazgosAtencion();
             IEnumerable query = from item in oB_HallazgosAtencion.GetHallazgoAtencionXRadicado(radicado).AsEnumerable()
                                 select new HallazgoAtencionEntidad
-                                {                                    
+                                {
                                     nTipoHallazgo = item.nTipoHallazgo,
-                                    hallazgoAtencion = item.hallazgoAtencion,                                    
+                                    hallazgoAtencion = item.hallazgoAtencion,
                                     nArea = item.nArea,
                                     nPertinenciaAtencion = item.nPertinenciaAtencion,
                                     nInoportunidadAtencion = item.nInoportunidadAtencion,
                                     nNoCalidadAtencion = item.nNoCalidadAtencion,
                                     nEventosAdversosAtencion = item.nEventosAdversosAtencion,
-                                    
+                                    idhallazgoAtencion = item.idhallazgoAtencion
                                 };
             return query.Cast<HallazgoAtencionEntidad>().ToArray();
+        }
+
+        [WebMethod]
+        public static String getCorreoNotifHallazgo(String area, String radicado)
+        {
+            B_HallazgosAtencion oB_HallazgosAtencion = new B_HallazgosAtencion();
+            return oB_HallazgosAtencion.getCorreoNotifHallazgo(area: area, radicado: radicado);
         }
     }
 }

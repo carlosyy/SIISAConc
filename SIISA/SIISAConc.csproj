@@ -167,6 +167,7 @@
     <Content Include="webControls\concurrencia\ctrAtencEstablecidas.ascx" />
     <Content Include="webControls\concurrencia\ctrBusqueda.ascx" />
     <Content Include="webControls\concurrencia\ctrCargueListPacie.ascx" />
+    <Content Include="webControls\fugas\ctrDdlTipoFuga.ascx" />
     <Content Include="webControls\fugas\ctrFugas.ascx" />
     <Content Include="webControls\Hallazgos\ctrHallazgos.ascx" />
     <Content Include="webControls\concurrencia\ctrNotas.ascx" />
@@ -322,8 +323,16 @@
     <Compile Include="webControls\concurrencia\ctrCargueListPacie.ascx.designer.cs">
       <DependentUpon>ctrCargueListPacie.ascx</DependentUpon>
     </Compile>
+    <Compile Include="webControls\fugas\ctrDdlTipoFuga.ascx.cs">
+      <DependentUpon>ctrDdlTipoFuga.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="webControls\fugas\ctrDdlTipoFuga.ascx.designer.cs">
+      <DependentUpon>ctrDdlTipoFuga.ascx</DependentUpon>
+    </Compile>
     <Compile Include="webControls\fugas\ctrFugas.ascx.cs">
       <DependentUpon>ctrFugas.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="webControls\fugas\ctrFugas.ascx.designer.cs">
       <DependentUpon>ctrFugas.ascx</DependentUpon>

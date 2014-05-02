@@ -6,7 +6,7 @@
 <%@ Register Src="~/webControls/concurrencia/ctrPtesConcur.ascx" TagPrefix="uc1" TagName="ctrPtesConcur" %>
 <%@ Register Src="~/webControls/procedimientos/ctrProcedimientos.ascx" TagPrefix="uc1" TagName="ctrProcedimientos" %>
 <%@ Register Src="~/webControls/dx/CtrDxLista.ascx" TagPrefix="uc1" TagName="CtrDxLista" %>
-
+<%@ Register Src="~/webControls/fugas/ctrFugas.ascx" TagPrefix="uc1" TagName="ctrFugas" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style type="text/css">        
@@ -87,6 +87,7 @@
                         <li><a href="#tabs-3A">Hallazgo</a></li>
                         <li><a href="#tabs-4A">Notas</a></li>
                         <li><a href="#tabs-5A">Pendientes Concurrencia</a></li>
+                        <li><a href="#tabs-6A">Fugas</a></li>
                     </ul>
                     <div id="tabs-1A" style="overflow:hidden;" >
                         <uc1:ctrProcedimientos runat="server" ID="ctrProcedimientos" />
@@ -102,6 +103,9 @@
                     </div>
                     <div id="tabs-5A">
                         <uc1:ctrPtesConcur runat="server" ID="ctrPtesConcur" />
+                    </div>
+                    <div id="tabs-6A">
+                        <uc1:ctrFugas runat="server" ID="ctrFugas" />
                     </div>
                 </div>
             </div>

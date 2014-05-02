@@ -28,6 +28,7 @@ namespace SIISAConc.webControls.Hallazgos
                 dt.Columns.Add("descripServ");
                 dt.Columns.Add("noAutorizacion");
                 dt.Columns.Add("concepto");
+                dt.Columns.Add("Notif");
                 dt.Rows.Add();
                 gvHallAtencion.DataSource = dt;
                 gvHallAtencion.DataBind();
@@ -39,13 +40,6 @@ namespace SIISAConc.webControls.Hallazgos
 
         }
 
-        //public void llenarGrid()
-        //{
-        //    B_HallazgosAtencion oBHallazgosAtencion = new B_HallazgosAtencion();
-        //    gvServAtencConcur.DataSource = oBHallazgosAtencion.GetHallazgoAtencionXRadicado(Session["idDatosUS"] == null ? "0" : Session["idDatosUS"].ToString());
-        //    gvServAtencConcur.DataBind();
-        //}
-
         private void llenarDdlTipoHallazgo()
         {
             B_TipoHallazgo oB_TipoHallazgo = new B_TipoHallazgo();
@@ -54,6 +48,28 @@ namespace SIISAConc.webControls.Hallazgos
             ddlTipoHallazgo.DataValueField = "idTipoHallazgo";
             ddlTipoHallazgo.DataBind();
         }
+
+        protected void BtnEnviarMail_Click(object sender, EventArgs e)
+        {
+            SendEmail sMail = new SendEmail();
+            String okEnviado= sMail.SendingEmail(TxtPara.Text, TxtAsunto.Text, TxtMsj.Text);
+            switch (okEnviado)
+            {
+                case "Enviado":
+                    MessageBox.show("El correo se envio satisfactoriamente.", 2);
+                    break;
+                default:
+                    MessageBox.show(okEnviado);
+                    break;
+            }
+        }
+
+        //public void llenarGrid()
+        //{
+        //    B_HallazgosAtencion oBHallazgosAtencion = new B_HallazgosAtencion();
+        //    gvServAtencConcur.DataSource = oBHallazgosAtencion.GetHallazgoAtencionXRadicado(Session["idDatosUS"] == null ? "0" : Session["idDatosUS"].ToString());
+        //    gvServAtencConcur.DataBind();
+        //}
 
         //protected void btnGuardar_Click(object sender, ImageClickEventArgs e)
         //{

@@ -238,5 +238,33 @@ namespace DataManagement
                 }
             }
         }
+
+        public String getCorreoNotifHallazgo(String area, String radicado)
+        {
+            String sQuery = String.Format("EXEC SPS_CorreoNotifHallazgo @area='{0}', @radicado='{1}'", area, radicado);
+            IDataReader reader;
+            String correoNotifHallazgo = "";
+            try
+            {
+                oDataAccess.open();
+                reader = oDataAccess.executeReader(CommandType.Text, sQuery);
+
+                while (reader.Read())
+                {
+                    correoNotifHallazgo = reader["correo"].ToString();
+                }
+                reader.Close();
+
+                return correoNotifHallazgo;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                oDataAccess.close();
+            }
+        }
     }
 }
